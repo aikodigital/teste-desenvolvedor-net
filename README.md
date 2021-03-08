@@ -1,5 +1,7 @@
 # Teste Desenvolvedor .NET
 
+![Aiko](imagens/aiko.png)
+
 Neste teste serão avaliados seus conhecimentos e a metodologia aplicada no desenvolvimento de uma aplicação .NET.
 
 ## O Desafio
