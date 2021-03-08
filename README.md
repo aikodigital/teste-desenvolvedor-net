@@ -60,7 +60,7 @@ Aqui são listados algumas sugestões para você que quer ir além do desafio in
 
 * **Containerização**: Realizar a conteinerização da aplicação utilizando Docker
 
-* **Front-end da aplicação**: Se seu foco for ser fullstack você pode explorar isso desenvolvendo um front-end da aplicação, preferencialmente em uma tecnologia .NET (blazor, razor, etc).
+* **Front-end da aplicação**: Se seu foco é ser fullstack, você pode explorar isso desenvolvendo um front-end para a aplicação, seja em tecnologia .NET (MVC, Razor, Blazor) ou javacript (VueJS, Angular, ReactJS, etc.)
 
 ## Entregas
 
