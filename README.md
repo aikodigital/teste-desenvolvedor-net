@@ -28,6 +28,10 @@ Após implementar o CRUD para as entidades, implemente os seguintes métodos:
 
 ## O que é permitido
 
+* Linguagem C#
+
+* .NET Framework ou .NET Core ou .NET 5
+
 * PostgreSQL, MySQL, Oracle, etc
 
 * Mapeamento objeto-relacional (ORM)
@@ -39,6 +43,8 @@ Após implementar o CRUD para as entidades, implemente os seguintes métodos:
 * Bancos de Dados **não relacionais**.
   
 * Utilizar bibliotecas ou códigos de terceiros que implementem algum dos requisitos.
+
+* Outras linguagens diferentes de C#
 
 ## Recomendações
 
