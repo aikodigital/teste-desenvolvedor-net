@@ -13,7 +13,8 @@ namespace Core.Entities
 		}
 		public long Id { get; private set; }
 		public string Name { get; private set; }
-		public ICollection<Parada> Paradas { get; private set; }
+        public ICollection<Veiculo> Veiculos { get; private set; }
+        public ICollection<Parada> Paradas { get; private set; }
 
 		public void AdicionarParada(string nome, Localizacao localizacao)
 		{
