@@ -1,18 +1,19 @@
 using System.Collections.Generic;
-using Core.ValueObjects;
+using Domain.ValueObjects;
 
-namespace Core.Entities
+namespace Domain.Entities
 {
 	public class Linha
 	{
-		public Linha(string name, long id = 0)
+		public Linha(string nome, long id = 0)
 		{
 			Id = id;
-			Name = name;
+			Nome = nome;
+            Veiculos = new List<Veiculo>();
 			Paradas = new List<Parada>();
 		}
 		public long Id { get; private set; }
-		public string Name { get; private set; }
+		public string Nome { get; private set; }
         public ICollection<Veiculo> Veiculos { get; private set; }
         public ICollection<Parada> Paradas { get; private set; }
 

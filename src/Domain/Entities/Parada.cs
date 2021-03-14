@@ -1,6 +1,6 @@
-using Core.ValueObjects;
+using Domain.ValueObjects;
 
-namespace Core.Entities
+namespace Domain.Entities
 {
     public class Parada
     {
@@ -8,15 +8,15 @@ namespace Core.Entities
         {
         }
 
-        public Parada(string name, Localizacao localizacao, long id = 0)
+        public Parada(string nome, Localizacao localizacao, long id = 0)
         {
             Id = id;
-            Name = name;
+            Nome = nome;
             Localizacao = localizacao;
         }
 
         public long Id { get; private set; }
-        public string Name { get; private set; }
+        public string Nome { get; private set; }
         public Localizacao Localizacao { get; private set; }
     }
 }
