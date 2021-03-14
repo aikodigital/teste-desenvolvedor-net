@@ -1,5 +1,8 @@
-﻿using System.Threading.Tasks;
+﻿using System.Linq;
+using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
+using Services.Commons.Dtos;
+using Services.Veiculo;
 
 namespace Api.Controllers
 {
@@ -8,31 +11,64 @@ namespace Api.Controllers
     public class VeiculosController : ControllerBase
     {
         [HttpGet]
-        public async Task Get()
+        public async Task<IActionResult> Get([FromServices] ListarTodosOsVeiculos listarTodosOsVeiculos)
         {
+            var veiculos = await listarTodosOsVeiculos.Executar();
+
+            return new ObjectResult(veiculos);
         }
 
         [HttpGet]
         [Route("{id:long}")]
-        public async Task Get(long id)
+        public async Task<IActionResult> Get([FromServices] ObterVeiculoPorId obterVeiculoPorId, long id)
         {
+            var veiculo = await obterVeiculoPorId.Executar(id);
+
+            if (veiculo is null)
+                return NotFound();
+
+            return new ObjectResult(veiculo);
         }
 
         [HttpPost]
-        [Route("[action]/{id:long}")]
-        public async Task Post(long id)
+        public async Task<IActionResult> Post([FromServices] CadastrarVeiculo cadastrarVeiculo, VeiculoDto veiculoDto)
         {
+            if (ModelState.IsValid) {
+                await cadastrarVeiculo.Executar(veiculoDto);
+
+                return Ok();
+            }
+
+            return BadRequest(veiculoDto);
         }
 
         [HttpPut]
-        public async Task Put()
+        public async Task<IActionResult> Put([FromServices] EditarVeiculo editarVeiculo, long id, VeiculoDto veiculoDto)
         {
+            if (ModelState.IsValid) {
+                await editarVeiculo.Executar(id, veiculoDto);
+
+                if (editarVeiculo.Notifications.Any()) {
+                    return BadRequest(editarVeiculo.Notifications);
+                }
+
+                return Ok();
+            }
+
+            return BadRequest(veiculoDto);
         }
 
         [HttpDelete]
-        [Route("[action]/{id:long}")]
-        public async Task Delete(long id)
+        [Route("{id:long}")]
+        public async Task<IActionResult> Delete([FromServices] DeletarVeiculo deletarVeiculo, long id)
         {
+            await deletarVeiculo.Executar(id);
+
+            if (deletarVeiculo.Notifications.Any()) {
+                return BadRequest(deletarVeiculo.Notifications);
+            }
+
+            return Ok();
         }
     }
 }
