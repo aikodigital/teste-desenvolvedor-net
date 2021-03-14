@@ -1,5 +1,5 @@
-using Core.Entities;
-using Core.ValueObjects;
+using Domain.Entities;
+using Domain.ValueObjects;
 using Xunit;
 
 namespace Tests.Entities
@@ -10,7 +10,7 @@ namespace Tests.Entities
 		public void DeveAdicionarUmaParada()
 		{
 			//arrange
-			var linha = new Linha(name: "linha 1");
+			var linha = new Linha(nome: "linha 1");
 
 			//act
 			linha.AdicionarParada("primeira parada", localizacao: new Localizacao(latitude: 123456, longitude: 654321));
@@ -24,7 +24,7 @@ namespace Tests.Entities
 		public void NaoDeveAdicionarUmaParada()
 		{
 			//arrange
-			var linha = new Linha(name: "linha 1");
+			var linha = new Linha(nome: "linha 1");
 
 			//act
 			linha.AdicionarParada("primeira parada", localizacao: new Localizacao(latitude: 123456, longitude: 654321));
