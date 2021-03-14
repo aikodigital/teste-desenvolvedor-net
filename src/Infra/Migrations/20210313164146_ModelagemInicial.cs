@@ -12,7 +12,7 @@ namespace Infra.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(250)", nullable: false)
+                    Nome = table.Column<string>(type: "varchar(250)", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -25,7 +25,7 @@ namespace Infra.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(250)", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(250)", nullable: false),
                     Latitude = table.Column<double>(type: "float", nullable: true),
                     Longitude = table.Column<double>(type: "float", nullable: true),
                     LinhaId = table.Column<long>(type: "bigint", nullable: true)
@@ -47,7 +47,7 @@ namespace Infra.Migrations
                 {
                     Id = table.Column<long>(type: "bigint", nullable: false)
                         .Annotation("SqlServer:Identity", "1, 1"),
-                    Name = table.Column<string>(type: "varchar(250)", nullable: false),
+                    Nome = table.Column<string>(type: "varchar(250)", nullable: false),
                     Modelo = table.Column<string>(type: "varchar(250)", nullable: false),
                     LinhaId = table.Column<long>(type: "bigint", nullable: true),
                     Latitude = table.Column<double>(type: "float", nullable: true),

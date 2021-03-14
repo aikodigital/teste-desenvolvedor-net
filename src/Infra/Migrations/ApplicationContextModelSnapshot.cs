@@ -19,14 +19,14 @@ namespace Infra.Migrations
                 .HasAnnotation("ProductVersion", "5.0.4")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-            modelBuilder.Entity("Core.Entities.Linha", b =>
+            modelBuilder.Entity("Domain.Entities.Linha", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
@@ -35,7 +35,7 @@ namespace Infra.Migrations
                     b.ToTable("Linhas");
                 });
 
-            modelBuilder.Entity("Core.Entities.Parada", b =>
+            modelBuilder.Entity("Domain.Entities.Parada", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -45,7 +45,7 @@ namespace Infra.Migrations
                     b.Property<long?>("LinhaId")
                         .HasColumnType("bigint");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
@@ -56,7 +56,7 @@ namespace Infra.Migrations
                     b.ToTable("Paradas");
                 });
 
-            modelBuilder.Entity("Core.Entities.Veiculo", b =>
+            modelBuilder.Entity("Domain.Entities.Veiculo", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
@@ -70,7 +70,7 @@ namespace Infra.Migrations
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
-                    b.Property<string>("Name")
+                    b.Property<string>("Nome")
                         .IsRequired()
                         .HasColumnType("varchar(250)");
 
@@ -81,14 +81,14 @@ namespace Infra.Migrations
                     b.ToTable("Veiculos");
                 });
 
-            modelBuilder.Entity("Core.Entities.Parada", b =>
+            modelBuilder.Entity("Domain.Entities.Parada", b =>
                 {
-                    b.HasOne("Core.Entities.Linha", null)
+                    b.HasOne("Domain.Entities.Linha", null)
                         .WithMany("Paradas")
                         .HasForeignKey("LinhaId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.OwnsOne("Core.ValueObjects.Localizacao", "Localizacao", b1 =>
+                    b.OwnsOne("Domain.ValueObjects.Localizacao", "Localizacao", b1 =>
                         {
                             b1.Property<long>("ParadaId")
                                 .ValueGeneratedOnAdd()
@@ -114,14 +114,14 @@ namespace Infra.Migrations
                     b.Navigation("Localizacao");
                 });
 
-            modelBuilder.Entity("Core.Entities.Veiculo", b =>
+            modelBuilder.Entity("Domain.Entities.Veiculo", b =>
                 {
-                    b.HasOne("Core.Entities.Linha", "Linha")
+                    b.HasOne("Domain.Entities.Linha", "Linha")
                         .WithMany("Veiculos")
                         .HasForeignKey("LinhaId")
                         .OnDelete(DeleteBehavior.Restrict);
 
-                    b.OwnsOne("Core.ValueObjects.Localizacao", "Localizacao", b1 =>
+                    b.OwnsOne("Domain.ValueObjects.Localizacao", "Localizacao", b1 =>
                         {
                             b1.Property<long>("VeiculoId")
                                 .ValueGeneratedOnAdd()
@@ -149,7 +149,7 @@ namespace Infra.Migrations
                     b.Navigation("Localizacao");
                 });
 
-            modelBuilder.Entity("Core.Entities.Linha", b =>
+            modelBuilder.Entity("Domain.Entities.Linha", b =>
                 {
                     b.Navigation("Paradas");
 
