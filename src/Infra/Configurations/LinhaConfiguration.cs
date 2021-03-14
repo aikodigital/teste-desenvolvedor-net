@@ -1,4 +1,4 @@
-﻿using Core.Entities;
+﻿using Domain.Entities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
@@ -8,7 +8,7 @@ namespace Infra.Configurations
     {
         public void Configure(EntityTypeBuilder<Linha> builder)
         {
-            builder.Property(x => x.Name).IsRequired();
+            builder.Property(x => x.Nome).IsRequired();
         }
     }
 }
