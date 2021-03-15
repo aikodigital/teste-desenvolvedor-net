@@ -1,0 +1,14 @@
+<Project Sdk="Microsoft.NET.Sdk">
+  <PropertyGroup>
+    <TargetFramework>net5.0</TargetFramework>
+  </PropertyGroup>
+  
+  <ItemGroup>
+    <ProjectReference Include="..\TesteDesenvolvedor.Domain\TesteDesenvolvedor.Domain.csproj"/>
+    <ProjectReference Include="..\TesteDesenvolvedor.Repository\TesteDesenvolvedor.Repository.csproj"/>
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="AutoMapper.Extensions.Microsoft.DependencyInjection" Version="4.0.0"/>
+  </ItemGroup>
+</Project>
