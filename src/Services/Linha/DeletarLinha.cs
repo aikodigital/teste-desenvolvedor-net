@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infra;
+using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
 
 namespace Services.Linha
@@ -18,16 +19,8 @@ namespace Services.Linha
 
         public async Task Executar(long id)
         {
-            var linha = await context.Linhas.FindAsync(id);
-
-            if (linha is null) {
-                Notifications.Add("not-found", "Linha não encontrada!");
-
-                return;
-            }
-
-            context.Remove(linha);
-            await context.SaveChangesAsync();
+            const string query = "DELETE FROM [dbo].[Linhas] WHERE [Id]={0}";
+            await context.Database.ExecuteSqlRawAsync(query, id);
         }
     }
 }

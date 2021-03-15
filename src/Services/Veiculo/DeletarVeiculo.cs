@@ -1,6 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.Threading.Tasks;
 using Infra;
+using Microsoft.EntityFrameworkCore;
 using Services.Interfaces;
 
 namespace Services.Veiculo
@@ -18,16 +19,8 @@ namespace Services.Veiculo
 
         public async Task Executar(long id)
         {
-            var veiculo = await context.Veiculos.FindAsync(id);
-
-            if (veiculo is null) {
-                Notifications.Add("not-found", "Veículo não encontrado!");
-                
-                return;
-            }
-
-            context.Remove(veiculo);
-            await context.SaveChangesAsync();
+            const string query = "DELETE FROM [dbo].[Veiculos] WHERE [Id]={0}";
+            await context.Database.ExecuteSqlRawAsync(query, id);
         }
     }
 }
