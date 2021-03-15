@@ -17,7 +17,9 @@ namespace Services.Linha
 
         public async Task<List<Domain.Entities.Linha>> Executar()
         {
-            var linhas = await context.Linhas.ToListAsync();
+            var linhas = await context.Linhas
+                .Include(x => x.Paradas)
+                .ToListAsync();
 
             return linhas;
         }

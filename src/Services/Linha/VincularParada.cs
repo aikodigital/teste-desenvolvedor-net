@@ -29,8 +29,10 @@ namespace Services.Linha
             if (parada is null)
                 Notifications.Add("parada-nao-encontrada", "Parada não encontrada!");
 
-            if (!Notifications.Any()) 
-            {
+            if (linha is not null && linha.Paradas.Any(x => x.Id == paradaNaLinhaDto.ParadaId))
+                Notifications.Add("parada-vinculada", "Esta parada já está vinculada a esta linha!");
+
+            if (!Notifications.Any()) {
                 linha.AdicionarParada(parada);
 
                 await context.SaveChangesAsync();

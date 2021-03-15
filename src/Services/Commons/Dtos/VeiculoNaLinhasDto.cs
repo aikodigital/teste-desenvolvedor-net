@@ -2,14 +2,12 @@
 
 namespace Services.Commons.Dtos
 {
-    public class VeiculoDto
+    public class VeiculoNaLinhasDto
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório!")]
-        public string Nome { get; set; }
+        public long LinhaId { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório!")]
-        public string Modelo { get; set; }
-
-        public LocalizacaoDto LocalizacaoDto { get; set; }
+        public long VeiculoId { get; set; }
     }
 }
