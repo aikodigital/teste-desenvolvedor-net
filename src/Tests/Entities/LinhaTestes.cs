@@ -6,14 +6,16 @@ namespace Tests.Entities
 {
 	public class LinhaTestes
 	{
-		[Fact]
+        private readonly Linha linha = new Linha(nome: "linha 1");
+        private static readonly Localizacao localizacao = new Localizacao(latitude: 123456, longitude: 654321);
+        private readonly Parada parada = new Parada("primeira parada", localizacao);
+        private Veiculo veiculo = new Veiculo("ônibus", "mercedes", localizacao: localizacao);
+
+        [Fact]
 		public void DeveAdicionarUmaParada()
 		{
-			//arrange
-			var linha = new Linha(nome: "linha 1");
-
 			//act
-			linha.AdicionarParada("primeira parada", localizacao: new Localizacao(latitude: 123456, longitude: 654321));
+			linha.AdicionarParada(parada);
 
 			//assert
 
@@ -21,17 +23,14 @@ namespace Tests.Entities
 		}
 
 		[Fact]
-		public void NaoDeveAdicionarUmaParada()
+		public void DeveAdicionarUmVeiculo()
 		{
-			//arrange
-			var linha = new Linha(nome: "linha 1");
-
 			//act
-			linha.AdicionarParada("primeira parada", localizacao: new Localizacao(latitude: 123456, longitude: 654321));
+			linha.AdicionarVeiculo(veiculo);
 
 			//assert
 
-			Assert.True(linha.Paradas.Count == 1);
+			Assert.True(linha.Veiculos.Count == 1);
 		}
 	}
 }
