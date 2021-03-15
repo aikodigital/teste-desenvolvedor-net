@@ -23,10 +23,6 @@ namespace TesteDesenvolvedor.Repository.Generic
         {
             _context.Update(entity);
         }
-        public void UpdateTeste<T>(T item, T entity) where T : class
-        {
-            _context.Entry(item).CurrentValues.SetValues(entity);
-        }
 
         public void Delete<T>(T entity) where T : class
         {
