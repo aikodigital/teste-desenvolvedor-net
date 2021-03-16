@@ -1,6 +1,6 @@
 namespace Domain.ValueObjects
 {
-	public class Localizacao
+    public class Localizacao
 	{
 		public Localizacao(double latitude, double longitude)
 		{

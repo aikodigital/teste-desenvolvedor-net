@@ -2,17 +2,14 @@
 using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Parada
 {
-    public class ListarTodasAsParadas : IServiceScoped
+    public class ListarTodasAsParadas : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ListarTodasAsParadas(ApplicationContext context)
+        public ListarTodasAsParadas(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<List<Domain.Entities.Parada>> Executar()

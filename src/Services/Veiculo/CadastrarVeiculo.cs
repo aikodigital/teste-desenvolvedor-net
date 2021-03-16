@@ -1,17 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Infra;
+using Services.Commons;
 using Services.Commons.Dtos;
-using Services.Interfaces;
 
 namespace Services.Veiculo
 {
-    public class CadastrarVeiculo : IServiceScoped
+    public class CadastrarVeiculo : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public CadastrarVeiculo(ApplicationContext context)
+        public CadastrarVeiculo(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task Executar(VeiculoDto veiculoDto)

@@ -4,12 +4,12 @@ using Xunit;
 
 namespace Tests.Entities
 {
-	public class LinhaTestes
+    public class LinhaTestes
 	{
-        private readonly Linha linha = new Linha(nome: "linha 1");
-        private static readonly Localizacao localizacao = new Localizacao(latitude: 123456, longitude: 654321);
-        private readonly Parada parada = new Parada("primeira parada", localizacao);
-        private Veiculo veiculo = new Veiculo("ônibus", "mercedes", localizacao: localizacao);
+        private readonly static Localizacao localizacao = new(latitude: 123456, longitude: 654321);
+        private readonly Linha linha = new(nome: "linha 1");
+        private readonly Parada parada = new("primeira parada", localizacao);
+        private readonly Veiculo veiculo = new("ônibus", "mercedes", localizacao: localizacao);
 
         [Fact]
 		public void DeveAdicionarUmaParada()

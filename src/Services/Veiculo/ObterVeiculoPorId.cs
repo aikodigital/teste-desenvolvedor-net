@@ -1,16 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Infra;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Veiculo
 {
-    public class ObterVeiculoPorId : IServiceScoped
+    public class ObterVeiculoPorId : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ObterVeiculoPorId(ApplicationContext context)
+        public ObterVeiculoPorId(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<Domain.Entities.Veiculo> Executar(long id)

@@ -3,19 +3,17 @@ using System.Threading.Tasks;
 using Domain.ValueObjects;
 using Infra;
 using Microsoft.EntityFrameworkCore;
+using Services.Commons;
 using Services.Commons.Utils;
-using Services.Interfaces;
 
 namespace Services.Parada
 {
-    public class ListarParadasMaisProximas : IServiceScoped
+    public class ListarParadasMaisProximas : BaseService
     {
-        private readonly ApplicationContext context;
         private readonly CalculadoraDeDistanciaGeografica calculadoraDeDistanciaGeografica;
 
-        public ListarParadasMaisProximas(ApplicationContext context, CalculadoraDeDistanciaGeografica calculadoraDeDistanciaGeografica)
+        public ListarParadasMaisProximas(ApplicationContext context, CalculadoraDeDistanciaGeografica calculadoraDeDistanciaGeografica) : base(context)
         {
-            this.context = context;
             this.calculadoraDeDistanciaGeografica = calculadoraDeDistanciaGeografica;
         }
 

@@ -2,17 +2,14 @@
 using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Linha
 {
-    public class ListarTodasAsLinhas : IServiceScoped
+    public class ListarTodasAsLinhas : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ListarTodasAsLinhas(ApplicationContext context)
+        public ListarTodasAsLinhas(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<List<Domain.Entities.Linha>> Executar()

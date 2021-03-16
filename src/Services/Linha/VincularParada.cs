@@ -1,21 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Infra;
+using Services.Commons;
 using Services.Commons.Dtos;
-using Services.Interfaces;
 
 namespace Services.Linha
 {
-    public class VincularParada : IServiceScoped
+    public class VincularParada : BaseService
     {
-        private readonly ApplicationContext context;
-        public readonly IDictionary<string, string> Notifications;
-
-        public VincularParada(ApplicationContext context)
+        public VincularParada(ApplicationContext context) : base(context)
         {
-            this.context = context;
-            Notifications = new Dictionary<string, string>();
         }
 
         public async Task Executar(ParadaNaLinhaDto paradaNaLinhaDto)

@@ -2,17 +2,14 @@
 using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Veiculo
 {
-    public class ListarTodosOsVeiculos : IServiceScoped
+    public class ListarTodosOsVeiculos : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ListarTodosOsVeiculos(ApplicationContext context)
+        public ListarTodosOsVeiculos(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<List<Domain.Entities.Veiculo>> Executar()

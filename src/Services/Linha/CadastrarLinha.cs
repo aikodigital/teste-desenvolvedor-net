@@ -1,17 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Infra;
+using Services.Commons;
 using Services.Commons.Dtos;
-using Services.Interfaces;
 
 namespace Services.Linha
 {
-    public class CadastrarLinha : IServiceScoped
+    public class CadastrarLinha : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public CadastrarLinha(ApplicationContext context)
+        public CadastrarLinha(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task Executar(LinhaDto linhaDto)

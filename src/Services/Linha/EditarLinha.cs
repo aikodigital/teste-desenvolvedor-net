@@ -1,21 +1,15 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
+using Services.Commons;
 using Services.Commons.Dtos;
-using Services.Interfaces;
 
 namespace Services.Linha
 {
-    public class EditarLinha : IServiceScoped
+    public class EditarLinha : BaseService
     {
-        private readonly ApplicationContext context;
-        public readonly IDictionary<string, string> Notifications;
-
-        public EditarLinha(ApplicationContext context)
+        public EditarLinha(ApplicationContext context) : base(context)
         {
-            this.context = context;
-            Notifications = new Dictionary<string, string>();
         }
 
         public async Task Executar(long id, LinhaDto linhaDto)

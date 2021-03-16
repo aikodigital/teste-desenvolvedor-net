@@ -1,20 +1,14 @@
-﻿using System.Collections.Generic;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Veiculo
 {
-    public class DeletarVeiculo : IServiceScoped
+    public class DeletarVeiculo : BaseService
     {
-        private readonly ApplicationContext context;
-        public readonly IDictionary<string, string> Notifications;
-
-        public DeletarVeiculo(ApplicationContext context)
+        public DeletarVeiculo(ApplicationContext context) : base(context)
         {
-            this.context = context;
-            Notifications = new Dictionary<string, string>();
         }
 
         public async Task Executar(long id)

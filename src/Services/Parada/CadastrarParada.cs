@@ -1,17 +1,14 @@
 ﻿using System.Threading.Tasks;
 using Infra;
+using Services.Commons;
 using Services.Commons.Dtos;
-using Services.Interfaces;
 
 namespace Services.Parada
 {
-    public class CadastrarParada : IServiceScoped
+    public class CadastrarParada : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public CadastrarParada(ApplicationContext context)
+        public CadastrarParada(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task Executar(ParadaDto paradaDto)

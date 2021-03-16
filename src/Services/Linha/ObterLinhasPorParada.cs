@@ -3,17 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Linha
 {
-    public class ObterLinhasPorParada : IServiceScoped
+    public class ObterLinhasPorParada : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ObterLinhasPorParada(ApplicationContext context)
+        public ObterLinhasPorParada(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<ICollection<Domain.Entities.Linha>> Executar(long id)

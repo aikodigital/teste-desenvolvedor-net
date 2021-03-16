@@ -1,16 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Infra;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Linha
 {
-    public class ObterLinhaPorId : IServiceScoped
+    public class ObterLinhaPorId : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ObterLinhaPorId(ApplicationContext context)
+        public ObterLinhaPorId(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<Domain.Entities.Linha> Executar(long id)

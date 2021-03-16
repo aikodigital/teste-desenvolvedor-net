@@ -1,16 +1,13 @@
 ﻿using System.Threading.Tasks;
 using Infra;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Parada
 {
-    public class ObterParadaPorId : IServiceScoped
+    public class ObterParadaPorId : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ObterParadaPorId(ApplicationContext context)
+        public ObterParadaPorId(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<Domain.Entities.Parada> Executar(long id)

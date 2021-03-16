@@ -1,22 +1,16 @@
-﻿using System.Collections.Generic;
-using System.Linq;
+﻿using System.Linq;
 using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
+using Services.Commons;
 using Services.Commons.Dtos;
-using Services.Interfaces;
 
 namespace Services.Linha
 {
-    public class VincularVeiculo : IServiceScoped
+    public class VincularVeiculo : BaseService
     {
-        private readonly ApplicationContext context;
-        public readonly IDictionary<string, string> Notifications;
-
-        public VincularVeiculo(ApplicationContext context)
+        public VincularVeiculo(ApplicationContext context) : base(context)
         {
-            this.context = context;
-            Notifications = new Dictionary<string, string>();
         }
 
         public async Task Executar(VeiculoNaLinhasDto veiculoNaLinhaDto)

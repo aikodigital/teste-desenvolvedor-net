@@ -3,17 +3,14 @@ using System.Linq;
 using System.Threading.Tasks;
 using Infra;
 using Microsoft.EntityFrameworkCore;
-using Services.Interfaces;
+using Services.Commons;
 
 namespace Services.Veiculo
 {
-    public class ObterVeiculosPorLinhas : IServiceScoped
+    public class ObterVeiculosPorLinhas : BaseService
     {
-        private readonly ApplicationContext context;
-
-        public ObterVeiculosPorLinhas(ApplicationContext context)
+        public ObterVeiculosPorLinhas(ApplicationContext context) : base(context)
         {
-            this.context = context;
         }
 
         public async Task<ICollection<Domain.Entities.Veiculo>> Executar(long id)
