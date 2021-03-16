@@ -1,0 +1,35 @@
+version: '3.4'
+
+services:
+  db:
+    image: mysql:5.7
+    command: --lower_case_table_names=1
+    environment:
+      MYSQL_ROOT_PASSWORD: rootdeveloper
+      MYSQL_DATABASE: developerdb
+      MYSQL_USER: userdeveloper
+      MYSQL_PASSWORD: developer
+    ports:
+      - 3308:3306
+    restart: always
+    networks:
+      - aiko-network
+    volumes:
+      - db-developer:/var/lib/mysql
+  testedesenvolvedor.api:
+    image: testedesenvolvedorapi
+    build:
+      context: .
+      dockerfile: TesteDesenvolvedor.API/Dockerfile
+    depends_on:
+      - db
+    ports:
+      - 44300:80
+    networks:
+      - aiko-network
+volumes:
+  db-developer:
+
+networks:
+  aiko-network:
+    driver: bridge
