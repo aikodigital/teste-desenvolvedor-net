@@ -6,6 +6,7 @@ using Services.Linha;
 
 namespace Api.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class LinhasController : ControllerBase

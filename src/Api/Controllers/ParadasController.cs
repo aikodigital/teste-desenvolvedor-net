@@ -6,6 +6,7 @@ using Services.Parada;
 
 namespace Api.Controllers
 {
+    [Produces("application/json")]
     [Route("api/[controller]")]
     [ApiController]
     public class ParadasController : ControllerBase
@@ -28,6 +29,15 @@ namespace Api.Controllers
                 return NotFound();
 
             return new ObjectResult(parada);
+        }
+
+        [HttpGet]
+        [Route("{latitude:double}/{longitude:double}")]
+        public async Task<IActionResult> Get([FromServices] ListarParadasMaisProximas listarParadasMaisProximas, double latitude, double longitude, int raioEmMetros = 1000)
+        {
+            var paradasMaisProximas = await listarParadasMaisProximas.Executar(latitude, longitude, raioEmMetros);
+
+            return new ObjectResult(paradasMaisProximas);
         }
 
         [HttpPost]
