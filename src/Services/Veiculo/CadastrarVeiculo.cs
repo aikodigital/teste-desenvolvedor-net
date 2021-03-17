@@ -17,8 +17,8 @@ namespace Services.Veiculo
                 veiculoDto.Nome,
                 veiculoDto.Modelo,
                 new Domain.ValueObjects.Localizacao(
-                    veiculoDto.LocalizacaoDto.Latitude,
-                    veiculoDto.LocalizacaoDto.Longitude
+                    veiculoDto.Localizacao.Latitude,
+                    veiculoDto.Localizacao.Longitude
                 )
             );
 

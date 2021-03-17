@@ -53,10 +53,10 @@ namespace Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromServices] EditarParada editarParada, long id, ParadaDto paradaDto)
+        public async Task<IActionResult> Put([FromServices] EditarParada editarParada, ParadaDto paradaDto)
         {
             if (ModelState.IsValid) {
-                await editarParada.Executar(id, paradaDto);
+                await editarParada.Executar(paradaDto);
 
                 if (editarParada.Notifications.Any()) {
                     return BadRequest(editarParada.Notifications);

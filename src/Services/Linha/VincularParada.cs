@@ -1,6 +1,7 @@
 ﻿using System.Linq;
 using System.Threading.Tasks;
 using Infra;
+using Microsoft.EntityFrameworkCore;
 using Services.Commons;
 using Services.Commons.Dtos;
 
@@ -14,7 +15,10 @@ namespace Services.Linha
 
         public async Task Executar(ParadaNaLinhaDto paradaNaLinhaDto)
         {
-            var linha = await context.Linhas.FindAsync(paradaNaLinhaDto.LinhaId);
+            var linha = await context.Linhas
+                .Include(x => x.Paradas)
+                .SingleOrDefaultAsync(x => x.Id == paradaNaLinhaDto.LinhaId);
+
             var parada = await context.Paradas.FindAsync(paradaNaLinhaDto.ParadaId);
 
             if (linha is null)

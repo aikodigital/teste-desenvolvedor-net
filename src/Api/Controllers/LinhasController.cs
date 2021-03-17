@@ -14,21 +14,21 @@ namespace Api.Controllers
         [HttpGet]
         public async Task<IActionResult> Get([FromServices] ListarTodasAsLinhas listarTodasAsLinhas)
         {
-            var veiculos = await listarTodasAsLinhas.Executar();
+            var linhas = await listarTodasAsLinhas.Executar();
 
-            return new ObjectResult(veiculos);
+            return new ObjectResult(linhas);
         }
 
         [HttpGet]
         [Route("{id:long}")]
         public async Task<IActionResult> Get([FromServices] ObterLinhaPorId obterLinhaloPorId, long id)
         {
-            var veiculo = await obterLinhaloPorId.Executar(id);
+            var linha = await obterLinhaloPorId.Executar(id);
 
-            if (veiculo is null)
+            if (linha is null)
                 return NotFound();
 
-            return new ObjectResult(veiculo);
+            return new ObjectResult(linha);
         }
 
         [HttpPost]
@@ -44,10 +44,10 @@ namespace Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromServices] EditarLinha editarLinha, long id, LinhaDto linhaDto)
+        public async Task<IActionResult> Put([FromServices] EditarLinha editarLinha, LinhaDto linhaDto)
         {
             if (ModelState.IsValid) {
-                await editarLinha.Executar(id, linhaDto);
+                await editarLinha.Executar(linhaDto);
 
                 if (editarLinha.Notifications.Any()) {
                     return BadRequest(editarLinha.Notifications);

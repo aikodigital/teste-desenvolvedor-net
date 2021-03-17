@@ -16,8 +16,8 @@ namespace Services.Parada
             var parada = new Domain.Entities.Parada(
                 paradaDto.Nome,
                 new Domain.ValueObjects.Localizacao(
-                    paradaDto.LocalizacaoDto.Latitude,
-                    paradaDto.LocalizacaoDto.Longitude
+                    paradaDto.Localizacao.Latitude,
+                    paradaDto.Localizacao.Longitude
                 )
             );
 

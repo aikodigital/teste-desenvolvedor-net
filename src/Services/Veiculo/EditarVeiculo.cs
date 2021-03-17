@@ -12,19 +12,19 @@ namespace Services.Veiculo
         {
         }
 
-        public async Task Executar(long id, VeiculoDto veiculoDto)
+        public async Task Executar(VeiculoDto veiculoDto)
         {
-            var veiculoExiste = await context.Veiculos.AnyAsync(x => x.Id == id);
+            var veiculoExiste = await context.Veiculos.AnyAsync(x => x.Id == veiculoDto.Id);
 
             if (veiculoExiste) {
                 var veiculo = new Domain.Entities.Veiculo(
                     veiculoDto.Nome,
                     veiculoDto.Modelo,
                     new Domain.ValueObjects.Localizacao(
-                        veiculoDto.LocalizacaoDto.Latitude,
-                        veiculoDto.LocalizacaoDto.Longitude
+                        veiculoDto.Localizacao.Latitude,
+                        veiculoDto.Localizacao.Longitude
                     ),
-                    id: id
+                    id: veiculoDto.Id
                 );
 
                 context.Update(veiculo);

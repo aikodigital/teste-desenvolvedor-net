@@ -27,9 +27,6 @@ namespace Services.Linha
             if (veiculo is null)
                 Notifications.Add("veiculo-nao-encontrado", "Parada não encontrada!");
 
-            if (linha is not null && linha.Veiculos.Any(x => x.Id == veiculoNaLinhaDto.VeiculoId))
-                Notifications.Add("veiculo-vinculado", "Este veículo já está vinculado a esta linha!");
-
             if (!Notifications.Any()) {
                 linha.AdicionarVeiculo(veiculo);
 

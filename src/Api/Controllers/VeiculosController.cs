@@ -44,10 +44,10 @@ namespace Api.Controllers
         }
 
         [HttpPut]
-        public async Task<IActionResult> Put([FromServices] EditarVeiculo editarVeiculo, long id, VeiculoDto veiculoDto)
+        public async Task<IActionResult> Put([FromServices] EditarVeiculo editarVeiculo, VeiculoDto veiculoDto)
         {
             if (ModelState.IsValid) {
-                await editarVeiculo.Executar(id, veiculoDto);
+                await editarVeiculo.Executar(veiculoDto);
 
                 if (editarVeiculo.Notifications.Any()) {
                     return BadRequest(editarVeiculo.Notifications);

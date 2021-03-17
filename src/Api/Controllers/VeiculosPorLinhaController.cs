@@ -31,5 +31,17 @@ namespace Api.Controllers
 
             return Ok();
         }
+
+        [HttpDelete]
+        [Route("{id:long}")]
+        public async Task<IActionResult> Delete([FromServices] DesvincularVeiculo desvincularVeiculo, long id)
+        {
+            await desvincularVeiculo.Executar(id);
+
+            if (desvincularVeiculo.Notifications.Any())
+                return BadRequest(desvincularVeiculo.Notifications);
+
+            return Ok();
+        }
     }
 }

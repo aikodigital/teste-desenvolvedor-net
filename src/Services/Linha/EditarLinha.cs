@@ -12,14 +12,14 @@ namespace Services.Linha
         {
         }
 
-        public async Task Executar(long id, LinhaDto linhaDto)
+        public async Task Executar(LinhaDto linhaDto)
         {
-            var linhaExiste = await context.Linhas.AnyAsync(x => x.Id == id);
+            var linhaExiste = await context.Linhas.AnyAsync(x => x.Id == linhaDto.Id);
 
             if (linhaExiste) {
                 var linha = new Domain.Entities.Linha(
                     linhaDto.Nome,
-                    id: id
+                    id: linhaDto.Id
                 );
 
                 context.Update(linha);

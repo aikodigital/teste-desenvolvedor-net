@@ -37,7 +37,19 @@ namespace Api.Controllers
             if (vincularParada.Notifications.Any())
                 return BadRequest(vincularParada.Notifications);
 
-            return Ok();            
+            return Ok();
+        }
+
+        [HttpDelete]
+        [Route("{linhaId:long}/{paradaId:long}")]
+        public async Task<IActionResult> Delete([FromServices] DesvincularParada desvincularParada, long linhaId, long paradaId)
+        {
+            await desvincularParada.Executar(linhaId, paradaId);
+
+            if (desvincularParada.Notifications.Any())
+                return BadRequest(desvincularParada.Notifications);
+
+            return Ok();
         }
     }
 }

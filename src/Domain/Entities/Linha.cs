@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Linq;
 
 namespace Domain.Entities
 {
@@ -25,6 +26,20 @@ namespace Domain.Entities
         public void AdicionarVeiculo(Veiculo veiculo)
         {
             Veiculos.Add(veiculo);
+        }
+
+        public void DesvincularVeiculo(long veiculoId)
+        {
+            var veiculo = Veiculos.FirstOrDefault(x => x.Id == veiculoId);
+
+            Veiculos.Remove(veiculo);
+        }
+
+        public void DesvincularParada(long paradaId)
+        {
+            var parada = Paradas.FirstOrDefault(x => x.Id == paradaId);
+
+            Paradas.Remove(parada);
         }
     }
 }
