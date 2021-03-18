@@ -5,9 +5,9 @@ namespace Services.Commons.Dtos
     public class LocalizacaoDto
     {
         [Required(ErrorMessage = "O campo {0} é obrigatório!")]
-        public float Latitude { get; set; }
+        public double Latitude { get; set; }
 
         [Required(ErrorMessage = "O campo {0} é obrigatório!")]
-        public float Longitude { get; set; }
+        public double Longitude { get; set; }
     }
 }
