@@ -14,7 +14,8 @@
       "environmentVariables": {
         "ASPNETCORE_ENVIRONMENT": "Development",
         "ASPNETCORE_HOSTINGSTARTUPASSEMBLIES": "Microsoft.AspNetCore.Mvc.Razor.RuntimeCompilation",
-        "APIBaseUrl": "https://localhost:5001/api"
+        "APIBaseUrl": "https://localhost:5001/api",
+        "GoogleApiKey": ""
       }
     },
     "WebUI": {

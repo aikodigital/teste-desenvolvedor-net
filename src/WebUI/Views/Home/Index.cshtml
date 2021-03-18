@@ -1,4 +1,6 @@
-﻿@{
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration configuration
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -20,7 +22,7 @@
 <div id="google-maps"></div>
 
 @section Scripts {
-    <script async defer src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAesteniRjBSi6c03E7no5aN7G5QfbYmM0&callback=initMap" type="text/javascript"></script>
+    <script async defer src='https://maps.googleapis.com/maps/api/js?key=@(configuration["GoogleApiKey"])&callback=initMap' type="text/javascript"></script>
     <script src="~/lib/axios/axios.min.js"></script>
     <script src="~/js/axiosconfig.js"></script>
 
