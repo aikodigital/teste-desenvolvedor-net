@@ -18,7 +18,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@teste/paulo-barbosa
+    - uses: actions/checkout@main
     - name: Setup .NET 5
       uses: actions/setup-dotnet@v1
       with:
