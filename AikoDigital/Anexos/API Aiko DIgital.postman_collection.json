@@ -1,0 +1,579 @@
+{
+	"info": {
+		"_postman_id": "757a45cb-9ead-43dc-951b-9b420f62d01f",
+		"name": "API Aiko DIgital",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Buscar Todas Linhas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/linha",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"linha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Todos Veiculos",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/veiculo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"veiculo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Todas Posições",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/posicaoveiculo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"posicaoveiculo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Todas Paradas",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/parada",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"parada"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Linhas Por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/linha/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"linha",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Veiculo Por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/veiculo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"veiculo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Posição do Veiculo Por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/posicaoveiculo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"posicaoveiculo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Parada Por ID",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/parada/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"parada",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Linha Parada Por Id da Parada",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/linhaparada/2",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"linhaparada",
+						"2"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Buscar Veiculos Por Linha",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/veiculo/1/Linhas",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"veiculo",
+						"1",
+						"Linhas"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Linha",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "\"Jorge Teixeira\"",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/linha/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"linha",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Veículo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\": \"Onibus Antigo\",\r\n        \"modelo\": \"Mercedez\",\r\n        \"linhaId\": 4\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/veiculo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"veiculo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Posição Veiculo",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"Latitude\":-8.807875,\r\n\"Longitude\":-63.999658,\r\n\"VeiculoId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/posicaoveiculo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"posicaoveiculo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Atualizar Parada",
+			"request": {
+				"method": "PUT",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n\"Name\": \"Campo Sales 4545\",\r\n\"Latitude\":-8.807555,\r\n\"Longitude\":-63.888494\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/parada/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"parada",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Linha",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/linha/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"linha",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Veículo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/veiculo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"veiculo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Posição Veículo",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/posicaoveiculo/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"posicaoveiculo",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Deletar Parada",
+			"request": {
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://localhost:55011/api/parada/1",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"parada",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gravar Linha",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\":\"Jorge Teixeira\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/linha",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"linha"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gravar Veículo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\":\"Onibus Novo\",\r\n    \"Modelo\": \"Mercedez\",\r\n    \"LinhaId\": 2\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/veiculo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"veiculo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gravar Posição Veículo",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n  \"Latitude\":-8.807555,\r\n  \"Longitude\":-63.888494,\r\n   \"VeiculoId\": 1\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/posicaoveiculo",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"posicaoveiculo"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gravar Parada",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"Name\": \"Rua Exemplar 1234\",\r\n    \"Latitude\": 57.8680,\r\n    \"Longitude\":139.8498\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/parada",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"parada"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Gravar Linha/Parada",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "[1,2]",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://localhost:55011/api/linhaparada/1/parada",
+					"protocol": "http",
+					"host": [
+						"localhost"
+					],
+					"port": "55011",
+					"path": [
+						"api",
+						"linhaparada",
+						"1",
+						"parada"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
