@@ -1,10 +1,10 @@
-name: CI/CD
+name: Build and deploy
 
 on:
   push:
-    branches: [ teste/paulo-barbosa ]
-  pull_request:
     branches: [ main ]
+
+  workflow_dispatch:
 
 jobs:
   build:
