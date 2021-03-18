@@ -7,8 +7,6 @@ namespace Services.Commons.Utils
 {
     public class CalculadoraDeDistanciaGeografica : IServiceScoped
     {
-        private const int milKm = 1000;
-
         public double HaversineDistance(Localizacao pos1, Localizacao pos2)
         {
             double raioTerrestre = 6371000;
