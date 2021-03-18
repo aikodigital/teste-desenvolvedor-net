@@ -10,7 +10,7 @@ jobs:
   build:
 
     env:
-      CAMINHO_PROJETO_TESTES: ./src/Testes/Testes.csproj
+      CAMINHO_PROJETO_TESTES: ./src/Tests/Tests.csproj
       CAMINHO_PROJETO_API: ./src/Api/Api.csproj
       CAMINHO_PROJETO_WEBUI: ./src/WebUI/WebUI.csproj
       NOME_WEBAPP_AZURE: groffegithubactions
