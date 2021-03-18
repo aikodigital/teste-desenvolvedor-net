@@ -1,0 +1,163 @@
+﻿@model IEnumerable<LinhaViewModel>
+
+@{
+    ViewData["Title"] = "Linhas";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="m-0">Linhas</h4>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">
+                <i class="fas fa-plus"></i> Cadastrar
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var count = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Nome</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" onclick="editar('@item.Id', '@item.Nome')">
+                                    <i class="fas fa-pencil-alt"></i> Editar
+                                </button>
+                                <a class="btn btn-sm btn-outline-secondary" asp-action="Detalhes" asp-route-id="@item.Id">
+                                    <i class="fas fa-eye"></i> Detalhes
+                                </a>
+                                <button class="btn btn-sm btn-outline-danger" onclick="deletar('@item.Id')">
+                                    <i class="far fa-trash-alt"></i> Excluir
+                                </button>
+                            </td>
+                        </tr>
+
+                        count++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal cadastrar -->
+<div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastrar linha</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-cadastrar">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input required name="nome" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal editar -->
+<div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar linha</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-editar">
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="" />
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input required name="nome" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/axios/axios.min.js"></script>
+    <script src="~/js/axiosconfig.js"></script>
+    <script asp-append-version="true">
+        let formCadastrar = document.getElementById('form-cadastrar')
+        let formEditar = document.getElementById('form-editar')
+        let modal = new bootstrap.Modal(document.getElementById('modal-editar'))
+
+        formCadastrar.addEventListener('submit', event => {
+            event.preventDefault()
+
+            const nome = event.target.querySelector('[name=nome]').value
+
+            axios.post('/Linhas', {
+                nome
+            }).then(function (response) {
+                console.log(response)
+                location.reload(true)
+            }).catch(function (error) {
+                console.log(error)
+            })
+        })
+
+        function editar(id, nome) {
+            formEditar.querySelector('[name=id]').setAttribute("value", id)
+            formEditar.querySelector('[name=nome]').setAttribute("value", nome)
+
+            modal.show()
+        }
+
+        function deletar(id) {
+            if (confirm('Tem certeza que deseja deletar esta linha?')) {
+                axios.delete(`/Linhas/${id}`).then(function (response) {
+                    console.log(response)
+                    location.reload(true)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            }
+        }
+
+        formEditar.addEventListener('submit', event => {
+            event.preventDefault()
+
+            const id = event.target.querySelector('[name=id]').value
+            const nome = event.target.querySelector('[name=nome]').value
+
+            axios.put('/Linhas', {
+                id,
+                nome
+            }).then(function (response) {
+                console.log(response)
+                location.reload(true)
+            }).catch(function (error) {
+                console.log(error)
+            })
+
+            modal.hide()
+        })
+    </script>
+}

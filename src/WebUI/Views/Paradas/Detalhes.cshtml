@@ -1,0 +1,40 @@
+﻿@model IEnumerable<LinhaViewModel>
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Parada @ViewBag.NomeDaParada</h1>
+<hr />
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex align-items-center">
+            <h4 class="m-0">Linhas</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var count = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Nome</td>
+                        </tr>
+
+                        count++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
