@@ -1,0 +1,79 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\AnastacD\\OneDrive - Unisys\\Backup-Anotacoes\\Daniel\\Junior\\teste-desenvolvedor-net\\Server_TransSP\\Server_TransSP.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\AnastacD\\OneDrive - Unisys\\Backup-Anotacoes\\Daniel\\Junior\\teste-desenvolvedor-net\\Server_TransSP\\Server_TransSP.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\AnastacD\\OneDrive - Unisys\\Backup-Anotacoes\\Daniel\\Junior\\teste-desenvolvedor-net\\Server_TransSP\\Server_TransSP.csproj",
+        "projectName": "Server_TransSP",
+        "projectPath": "C:\\Users\\AnastacD\\OneDrive - Unisys\\Backup-Anotacoes\\Daniel\\Junior\\teste-desenvolvedor-net\\Server_TransSP\\Server_TransSP.csproj",
+        "packagesPath": "C:\\Users\\AnastacD\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\AnastacD\\OneDrive - Unisys\\Backup-Anotacoes\\Daniel\\Junior\\teste-desenvolvedor-net\\Server_TransSP\\obj\\",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "C:\\Users\\AnastacD\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "netcoreapp3.1"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "netcoreapp3.1": {
+            "targetAlias": "netcoreapp3.1",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "netcoreapp3.1": {
+          "targetAlias": "netcoreapp3.1",
+          "dependencies": {
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[5.0.4, )"
+            },
+            "System.Collections.NonGeneric": {
+              "target": "Package",
+              "version": "[4.3.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.100\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
