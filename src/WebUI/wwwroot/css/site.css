@@ -91,3 +91,12 @@ button {
         font-size: 87.5%;
     }
 }
+
+#google-maps {
+    width: 100%;
+    height: 60vh;
+}
+
+select {
+    cursor: pointer;
+}
