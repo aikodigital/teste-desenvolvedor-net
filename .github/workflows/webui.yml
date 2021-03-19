@@ -39,4 +39,4 @@ jobs:
       run: |
         docker build -t ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:latest -f src/WebUI/Dockerfile .
         docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:$(date +%s)
-        docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/
+        docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}

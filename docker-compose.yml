@@ -21,6 +21,20 @@ services:
     environment:
       ASPNETCORE_URLS: "https://+:443;http://+:80"
       ASPNETCORE_HTTPS_PORT: "5001"
-      SQLCONNSTR_DBConnectionString: "Data Source=DESKTOP-FT12GQD;Initial Catalog=teste-aiko;Integrated Security=True;"
+      SQLCONNSTR_DBConnectionString: "Data Source=database;Initial Catalog=teste-aiko;User Id = sa; Password = SenhaTopJ123@#;"
     ports:
       - 5001:443
+    depends_on:
+      - mssql-server
+    links:
+      - "mssql-server:database"
+
+  mssql-server:
+    container_name: mssql-server
+    hostname: mssql-server
+    image: mcr.microsoft.com/mssql/server:2019-latest
+    environment:
+        - ACCEPT_EULA=Y
+        - SA_PASSWORD=SenhaTopJ123@#
+    ports:
+        - 1433:1433
