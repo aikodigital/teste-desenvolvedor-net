@@ -13,7 +13,9 @@ jobs:
       CAMINHO_PROJETO_WEBUI: ./src/WebUI/WebUI.csproj
       NOME_WEBUI_AZURE: desafioaikodigital
 
-    runs-on: ubuntu-latest
+    runs: 
+        using: 'docker'
+        image: 'Dockerfile'
 
     steps:
     - uses: actions/checkout@main
