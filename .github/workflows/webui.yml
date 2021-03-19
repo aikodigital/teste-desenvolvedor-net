@@ -13,9 +13,7 @@ jobs:
       CAMINHO_PROJETO_WEBUI: ./src/WebUI/WebUI.csproj
       NOME_WEBUI_AZURE: desafioaikodigital
 
-    runs: 
-        using: 'docker'
-        image: 'Dockerfile'
+    runs-on: ubuntu-latest
 
     steps:
     - uses: actions/checkout@main
@@ -30,13 +28,15 @@ jobs:
     - name: Publish WebUI
       run: dotnet publish ${{ env.CAMINHO_PROJETO_WEBUI }} -c Release -o app
           
-    - name: Login Azure
-      uses: Azure/login@v1
+    - name: Docker Login - Azure Container Registry
+      uses: Azure/docker-login@v1
       with:
-        creds: ${{ secrets.WEBUI_CREDENTIALS }}
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        login-server: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}
 
-    - name: Deployment WebUI no Azure App Service
-      uses: Azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.NOME_WEBUI_AZURE }}
-        package: './app'
+    - name: Build e Push no Azure Container Registry
+      run: |
+        docker build .. --file Dockerfile --tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:latest
+        docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:$(date +%s)
+        docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/
