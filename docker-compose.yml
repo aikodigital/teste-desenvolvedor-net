@@ -11,7 +11,9 @@ services:
       ASPNETCORE_HTTPS_PORT: "44359"
       ASPNETCORE_APIBaseUrl: https://localhost:5001/api
     ports:
-      - 44359:443
+      - 44359:80
+    networks:
+      - host
 
   api:
     image: ${DOCKER_REGISTRY-}api
@@ -23,11 +25,13 @@ services:
       ASPNETCORE_HTTPS_PORT: "5001"
       SQLCONNSTR_DBConnectionString: "Data Source=database;Initial Catalog=teste-aiko;User Id = sa; Password = SenhaTopJ123@#;"
     ports:
-      - 5001:443
+      - 5001:80
     depends_on:
       - mssql-server
     links:
       - "mssql-server:database"
+    networks:
+      - host
 
   mssql-server:
     container_name: mssql-server
@@ -38,3 +42,8 @@ services:
         - SA_PASSWORD=SenhaTopJ123@#
     ports:
         - 1444:1433
+  
+networks:
+  host:
+    name: host
+    external: true

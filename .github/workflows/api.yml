@@ -31,14 +31,16 @@ jobs:
       
     - name: Publish Api
       run: dotnet publish ${{ env.CAMINHO_PROJETO_API }} -c Release -o app
-      
-    - name: Login no Azure
-      uses: Azure/login@v1
+
+    - name: Docker Login - Azure Container Registry
+      uses: Azure/docker-login@v1
       with:
-        creds: ${{ secrets.API_CREDENTIALS }}
-    
-    - name: Deployment Api no Azure App Service
-      uses: Azure/webapps-deploy@v2
-      with:
-        app-name: ${{ env.NOME_WEBAPI_AZURE }}
-        package: './app'
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        login-server: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}
+
+    - name: Build e Push no Azure Container Registry
+      run: |
+        docker build -t ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:latest -f src/Api/Dockerfile .
+        docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:$(date +%s)
+        docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:latest
