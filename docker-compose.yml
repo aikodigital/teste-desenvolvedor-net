@@ -1,0 +1,26 @@
+version: '3.4'
+
+services:
+  webui:
+    image: ${DOCKER_REGISTRY-}webui
+    build:
+      context: .
+      dockerfile: src/WebUI/Dockerfile
+    environment:
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ASPNETCORE_HTTPS_PORT: "44359"
+      ASPNETCORE_APIBaseUrl: https://localhost:5001/api
+    ports:
+      - 44359:443
+
+  api:
+    image: ${DOCKER_REGISTRY-}api
+    build:
+      context: .
+      dockerfile: src/Api/Dockerfile
+    environment:
+      ASPNETCORE_URLS: "https://+:443;http://+:80"
+      ASPNETCORE_HTTPS_PORT: "5001"
+      SQLCONNSTR_DBConnectionString: "Data Source=DESKTOP-FT12GQD;Initial Catalog=teste-aiko;Integrated Security=True;"
+    ports:
+      - 5001:443

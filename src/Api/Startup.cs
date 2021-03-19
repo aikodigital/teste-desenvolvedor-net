@@ -31,7 +31,7 @@ namespace Api
             services.AddDbContext<ApplicationContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DBConnectionString"),
                  options =>
-                     options.EnableRetryOnFailure(
+                     options.EnableRetryOnFailure(  
                      maxRetryCount: 2,
                      maxRetryDelay: TimeSpan.FromSeconds(5),
                      errorNumbersToAdd: null)
