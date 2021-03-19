@@ -37,4 +37,4 @@ services:
         - ACCEPT_EULA=Y
         - SA_PASSWORD=SenhaTopJ123@#
     ports:
-        - 1433:1433
+        - 1444:1433

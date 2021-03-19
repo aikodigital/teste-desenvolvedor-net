@@ -26,7 +26,7 @@ namespace Api
             services
                 .AddControllers()
                 .AddNewtonsoftJson(options => options.SerializerSettings.ReferenceLoopHandling = Newtonsoft.Json.ReferenceLoopHandling.Ignore
-);
+            );
 
             services.AddDbContext<ApplicationContext>(options =>
              options.UseSqlServer(Configuration.GetConnectionString("DBConnectionString"),
@@ -51,7 +51,7 @@ namespace Api
                     .AllowAnyHeader()
                     .AllowAnyMethod();
                 });
-            });
+            });            
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
