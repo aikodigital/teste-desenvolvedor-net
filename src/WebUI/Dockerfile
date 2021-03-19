@@ -2,6 +2,8 @@
 
 FROM mcr.microsoft.com/dotnet/aspnet:5.0 AS base
 WORKDIR /app
+RUN apt update && apt upgrade
+RUN apt install -y curl 
 EXPOSE 80
 EXPOSE 443
 
