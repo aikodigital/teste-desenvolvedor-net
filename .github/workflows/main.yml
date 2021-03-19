@@ -50,12 +50,7 @@ jobs:
       with:
         app-name: ${{ env.NOME_WEBAPI_AZURE }}
         package: './app'
-
-    - name: Login no Azure
-      uses: Azure/login@v1
-      with:
-        creds: ${{ secrets.WEBUI_CREDENTIALS }}
-    
+  
     - name: Deployment WebUI no Azure App Service
       uses: Azure/webapps-deploy@v2
       with:
