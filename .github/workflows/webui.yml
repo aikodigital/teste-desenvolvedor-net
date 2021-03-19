@@ -27,13 +27,12 @@ jobs:
     
     - name: Publish WebUI
       run: dotnet publish ${{ env.CAMINHO_PROJETO_WEBUI }} -c Release -o app
-    
-    - name: Deployment Api no Azure App Service
-      uses: Azure/webapps-deploy@v2
+          
+    - name: Login Azure
+      uses: Azure/login@v1
       with:
-        app-name: ${{ env.NOME_WEBAPI_AZURE }}
-        package: './app'
-  
+        creds: ${{ secrets.WEBUI_CREDENTIALS }}
+
     - name: Deployment WebUI no Azure App Service
       uses: Azure/webapps-deploy@v2
       with:
