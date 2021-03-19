@@ -37,6 +37,6 @@ jobs:
 
     - name: Build e Push no Azure Container Registry
       run: |
-        docker build .. --file Dockerfile --tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:latest
+        docker build . --file Dockerfile --tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:latest
         docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/webui:$(date +%s)
         docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/
