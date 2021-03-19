@@ -43,7 +43,7 @@
                             <a class="nav-link text-dark" asp-area="" asp-controller="Paradas" asp-action="Index">Paradas</a>
                         </li>
                         <li class="nav-item">
-                            <a href="@(configuration["APIBaseUrl"])swagger/index.html" target="_blank" class="nav-link text-dark">Documentação API</a>
+                            <a href="@(configuration["APIBaseUrl"].Replace("api", "swagger/index.html"))" target="_blank" class="nav-link text-dark">Documentação API</a>
                         </li>
                     </ul>
                 </div>
