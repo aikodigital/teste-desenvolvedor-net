@@ -13,7 +13,8 @@ jobs:
       CAMINHO_PROJETO_TESTES: ./src/Tests/Tests.csproj
       CAMINHO_PROJETO_API: ./src/Api/Api.csproj
       CAMINHO_PROJETO_WEBUI: ./src/WebUI/WebUI.csproj
-      NOME_WEBAPP_AZURE: groffegithubactions
+      NOME_WEBAPI_AZURE: apidesafioaikodigital
+      NOME_WEBUI_AZURE: desafioaikodigital
 
     runs-on: ubuntu-latest
 
@@ -38,3 +39,25 @@ jobs:
       
     - name: Publish WebUI
       run: dotnet publish ${{ env.CAMINHO_PROJETO_WEBUI }} -c Release -o app
+
+    - name: Login no Azure
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.API_CREDENTIALS }}
+    
+    - name: Deployment Api no Azure App Service
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.NOME_WEBAPI_AZURE }}
+        package: './app'
+
+    - name: Login no Azure
+      uses: Azure/login@v1
+      with:
+        creds: ${{ secrets.WEBUI_CREDENTIALS }}
+    
+    - name: Deployment WebUI no Azure App Service
+      uses: Azure/webapps-deploy@v2
+      with:
+        app-name: ${{ env.NOME_WEBUI_AZURE }}
+        package: './app'
