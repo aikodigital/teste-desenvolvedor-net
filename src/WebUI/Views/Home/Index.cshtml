@@ -1,0 +1,108 @@
+﻿@using Microsoft.Extensions.Configuration
+@inject IConfiguration configuration
+@{
+    ViewData["Title"] = "Home Page";
+}
+
+<h1 class="text-center">Onde você esta?</h1>
+<p class="text-center">Clique no mapa para ver as paradas mais próximas!</p>
+
+<div class="d-flex justify-context-start align-items-end mb-3">
+    <div class="form-group me-1">
+        <label class="mb-1">Raio</label>
+        <select onchange="listarParadasMaisProximas()" name="raio" class="form-control">
+            <option value="500">500 metros</option>
+            <option selected value="1000">1 km</option>
+            <option value="2000">2 km</option>
+            <option value="3000">3 km</option>
+        </select>
+    </div>
+</div>
+
+<div id="google-maps"></div>
+
+@section Scripts {
+    <script async defer src='https://maps.googleapis.com/maps/api/js?key=@(configuration["GoogleApiKey"])&callback=initMap' type="text/javascript"></script>
+    <script src="~/lib/axios/axios.min.js"></script>
+    <script src="~/js/axiosconfig.js"></script>
+
+    <script defer asp-append-version="true">
+        let map;
+        let markers = []
+        let posicaoAtual;
+
+        function initMap() {
+            const local = { lat: -8.771601, lng: -63.847149 };
+            map = new google.maps.Map(document.getElementById("google-maps"), {
+                zoom: 14,
+                center: local,
+            });
+        }
+
+        function listarParadasMaisProximas() {
+            if (posicaoAtual) {
+                const { lat, lng } = posicaoAtual
+                const latitude = lat()
+                const longitude = lng()
+                const select = document.querySelector('[name="raio"]')
+                const raio = select.options[select.selectedIndex].value
+                deleteMarkers()
+
+                axios.get(`/Paradas/${latitude}/${longitude}?raioEmMetros=${raio}`).then((response) => {
+                    for (item of response.data) {
+                        const parada = new google.maps.Marker({
+                            position: { lat: item.localizacao.latitude, lng: item.localizacao.longitude },
+                            map: map,
+                            icon: 'assets/bus-stop.png',
+                            title: item.nome
+                        });
+
+                        markers.push(parada);
+                    }
+
+                    const pessoa = new google.maps.Marker({
+                        position: posicaoAtual,
+                        icon: 'assets/placeholder.png',
+                        title: 'Você está aqui!'
+                    });
+
+                    markers.push(pessoa);
+
+                    showMarkers()
+                }).catch((error) => {
+                    console.log(error)
+                })
+            } else {
+                alert('Clique no mapa para definir sua localização!')
+            }
+        }
+
+        function setMapOnAll(map) {
+            for (let i = 0; i < markers.length; i++) {
+                markers[i].setMap(map);
+            }
+        }
+
+        function clearMarkers() {
+            setMapOnAll(null);
+        }
+
+        function showMarkers() {
+            setMapOnAll(map);
+        }
+
+        function deleteMarkers() {
+            clearMarkers();
+            markers = [];
+        }
+
+        window.onload = function () {
+            initMap()
+
+            map.addListener("click", (event) => {
+                posicaoAtual = event.latLng
+                listarParadasMaisProximas()
+            });
+        }
+    </script>
+}

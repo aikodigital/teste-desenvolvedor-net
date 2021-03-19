@@ -1,0 +1,46 @@
+name: Build and deploy Api
+
+on:
+  push:
+    branches: [ main ]
+
+  workflow_dispatch:
+
+jobs:
+  build:
+
+    env:
+      CAMINHO_PROJETO_TESTES: ./src/Tests/Tests.csproj
+      CAMINHO_PROJETO_API: ./src/Api/Api.csproj
+      NOME_WEBAPI_AZURE: apidesafioaikodigital
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@main
+    - name: Setup .NET 5
+      uses: actions/setup-dotnet@v1
+      with:
+        dotnet-version: '5.0.x'
+
+    - name: Build Api
+      run: dotnet build ${{ env.CAMINHO_PROJETO_API }} --configuration Release
+    
+    - name: Run Tests
+      run: dotnet test ${{ env.CAMINHO_PROJETO_TESTES }} --verbosity minimal
+      
+    - name: Publish Api
+      run: dotnet publish ${{ env.CAMINHO_PROJETO_API }} -c Release -o app
+
+    - name: Docker Login - Azure Container Registry
+      uses: Azure/docker-login@v1
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_PASSWORD }}
+        login-server: ${{ secrets.DOCKER_CONTAINER_REGISTRY }}
+
+    - name: Build e Push no Azure Container Registry
+      run: |
+        docker build -t ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:latest -f src/Api/Dockerfile .
+        docker tag ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:latest ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:$(date +%s)
+        docker push ${{ secrets.DOCKER_CONTAINER_REGISTRY }}/api:latest

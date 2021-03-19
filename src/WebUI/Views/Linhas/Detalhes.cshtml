@@ -1,0 +1,241 @@
+﻿@model DetalhesDaLinhasViewModel
+
+@{
+    ViewData["Title"] = "Detalhes";
+}
+
+<h1>Linha @Model.Nome</h1>
+<hr />
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-outline-primary me-3" onclick="vincularVeiculo()">
+                <i class="fas fa-link"></i>
+            </button>
+            <h4 class="m-0">Veiculos</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Modelo</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var countVeiculos = 1;
+                    foreach (var item in Model.Veiculos)
+                    {
+                        <tr>
+                            <td width="3%">@countVeiculos</td>
+                            <td width="40%">@item.Nome</td>
+                            <td>@item.Modelo</td>
+                            <td width="15%" class="text-center">
+                                <button class="btn btn-sm btn-outline-danger" onclick="removerVeiculo('@item.Id')">
+                                    <i class="fas fa-unlink"></i> Desvincular
+                                </button>
+                            </td>
+                        </tr>
+
+                        countVeiculos++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="card mt-3">
+    <div class="card-header">
+        <div class="d-flex align-items-center">
+            <button type="button" class="btn btn-outline-primary me-3" onclick="vincularParada()">
+                <i class="fas fa-link"></i>
+            </button>
+            <h4 class="m-0">Paradas</h4>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Localização</th>
+                    <th class="text-center">Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var countParadas = 1;
+                    foreach (var item in Model.Paradas)
+                    {
+                        <tr>
+                            <td width="3%">@countParadas</td>
+                            <td width="40%">@item.Nome</td>
+                            <td>@item.Localizacao.Latitude, @item.Localizacao.Longitude</td>
+                            <td width="15%" class="text-center">
+                                <button class="btn btn-sm btn-outline-danger" onclick="removerParada('@item.Id')">
+                                    <i class="fas fa-unlink"></i> Desvincular
+                                </button>
+                            </td>
+                        </tr>
+
+                        countParadas++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal vincular veículo -->
+<div class="modal fade" id="modal-vincular-veiculo" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Vincular veículo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-vincular-veiculo">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option selected value="">Selecione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal vincular parada -->
+<div class="modal fade" id="modal-vincular-parada" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Vincular parada</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-vincular-parada">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <select class="form-control">
+                            <option selected value="">Selecione...</option>
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/axios/axios.min.js"></script>
+    <script src="~/js/axiosconfig.js"></script>
+    <script asp-append-version="true">
+        let formVincularVeiculo = document.getElementById('form-vincular-veiculo')
+        let formVincularParada = document.getElementById('form-vincular-parada')
+
+        function vincularVeiculo() {
+            let modal = new bootstrap.Modal(document.getElementById('modal-vincular-veiculo'))
+
+            axios.get('/Veiculos').then(function (response) {
+                let select = document.getElementById('form-vincular-veiculo').querySelector('select')
+
+                for (item of response.data) {
+                    let option = `<option value="${item.id}">${item.nome}</option>`
+                    select.innerHTML += option
+                }
+            })
+
+            modal.show()
+        }
+
+        formVincularVeiculo.addEventListener('submit', event => {
+            event.preventDefault()
+
+            const select = event.target.querySelector('select')
+            const veiculoId = select.options[select.selectedIndex].value
+
+            console.log(veiculoId)
+            axios.post('/VeiculosPorLinha', {
+                linhaId: '@Model.Id',
+                veiculoId
+            }).then(function (response) {
+                location.reload(true)
+            }).catch(function (error) {
+                console.log(error)
+            })
+        })
+
+        function vincularParada() {
+            let modal = new bootstrap.Modal(document.getElementById('modal-vincular-parada'))
+
+            axios.get('/Paradas').then(function (response) {
+                let select = document.getElementById('form-vincular-parada').querySelector('select')
+
+                for (item of response.data) {
+                    let option = `<option value="${item.id}">${item.nome}</option>`
+                    select.innerHTML += option
+                }
+            })
+
+            modal.show()
+        }
+
+         formVincularParada.addEventListener('submit', event => {
+            event.preventDefault()
+
+            const select = event.target.querySelector('select')
+            const paradaId = select.options[select.selectedIndex].value
+
+            console.log(paradaId)
+            axios.post('/LinhasPorParada', {
+            linhaId: '@Model.Id',
+            paradaId
+            }).then(function (response) {
+                location.reload(true)
+            }).catch(function (error) {
+                console.log(error)
+            })
+        })
+
+        function removerVeiculo(veiculoId) {
+            if (confirm('Tem certeza que deseja remover este veículo?')) {
+                const linhaId = '@Model.Id'
+
+                axios.delete(`/VeiculosPorLinha/${veiculoId}`).then(function (response) {
+                    location.reload(true)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            }
+        }
+
+        function removerParada(paradaId) {
+            if (confirm('Tem certeza que deseja remover esta parada?')) {
+                const linhaId = '@Model.Id'
+
+                axios.delete(`/LinhasPorParada/${linhaId}/${paradaId}`).then(function () {
+                    location.reload(true)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            }
+        }
+    </script>
+}

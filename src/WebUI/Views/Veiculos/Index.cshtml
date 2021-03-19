@@ -1,0 +1,205 @@
+﻿@model IEnumerable<VeiculoViewModel>
+
+@{
+    ViewData["Title"] = "Veículos";
+}
+
+<div class="card">
+    <div class="card-header">
+        <div class="d-flex justify-content-between align-items-center">
+            <h4 class="m-0">Veículos</h4>
+            <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#modal-cadastrar">
+                <i class="fas fa-plus"></i> Cadastrar
+            </button>
+        </div>
+    </div>
+    <div class="card-body">
+        <table class="table table-bordered">
+            <thead>
+                <tr>
+                    <th>#</th>
+                    <th>Nome</th>
+                    <th>Modelo</th>
+                    <th>Localização</th>
+                    <th>Ações</th>
+                </tr>
+            </thead>
+            <tbody>
+                @{
+                    var count = 1;
+                    foreach (var item in Model)
+                    {
+                        <tr>
+                            <td>@count</td>
+                            <td>@item.Nome</td>
+                            <td>@item.Modelo</td>
+                            <td>@item.Localizacao.Latitude, @item.Localizacao.Longitude</td>
+                            <td>
+                                <button class="btn btn-sm btn-outline-primary" onclick="editar('@item.Id', '@item.Nome', '@item.Modelo', '@item.Localizacao.Latitude', '@item.Localizacao.Longitude')">
+                                    <i class="fas fa-pencil-alt"></i> Editar
+                                </button>
+                                <button class="btn btn-sm btn-outline-danger" onclick="deletar('@item.Id')">
+                                    <i class="far fa-trash-alt"></i> Excluir
+                                </button>
+                            </td>
+                        </tr>
+
+                        count++;
+                    }
+                }
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<!-- Modal cadastrar -->
+<div class="modal fade" id="modal-cadastrar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Cadastrar veículo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-cadastrar">
+                <div class="modal-body">
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input required name="nome" value="" class="form-control" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Modelo</label>
+                        <input required name="modelo" value="" class="form-control" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Latitude</label>
+                        <input required name="latitude" value="" class="form-control" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Longitude</label>
+                        <input required name="longitude" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<!-- Modal editar -->
+<div class="modal fade" id="modal-editar" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Editar veículo</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="form-editar">
+                <div class="modal-body">
+                    <input type="hidden" name="id" value="" />
+                    <div class="form-group">
+                        <label>Nome</label>
+                        <input required name="nome" value="" class="form-control" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Modelo</label>
+                        <input required name="modelo" value="" class="form-control" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Latitude</label>
+                        <input required name="latitude" value="" class="form-control" />
+                    </div>
+                    <div class="form-group mt-3">
+                        <label>Longitude</label>
+                        <input required name="longitude" value="" class="form-control" />
+                    </div>
+                </div>
+                <div class="modal-footer justify-content-start">
+                    <button type="submit" class="btn btn-primary">Confirmar</button>
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Fechar</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+@section Scripts {
+    <script src="~/lib/axios/axios.min.js"></script>
+    <script src="~/js/axiosconfig.js"></script>
+    <script asp-append-version="true">
+        let formCadastrar = document.getElementById('form-cadastrar')
+        let formEditar = document.getElementById('form-editar')
+        let modal = new bootstrap.Modal(document.getElementById('modal-editar'))
+
+        formCadastrar.addEventListener('submit', event => {
+            event.preventDefault()
+
+            const nome = event.target.querySelector('[name=nome]').value
+            const modelo = event.target.querySelector('[name=modelo]').value
+            const latitude = event.target.querySelector('[name=latitude]').value
+            const longitude = event.target.querySelector('[name=longitude]').value
+
+            axios.post('/Veiculos', {
+                nome,
+                modelo,
+                localizacao: {
+                    latitude,
+                    longitude
+                }
+            }).then(function (response) {
+                location.reload(true)
+            }).catch(function (error) {
+                console.log(error)
+            })
+        })
+
+        function editar(id, nome, modelo, latitude, longitude) {
+            formEditar.querySelector('[name=id]').setAttribute("value", id)
+            formEditar.querySelector('[name=nome]').setAttribute("value", nome)
+            formEditar.querySelector('[name=modelo]').setAttribute("value", modelo)
+            formEditar.querySelector('[name=latitude]').setAttribute("value", latitude)
+            formEditar.querySelector('[name=longitude]').setAttribute("value", longitude)
+
+            modal.show()
+        }
+
+        function deletar(id) {
+            if (confirm('Tem certeza que deseja deletar esta veículo?')) {
+                axios.delete(`/Veiculos/${id}`).then(function (response) {
+                    location.reload(true)
+                }).catch(function (error) {
+                    console.log(error)
+                })
+            }
+        }
+
+        formEditar.addEventListener('submit', event => {
+            event.preventDefault()
+
+            const id = event.target.querySelector('[name=id]').value
+            const nome = event.target.querySelector('[name=nome]').value
+            const modelo = event.target.querySelector('[name=modelo]').value
+            const latitude = event.target.querySelector('[name=latitude]').value
+            const longitude = event.target.querySelector('[name=longitude]').value
+
+            axios.put('/Veiculos', {
+                id,
+                nome,
+                modelo,
+                localizacao: {
+                    latitude,
+                    longitude
+                }
+            }).then(function (response) {
+                console.log(response)
+                location.reload(true)
+            }).catch(function (error) {
+                console.log(error)
+            })
+
+            modal.hide()
+        })
+    </script>
+}
