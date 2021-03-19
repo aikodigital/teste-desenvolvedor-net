@@ -13,7 +13,7 @@ services:
     ports:
       - 44359:80
     networks:
-      - host
+      - aiko_digital
 
   api:
     image: ${DOCKER_REGISTRY-}api
@@ -31,7 +31,7 @@ services:
     links:
       - "mssql-server:database"
     networks:
-      - host
+      - aiko_digital
 
   mssql-server:
     container_name: mssql-server
@@ -43,7 +43,6 @@ services:
     ports:
         - 1444:1433
   
-networks:
-  host:
-    name: host
-    external: true
+networks: 
+  aiko_digital: 
+    driver: bridge

@@ -1,1 +1,1 @@
-﻿axios.defaults.baseURL = 'https://localhost:5001/api'
+﻿axios.defaults.baseURL = baseUrlApi
