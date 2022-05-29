@@ -1,0 +1,17 @@
+CREATE DATABASE aiko OWNER postgres;
+
+BEGIN;
+CREATE SCHEMA olho_vivo AUTHORIZATION postgres;
+
+CREATE ROLE olho_vivo WITH 
+	NOSUPERUSER
+	NOCREATEDB
+	NOCREATEROLE
+	NOINHERIT
+	LOGIN
+	PASSWORD 'olho_vivo';
+
+
+GRANT ALL ON SCHEMA olho_vivo TO postgres;
+GRANT USAGE ON SCHEMA olho_vivo TO olho_vivo;
+COMMIT;
