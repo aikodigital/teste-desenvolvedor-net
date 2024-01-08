@@ -47,8 +47,9 @@ Após implementar o CRUD para as entidades, implemente os seguintes métodos:
 * Outras linguagens diferentes de C#
 
 ## Recomendações
-
+* O teste é propositalmente simples para permitir que você demostre suas habilidades e conhecimentos sem escrever muito código, sendo assim é interessante utilizar design patters e padrões de arquitetura.
 * **Linter**: Desenvolva o projeto utilizando algum padrão de formatação de código.
+* Idealmente a nomeclatura de classes, métodos, atributos e propriedades devem estar no idioma Ingles.
 
 ## Extras
 
