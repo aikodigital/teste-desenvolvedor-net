@@ -1,5 +1,5 @@
 
-namespace TransportePublico.Domain.Entity
+namespace TransportePublico.Domain.Entity.Paradas
 {
     public class Parada
     {

@@ -1,5 +1,7 @@
 
-namespace TransportePublico.Domain.Entity
+using TransportePublico.Domain.Entity.Linhas;
+
+namespace TransportePublico.Domain.Entity.Veiculos
 {
     public class Veiculo
     {
