@@ -2,7 +2,7 @@ using Microsoft.EntityFrameworkCore;
 using TransportePublico.Domain.Entity.PosicoesVeiculos;
 using TransportePublico.Infra.Contexts;
 
-namespace TransportePublico.Infra.Repositories.Paradas;
+namespace TransportePublico.Infra.Repositories.PosicoesVeiculos;
 
 public class PosicaoVeiculoRepository :  IPosicaoVeiculoRepository
 {

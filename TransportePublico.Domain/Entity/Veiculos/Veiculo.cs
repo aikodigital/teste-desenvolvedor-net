@@ -1,5 +1,6 @@
 
 using TransportePublico.Domain.Entity.Linhas;
+using TransportePublico.Domain.Entity.PosicoesVeiculos;
 
 namespace TransportePublico.Domain.Entity.Veiculos
 {
@@ -10,5 +11,6 @@ namespace TransportePublico.Domain.Entity.Veiculos
         public string? Modelo { get; set; }
         public long LinhaId { get; set; }
         public Linha? Linha { get; set; }
+        public PosicaoVeiculo? PosicaoVeiculo { get; set; }
     }
 }

@@ -16,8 +16,10 @@
       "launchUrl": "swagger",
       "applicationUrl": "https://localhost:7063;http://localhost:5136",
       "environmentVariables": {
-        "ASPNETCORE_ENVIRONMENT": "Development"
+        "ASPNETCORE_ENVIRONMENT": "Development",
+        "DATABASE_URL": "User ID=postgres;Password=postgres;Host=localhost;Port=5432;Database=postgres;Pooling=true;Min Pool Size=0;Max Pool Size=100;Connection Lifetime=0;"
       }
+  }
     },
     "IIS Express": {
       "commandName": "IISExpress",
@@ -27,5 +29,4 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     }
-  }
 }

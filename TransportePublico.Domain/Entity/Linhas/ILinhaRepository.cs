@@ -5,8 +5,8 @@ namespace TransportePublico.Domain.Entity.Linhas
     {
         Task<List<Linha>> GetAll();
         Task<Linha> GetById(long id);
-        // void Add(Linha linha);
-        // void Update(Linha linha);
-        // void Remove(Linha linha);
+        Task<bool> Add(Linha linha);
+        Task<bool> Update(Linha linha);
+        Task<bool> Remove(Linha linha);
     }
 }

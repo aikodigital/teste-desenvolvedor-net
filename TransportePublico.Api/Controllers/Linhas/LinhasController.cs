@@ -1,13 +1,17 @@
 ﻿using MediatR;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
+using TransportePublico.App.Commands.Linhas.Create;
+using TransportePublico.App.Commands.Linhas.Delete;
+using TransportePublico.App.Commands.Linhas.Update;
 using TransportePublico.App.Queries.Linhas.GetAll;
 using TransportePublico.App.Queries.Linhas.GetById;
 
 namespace TransportePublico.Api.Controllers.Linhas;
 
 [ApiController]
-[Produces("application/json")]
 [Route("api/linhas")]
+// [Authorize("Bearer")]
 public class LinhasController : ControllerBase
 {
     private readonly IMediator _mediator;
@@ -35,22 +39,30 @@ public class LinhasController : ControllerBase
         return Ok(linha);
     }
 
-    // [HttpGet("{acaoId}")]
-    // public async Task<IActionResult> ObterAcaoPorId(Guid acaoId)
-    // {
-    //     return OkResposta(await _mediator.Send(new ObterAcaoPorIdQuery(acaoId)));
-    // }
+    [HttpPost]
+    public async Task<IActionResult> Create([FromBody] NewLinhaDto linha)
+    {
+        var linhaOk = await _mediator.Send(new CreateLinhaCommand(linha));
+        if (!linhaOk)
+            return BadRequest();
+        return Ok("Linha is created.");
+    }
 
-    // [HttpPost]
-    // public async Task<IActionResult> Inserir([FromBody] AcaoNovaDto acao)
-    // {
-    //     return OkResposta(await _mediator.Send(new InserirAcaoComando(acao)));
-    // }
+    [HttpPut("{id}")]
+    public async Task<IActionResult> Update([FromBody] UpdateLinhaDto linha)
+    {
+        var linhaOk = await _mediator.Send(new UpdateLinhaCommand(linha));
+        if (!linhaOk)
+            return BadRequest();
+        return Ok("Linha is updated.");
+    }
 
-    // [HttpDelete("{id}")]
-    // public async Task<IActionResult> Excluir(Guid id)
-    // {
-    //     await _mediator.Send(new ExcluirAcaoComando(id));
-    //     return OkResposta("OK");
-    // }
+    [HttpDelete("{id}")]
+    public async Task<IActionResult> Delete(long id)
+    {
+        var deletedLinha = await _mediator.Send(new DeleteLinhaCommand(id));
+        if (!deletedLinha)
+            return BadRequest();
+        return Ok("Linha is deleted.");
+    }
 }

@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using System.Reflection;
+using Microsoft.Extensions.DependencyInjection;
 using TransportePublico.Domain.Entity.Linhas;
 using TransportePublico.Domain.Entity.Paradas;
 using TransportePublico.Domain.Entity.PosicoesVeiculos;
@@ -12,16 +13,15 @@ namespace TransportePublico.Infra;
 
 public static class DependencyInjection
 {
-    public static IServiceCollection AddLibs(this IServiceCollection services, Configuracao configuracao)
+
+    public static IServiceCollection AddLibs(this IServiceCollection services)
     {
         // Adicionando AutoMapper - veja mais em https://docs.automapper.org/en/stable/Getting-started.html
-        services.AddAutoMapper(configuracao.Assemblies);
+        services.AddAutoMapper(Assembly.GetExecutingAssembly());
         // Adicionando MediatR
         services.AddMediatR(cfg =>
         {
-            cfg.RegisterServicesFromAssemblies(configuracao.Assemblies.ToArray());
-            foreach (var openBehavior in configuracao.ComportamentosAbertos.AsParallel())
-                cfg.AddOpenBehavior(openBehavior);
+            cfg.RegisterServicesFromAssemblies(Assembly.GetExecutingAssembly());
         });
         services.AddScoped<ILinhaRepository, LinhaRepository>();
         services.AddScoped<IParadaRepository, ParadaRepository>();
