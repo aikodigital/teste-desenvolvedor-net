@@ -1,0 +1,181 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>AikoApi</name>
+    </assembly>
+    <members>
+        <member name="M:AikoApi.Controllers.LineController.Create(AikoApi.Apllication.Dtos.LineDto)">
+            <summary>
+            Adiciona uma Linha ao Banco de dados
+            </summary>
+            <param name="lineDto">Objeto com os campos necessários para criação de uma Linha</param>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a inserção seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.LineController.GetAll">
+            <summary>
+            Consulta as Linhas no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.LineController.GetLineId(System.Int64)">
+            <summary>
+            Consulta a Linha por Id no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.LineController.UpdateLine(System.Int64,AikoApi.Apllication.Dtos.LineDto)">
+            <summary>
+            Atualiza  Linha informada por ID no Banco de dados
+            </summary>
+            <param name="lineDto">Objeto com os campos necessários para criação de uma Linha</param>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a atualizaçãp seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.LineController.DeleteLine(System.Int64)">
+            <summary>
+            Exclui a Linha irformada por ID do Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a Exxclusão seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.LineStopController.Create(AikoApi.Apllication.Dtos.LineStopDto)">
+            <summary>
+            Faz o relacionamento entre Stops com quantidade de Lines
+            </summary>
+            <param name="lineStopDto">Objeto com os campos necessários para criação</param>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a inserção seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.LineStopController.GetLinesByStopId(System.Int64)">
+            <summary>
+            Recebe o identificador de uma Stop e retorna as Lines associadas a parada informada
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.StopController.Create(AikoApi.Apllication.Dtos.StopDto)">
+            <summary>
+            Adiciona uma Parada ao Banco de dados
+            </summary>
+            <param name="stopDto">
+            Objeto com os campos necessários para criação de uma Parada.
+            LineId é Obrigatório.
+            </param>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a inserção seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.StopController.GetAll">
+            <summary>
+            Consulta todas as Paradas no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.StopController.GetStopId(System.Int64)">
+            <summary>
+            Consulta a Parada por ID no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.StopController.UpdateStop(System.Int64,AikoApi.Apllication.Dtos.StopDto)">
+            <summary>
+            Atualiza  a Parada informada por ID no Banco de dados
+            </summary>
+            <param name="stopDto">Objeto com os campos necessários para criação de uma Linha</param>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a atualizaçãp seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.StopController.DeleteStop(System.Int64)">
+            <summary>
+            Exclui a Parada irformada por ID do Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a Exxclusão seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehicleController.Create(AikoApi.Apllication.Dtos.VehicleDto)">
+            <summary>
+            Adiciona um veículo ao Banco de dados
+            </summary>
+            <param name="vehicleDto">Objeto com os campos necessários para criação de um veículo</param>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a inserção seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehicleController.GetAll">
+            <summary>
+            Consulta os veículos no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehicleController.GetVehicleId(System.Int64)">
+            <summary>
+            Consulta o veíuclo por Id no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehicleController.UpdateVehicle(System.Int64,AikoApi.Apllication.Dtos.VehicleDto)">
+            <summary>
+            Atualiza  o veículo informado por ID no Banco de dados
+            </summary>
+            <param name="lineDto">Objeto com os campos necessários para criação de uma Linha</param>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a atualizaçãp seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehicleController.DeleteVehicle(System.Int64)">
+            <summary>
+            Exclui o veículo irformada por ID do Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a Exxclusão seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehiclePositionController.Create(AikoApi.Apllication.Dtos.VehiclePositionDto)">
+            <summary>
+            Adiciona uma posiçao de Latitude e Longitude ao veículo no Banco de dados
+            </summary>
+            <param name="vehiclePositionDto">Objeto com os campos necessários para criação de uma Linha</param>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a inserção seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehiclePositionController.GetAll">
+            <summary>
+            Consulta a Latitude e Logitude do veículo no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehiclePositionController.GetVehiclePositionId(System.Int64)">
+            <summary>
+            Consulta a Latitude e Logitude por ID do veíuclo no Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehiclePositionController.UpdateVehiclePosition(System.Int64,AikoApi.Apllication.Dtos.VehiclePositionDto)">
+            <summary>
+            Atualiza a posição do veículo informada por ID no Banco de dados
+            </summary>
+            <param name="lineDto">Objeto com os campos necessários para criação de uma Linha</param>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a atualizaçãp seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehiclePositionController.DeleteVehiclePosition(System.Int64)">
+            <summary>
+            Exclui a posicao do veiculo inforamda por ID do Banco de dados
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="201">Caso a Exxclusão seja feita com sucesso</response>
+        </member>
+        <member name="M:AikoApi.Controllers.VehiclesLinesController.GetId(System.Int64)">
+            <summary>
+            Consulta os veículos associados por ID a linha.
+            </summary>
+            <returns>IActionResult</returns>
+            <response code="200">Caso a consulta seja feita com sucesso</response>
+        </member>
+    </members>
+</doc>
