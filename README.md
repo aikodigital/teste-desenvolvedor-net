@@ -50,3 +50,7 @@ O projeto é desenvolvido utilizando .NET 6, aproveitando suas novas funcionalid
 ## Contribuições
 
 Contribuições são bem-vindas! Sinta-se à vontade para abrir issues, propor melhorias ou enviar pull requests.
+
+## Link do Video do Youtube
+
+https://www.youtube.com/watch?v=49SyOQ9AYgo
