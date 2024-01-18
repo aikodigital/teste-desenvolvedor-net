@@ -1,80 +1,52 @@
-# Teste Desenvolvedor .NET
+## Descrição do Projeto
 
-![Aiko](imagens/aiko.png)
+Este projeto é uma aplicação de exemplo para gerenciar informações sobre transporte público, utilizando a tecnologia .NET 6, C#, e seguindo uma arquitetura CQRS (Command Query Responsibility Segregation). O projeto visa demonstrar boas práticas de desenvolvimento, utilização de tecnologias modernas e organização de código.
 
-Neste teste serão avaliados seus conhecimentos e a metodologia aplicada no desenvolvimento de uma aplicação .NET.
+## Tecnologias Utilizadas
 
-## O Desafio
+### Arquitetura CQRS
 
-O desafio é criar um servidor que provê uma API com o objetivo de fornecer informações sobre o transporte público da cidade de São Paulo, similar a [API **Olho Vivo**](api.md).
+O projeto segue a arquitetura CQRS, que separa as operações de leitura e escrita, proporcionando uma melhor organização e escalabilidade. O MediatR é utilizado para facilitar a implementação e o gerenciamento de comandos e consultas.
 
-## Requisitos
+### AutoMapper
 
-Esses requisitos são obrigatórios e devem ser desenvolvidos para a entrega do teste
+A biblioteca AutoMapper é utilizada para facilitar a conversão de objetos entre diferentes modelos, tornando o código mais limpo e eficiente.
 
-### CRUD
+### Swagger
 
-Implementar as operações de **criação (POST)**, **consulta (GET)** (Por Id e GetAll), **atualização (PUT)** e **exclusão (DELETE)** de todas as entidades do seguinte diagrama:
+A documentação da API é gerada automaticamente pelo Swagger, facilitando o entendimento das operações disponíveis e permitindo testes diretos na interface.
 
-!['D](imagens/backend_diagrama.png)
+### Banco de Dados PostgreSQL
 
-### Métodos
+O projeto utiliza o banco de dados PostgreSQL para armazenar as informações sobre linhas, paradas, veículos e posições de veículos. O acesso ao banco é realizado de forma eficiente utilizando o Entity Framework Core.
 
-Após implementar o CRUD para as entidades, implemente os seguintes métodos:
+### Docker e Docker Compose
 
-* `Linhas por Parada`: Recebe o identificador de uma parada e retorna as linhas associadas a parada informada
+O Docker é utilizado para empacotar a aplicação e o banco de dados PostgreSQL, garantindo que o ambiente de desenvolvimento seja consistente em diferentes máquinas. O Docker Compose é utilizado para orquestrar a execução dos contêineres.
 
-* `Veiculos por Linha`: Recebe o identificador de uma linha e retorna os veículos associados a linha informada
+### BAT para Inicialização do Projeto
 
-## O que é permitido
+Um arquivo BAT (Batch) é fornecido para facilitar a inicialização do projeto. Este arquivo automatiza a execução de comandos necessários, como a construção e execução dos contêineres Docker, a aplicação de migrações do banco de dados, etc.
 
-* Linguagem C#
+### RESTful API
 
-* .NET Framework ou .NET Core ou .NET 5
+A API segue os princípios RESTful, proporcionando uma interface simples e intuitiva para interação com o sistema.
 
-* PostgreSQL, MySQL, Oracle, etc
+### .NET 6 e C#
 
-* Mapeamento objeto-relacional (ORM)
+O projeto é desenvolvido utilizando .NET 6, aproveitando suas novas funcionalidades e melhorias de desempenho. O código é escrito em C#, uma linguagem poderosa e versátil.
 
-* Qualquer tecnologia complementar as citadas anteriormente são permitidas desde que seu uso seja justificável
+## Configuração e Execução
 
-## O que não é permitido
+1. **Pré-requisitos:**
+   * Certifique-se de ter o .NET 6 SDK instalado em sua máquina.
+   * Tenha o Docker e o Docker Compose instalados.
+2. **Clonar o Repositório:** git clone https://github.com/holandalelis/net-aiko
+3. **Executar o Projeto:**
+   Execute o arquivo `run-dev.bat` para iniciar a aplicação e o banco de dados utilizando o Docker Compose.
+4. **Acessar a Aplicação:**
+   Acesse a documentação da API através do Swagger em [http://localhost:5000/swagger]().
 
-* Bancos de Dados **não relacionais**.
-  
-* Utilizar bibliotecas ou códigos de terceiros que implementem algum dos requisitos.
+## Contribuições
 
-* Outras linguagens diferentes de C#
-
-## Recomendações
-* O teste é propositalmente simples para permitir que você demostre suas habilidades e conhecimentos sem escrever muito código, sendo assim é interessante utilizar design patters e padrões de arquitetura.
-* **Linter**: Desenvolva o projeto utilizando algum padrão de formatação de código.
-* Idealmente a nomeclatura de classes, métodos, atributos e propriedades devem estar no idioma Ingles.
-
-## Extras
-
-Aqui são listados algumas sugestões para você que quer ir além do desafio inicial. Lembrando que você não precisa se limitar a essas sugestões, se tiver pensado em outra funcionalidade que considera relevante ao escopo da aplicação fique à vontade para implementá-la.
-
-* `Paradas por Posição`: Implementar um método que recebe uma posição (lat, long) como parâmetro e retorna as paradas mais proximas a posição informada.
-
-* **Documentação**: Gerar a documentação da API de forma automatizada, utilizando o `swagger` ou equivalentes
-
-* **Containerização**: Realizar a conteinerização da aplicação utilizando Docker
-
-* **Front-end da aplicação**: Se seu foco é ser fullstack, você pode explorar isso desenvolvendo um front-end para a aplicação, seja em tecnologia .NET (MVC, Razor, Blazor) ou javacript (VueJS, Angular, ReactJS, etc.)
-
-## Entregas
-
-Para realizar a entrega do teste você deve:
-
-* Relizar o fork e clonar esse repositório para sua máquina
-  
-* Criar uma branch com o nome de `teste/[SEU NOME]`
-  * `[SEU NOME]`: Seu nome
-  * Exemplo: `teste/fulano-da-silva`;
-  
-* Faça um commit da sua branch com a implementação do teste
-  
-* Realize o pull request da sua branch nesse repositório
-
-Além do pull request você deve **gravar um vídeo de no máximo 30 minutos** mostrando o que foi desenvolvido, falando sobre as decisões que foram tomadas, as tecnologias utilizadas, arquitetura e tudo que você achar relevante. A facecam é opcional, mas é um extra desejável. Esse vídeo deve ser postado no youtube (pode ser não listado) e seu link deve estar no `README.md` do projeto.
+Contribuições são bem-vindas! Sinta-se à vontade para abrir issues, propor melhorias ou enviar pull requests.
