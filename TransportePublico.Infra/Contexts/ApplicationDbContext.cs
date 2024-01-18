@@ -1,5 +1,6 @@
 using Microsoft.EntityFrameworkCore;
 using TransportePublico.Domain.Entity.Linhas;
+using TransportePublico.Domain.Entity.LinhasParadas;
 using TransportePublico.Domain.Entity.Paradas;
 using TransportePublico.Domain.Entity.PosicoesVeiculos;
 using TransportePublico.Domain.Entity.Veiculos;
@@ -14,6 +15,6 @@ namespace TransportePublico.Infra.Contexts
         public DbSet<Parada> Paradas { get; set; }
         public DbSet<PosicaoVeiculo> PosicoesVeiculos { get; set; }
         public DbSet<Veiculo> Veiculos { get; set; }
-
+        public DbSet<LinhaParada> LinhasParadas { get; set; }
     }
 }

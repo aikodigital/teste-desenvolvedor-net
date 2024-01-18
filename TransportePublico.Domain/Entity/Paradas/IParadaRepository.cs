@@ -5,8 +5,8 @@ namespace TransportePublico.Domain.Entity.Paradas
     {
         Task<List<Parada>> GetAll();
         Task<Parada> GetById(long id);
-        // void Add(Linha linha);
-        // void Update(Linha linha);
-        // void Remove(Linha linha);
+        Task<bool> Add(Parada parada);
+        Task<bool> Update(Parada parada);
+        Task<bool> Remove(Parada parada);
     }
 }

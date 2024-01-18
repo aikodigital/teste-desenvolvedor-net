@@ -1,30 +1,22 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
+using TransportePublico.Domain.Entity.LinhasParadas;
 using TransportePublico.Domain.Entity.Paradas;
 
-namespace TransportePublico.Infra.Contexts.EntityConfigurations
+namespace TransportePublico.Data.Configurations
 {
-    public class ParadaEntityConfiguration : IEntityTypeConfiguration<Parada>
+    public class ParadaConfiguration : IEntityTypeConfiguration<Parada>
     {
         public void Configure(EntityTypeBuilder<Parada> builder)
         {
-            builder.HasKey(p => p.Id);
-
-            builder.Property(p => p.Name)
-                .HasColumnType("varchar(255)");
-
-            builder.Property(p => p.Latitude)
-                .HasColumnType("decimal(10, 6)");
-
-            builder.Property(p => p.Longitude)
-                .HasColumnType("decimal(10, 6)");
-
-            builder.HasOne(p => p.Linha)
-                .WithMany(l => l.Paradas)
-                .HasForeignKey(p => p.LinhaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             builder.ToTable("Paradas");
+            builder.HasKey(x => x.ParadaId);
+            builder.Property(x => x.ParadaId).ValueGeneratedOnAdd();
+            builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
+            builder.HasMany(x => x.Linhas).WithMany(x => x.Paradas).UsingEntity<LinhaParada>(
+                x => x.HasOne(x => x.Linha).WithMany(x => x.LinhasParadas).HasForeignKey(x => x.LinhaId),
+                x => x.HasOne(x => x.Parada).WithMany(x => x.LinhasParadas).HasForeignKey(x => x.Parada),
+                x => x.ToTable("LinhasParadas"));
         }
     }
 }

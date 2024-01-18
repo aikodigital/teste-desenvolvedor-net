@@ -1,9 +1,7 @@
 using TransportePublico.App.Queries.Linhas;
-using TransportePublico.Domain.Entity.Veiculos;
 
 namespace TransportePublico.App.Queries.Veiculos
 {
-    [AutoMapper.AutoMap(typeof(Veiculo), ReverseMap = true)]
     public class VeiculoDto
     {
         public long Id { get; set; }

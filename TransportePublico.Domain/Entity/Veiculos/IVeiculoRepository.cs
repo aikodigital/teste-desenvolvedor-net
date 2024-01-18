@@ -5,8 +5,9 @@ namespace TransportePublico.Domain.Entity.Veiculos
     {
         Task<List<Veiculo>> GetAll();
         Task<Veiculo> GetById(long id);
-        // void Add(Linha linha);
-        // void Update(Linha linha);
-        // void Remove(Linha linha);
+        Task<bool> Add(Veiculo veiculo);
+        Task<bool> Update(Veiculo veiculo);
+        Task<bool> Remove(Veiculo veiculo);
+        Task<IEnumerable<Veiculo>> GetVeiculosByLinha(long linhaId);
     }
 }

@@ -5,8 +5,8 @@ namespace TransportePublico.Domain.Entity.PosicoesVeiculos
     {
         Task<List<PosicaoVeiculo>> GetAll();
         Task<PosicaoVeiculo> GetById(long id);
-        // void Add(Linha linha);
-        // void Update(Linha linha);
-        // void Remove(Linha linha);
+        Task<bool> Add(PosicaoVeiculo posicaoVeiculo);
+        Task<bool> Update(PosicaoVeiculo posicaoVeiculo);
+        Task<bool> Remove(PosicaoVeiculo posicaoVeiculo);
     }
 }

@@ -2,30 +2,32 @@ using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TransportePublico.Domain.Entity.Veiculos;
 
-namespace TransportePublico.Infra.Contexts.EntityConfigurations
+namespace TransportePublico.Data.Configurations
 {
-    public class VeiculoEntityConfiguration : IEntityTypeConfiguration<Veiculo>
+    public class VeiculoConfiguration : IEntityTypeConfiguration<Veiculo>
     {
         public void Configure(EntityTypeBuilder<Veiculo> builder)
         {
-            builder.HasKey(v => v.Id);
+            builder.ToTable("Veiculos");
+
+            builder.HasKey(v => v.VeiculoId);
+
+            builder.Property(v => v.VeiculoId)
+                .HasColumnName("VeiculoId")
+                .IsRequired();
 
             builder.Property(v => v.Name)
-                .HasColumnType("varchar(255)");
+                .HasColumnName("Name")
+                .HasMaxLength(255); 
 
             builder.Property(v => v.Modelo)
-                .HasColumnType("varchar(255)");
+                .HasColumnName("Modelo")
+                .HasMaxLength(255); 
 
             builder.HasOne(v => v.Linha)
-                .WithMany(l => l.Veiculos)
+                .WithMany()
                 .HasForeignKey(v => v.LinhaId)
                 .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasOne(v => v.PosicaoVeiculo)
-                .WithOne(pv => pv.Veiculo)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.ToTable("Veiculos");
         }
     }
 }

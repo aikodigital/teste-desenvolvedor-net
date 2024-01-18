@@ -1,5 +1,4 @@
 ﻿using MediatR;
-using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using TransportePublico.App.Commands.Linhas.Create;
 using TransportePublico.App.Commands.Linhas.Delete;

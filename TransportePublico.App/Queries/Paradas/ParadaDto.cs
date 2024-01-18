@@ -1,13 +1,13 @@
-using TransportePublico.Domain.Entity.Paradas;
+using TransportePublico.App.Queries.LinhasParadas;
 
 namespace TransportePublico.App.Queries.Paradas
 {
-    [AutoMapper.AutoMap(typeof(Parada), ReverseMap = true)]
     public class ParadaDto
     {
         public long Id { get; set; }
         public string? Name { get; set; }
         public double Latitude { get; set; }
         public double Longitude { get; set; }
+        public virtual IEnumerable<LinhaParadaDto>? LinhasParadas { get; set; }
     }
 }

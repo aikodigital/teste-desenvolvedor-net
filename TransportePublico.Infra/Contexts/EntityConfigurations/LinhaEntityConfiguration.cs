@@ -1,29 +1,19 @@
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using TransportePublico.Domain.Entity.Linhas;
+using TransportePublico.Domain.Entity.LinhasParadas;
 
-namespace TransportePublico.Infra.Contexts.EntityConfigurations
+namespace TransportePublico.Data.Configurations
 {
-    public class LinhaEntityConfiguration : IEntityTypeConfiguration<Linha>
+    public class LinhaConfiguration : IEntityTypeConfiguration<Linha>
     {
         public void Configure(EntityTypeBuilder<Linha> builder)
         {
-            builder.HasKey(l => l.Id);
-
-            builder.Property(l => l.Name)
-                .HasColumnType("varchar(255)");
-
-            builder.HasMany(l => l.Paradas)
-                .WithOne(p => p.Linha)
-                .HasForeignKey(p => p.LinhaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
-            builder.HasMany(l => l.Veiculos)
-                .WithOne(v => v.Linha)
-                .HasForeignKey(v => v.LinhaId)
-                .OnDelete(DeleteBehavior.Restrict);
-
             builder.ToTable("Linhas");
+            builder.HasKey(x => x.LinhaId);
+            builder.Property(x => x.LinhaId).ValueGeneratedOnAdd();
+            builder.Property(x => x.Name).HasMaxLength(100).IsRequired();
+            builder.HasMany(x => x.LinhasParadas).WithOne(x => x.Linha).HasForeignKey(x => x.LinhaId);
         }
     }
 }

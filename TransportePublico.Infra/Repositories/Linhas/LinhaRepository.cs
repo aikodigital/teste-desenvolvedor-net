@@ -13,15 +13,18 @@ public class LinhaRepository :  ILinhaRepository
         _contexto = contexto;
     }
 
-    public async Task<List<Linha>> GetAll()
+    public async Task<IEnumerable<Linha>> GetAll()
     {
-        return await _contexto.Linhas.ToListAsync();
+        return await _contexto.Linhas
+            .Include(l => l.LinhasParadas)
+            .ThenInclude(lp => lp.Parada)
+            .ToListAsync();
     }
 
     public async Task<Linha> GetById(long id)
     {
-        var linha = await _contexto.Linhas.FindAsync(id);
-        return linha ?? throw new Exception("Linha not found.");
+        var linha = await _contexto.Linhas.Include(l => l.LinhasParadas).FirstAsync(l => l.LinhaId == id);
+        return linha;
     }
 
     public async Task<bool> Add(Linha linha)
