@@ -2,7 +2,7 @@
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
 using PublicTransportation.Models;
 
-namespace PublicTransportation.Infra.Mapping
+namespace PublicTransportation.Infra.Mappings
 {
     public class LineMap : IEntityTypeConfiguration<Line>
     {

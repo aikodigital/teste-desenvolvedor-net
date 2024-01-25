@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PublicTransportation.Configuration;
-using PublicTransportation.Infra.Mapping;
+using PublicTransportation.Infra.Mappings;
 using PublicTransportation.Infrastructure.Seed;
 using System;
 
