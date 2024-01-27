@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Metadata.Builders;
-using PublicTransportation.Models;
+using PublicTransportation.Domain.Entities;
 
 namespace PublicTransportation.Infra.Mappings
 {

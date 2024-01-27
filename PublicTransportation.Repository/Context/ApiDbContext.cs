@@ -1,5 +1,5 @@
 ﻿using Microsoft.EntityFrameworkCore;
-using PublicTransportation.Configuration;
+using PublicTransportation.Infra.Configuration;
 using PublicTransportation.Infra.Mappings;
 using PublicTransportation.Infrastructure.Seed;
 using System;

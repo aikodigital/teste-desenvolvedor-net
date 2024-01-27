@@ -1,26 +1,17 @@
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.Hosting;
-using Microsoft.Extensions.Logging;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+using PublicTransportation.Api.Configuration;
 
-namespace PublicTransportation.Api
-{
-    public class Program
-    {
-        public static void Main(string[] args)
-        {
-            CreateHostBuilder(args).Build().Run();
-        }
+IConfiguration configuration = new ConfigurationBuilder().AddJsonFile("appsettings.json").Build();
 
-        public static IHostBuilder CreateHostBuilder(string[] args) =>
-            Host.CreateDefaultBuilder(args)
-                .ConfigureWebHostDefaults(webBuilder =>
-                {
-                    webBuilder.UseStartup<Startup>();
-                });
-    }
-}
+var builder = WebApplication.CreateBuilder(args);
+
+builder.Services.AddApiConfiguration(configuration);
+builder.Services.AddSwaggerConfiguration();
+builder.Services.RegisterServices();
+
+var app = builder.Build();
+
+app.UseSwaggerConfiguration();
+
+app.UseApiConfiguration(app.Environment);
+
+app.Run();

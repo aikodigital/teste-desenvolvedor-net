@@ -1,11 +1,6 @@
-﻿using Microsoft.AspNetCore.Builder;
-using Microsoft.AspNetCore.Hosting;
-using Microsoft.EntityFrameworkCore;
-using Microsoft.Extensions.Configuration;
-using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Hosting;
-using Microsoft.OpenApi.Models;
-using PublicTransportation.Configuration;
+﻿using Microsoft.EntityFrameworkCore;
+using PublicTransportation.Api.Middlewares;
+using PublicTransportation.Infra.Configuration;
 using PublicTransportation.Infra.Context;
 
 namespace PublicTransportation.Api.Configuration
@@ -29,6 +24,8 @@ namespace PublicTransportation.Api.Configuration
             {
                 app.UseDeveloperExceptionPage();
             }
+
+            app.UseGlobalErrorHandler();
 
             app.UseHttpsRedirection();
 

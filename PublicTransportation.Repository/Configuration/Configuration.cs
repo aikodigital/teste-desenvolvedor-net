@@ -3,7 +3,7 @@ using System;
 using System.IO;
 using System.Reflection;
 
-namespace PublicTransportation.Configuration
+namespace PublicTransportation.Infra.Configuration
 {
     public class Configuration
     {

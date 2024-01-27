@@ -1,4 +1,4 @@
-﻿using PublicTransportation.Models;
+﻿using PublicTransportation.Domain.Entities;
 
 namespace PublicTransportation.Infra.Seed
 {

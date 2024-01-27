@@ -1,6 +1,6 @@
 ﻿using Microsoft.EntityFrameworkCore;
 using PublicTransportation.Infra.Seed;
-using PublicTransportation.Models;
+using PublicTransportation.Domain.Entities;
 
 namespace PublicTransportation.Infrastructure.Seed
 {

@@ -3,13 +3,19 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 17
 VisualStudioVersion = 17.0.31903.59
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportation.Api", "PublicTransportation.Api\PublicTransportation.Api.csproj", "{B1543677-1A66-4ACB-90FB-529997A04CED}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicTransportation.Api", "PublicTransportation.Api\PublicTransportation.Api.csproj", "{B1543677-1A66-4ACB-90FB-529997A04CED}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportation.Infra", "PublicTransportation.Repository\PublicTransportation.Infra.csproj", "{4BE2F14D-2E30-4A69-88F6-FA8A139B02F0}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicTransportation.Infra", "PublicTransportation.Repository\PublicTransportation.Infra.csproj", "{4BE2F14D-2E30-4A69-88F6-FA8A139B02F0}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportation.Models", "PublicTransportation.Models\PublicTransportation.Models.csproj", "{54517B65-3CF5-433C-9320-7B60AFB40885}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportation.Application", "PublicTransportation.Application\PublicTransportation.Application.csproj", "{009EE7CA-DF9D-455A-B9C0-61643065A206}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportation.Configuration", "PublicTransportation.Config\PublicTransportation.Configuration.csproj", "{070EBEF8-830B-47DE-BBCD-701101310EE5}"
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Presentation", "Presentation", "{CDA73E15-9392-48BF-9CD3-C9BE952487E1}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Infrastructure", "Infrastructure", "{FEED45C6-1390-4DA6-99F0-45E2C33CC958}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Core", "Core", "{C984B8DC-B5B1-4391-A565-1086730275A5}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportation.Domain", "PublicTransportation.Domain\PublicTransportation.Domain.csproj", "{A1C0CABE-8178-4966-ABEF-DF16183A8552}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -25,17 +31,23 @@ Global
 		{4BE2F14D-2E30-4A69-88F6-FA8A139B02F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{4BE2F14D-2E30-4A69-88F6-FA8A139B02F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{4BE2F14D-2E30-4A69-88F6-FA8A139B02F0}.Release|Any CPU.Build.0 = Release|Any CPU
-		{54517B65-3CF5-433C-9320-7B60AFB40885}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{54517B65-3CF5-433C-9320-7B60AFB40885}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{54517B65-3CF5-433C-9320-7B60AFB40885}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{54517B65-3CF5-433C-9320-7B60AFB40885}.Release|Any CPU.Build.0 = Release|Any CPU
-		{070EBEF8-830B-47DE-BBCD-701101310EE5}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{070EBEF8-830B-47DE-BBCD-701101310EE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{070EBEF8-830B-47DE-BBCD-701101310EE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{070EBEF8-830B-47DE-BBCD-701101310EE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{009EE7CA-DF9D-455A-B9C0-61643065A206}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{009EE7CA-DF9D-455A-B9C0-61643065A206}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{009EE7CA-DF9D-455A-B9C0-61643065A206}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{009EE7CA-DF9D-455A-B9C0-61643065A206}.Release|Any CPU.Build.0 = Release|Any CPU
+		{A1C0CABE-8178-4966-ABEF-DF16183A8552}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{A1C0CABE-8178-4966-ABEF-DF16183A8552}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{A1C0CABE-8178-4966-ABEF-DF16183A8552}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{A1C0CABE-8178-4966-ABEF-DF16183A8552}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{B1543677-1A66-4ACB-90FB-529997A04CED} = {CDA73E15-9392-48BF-9CD3-C9BE952487E1}
+		{4BE2F14D-2E30-4A69-88F6-FA8A139B02F0} = {FEED45C6-1390-4DA6-99F0-45E2C33CC958}
+		{009EE7CA-DF9D-455A-B9C0-61643065A206} = {C984B8DC-B5B1-4391-A565-1086730275A5}
+		{A1C0CABE-8178-4966-ABEF-DF16183A8552} = {C984B8DC-B5B1-4391-A565-1086730275A5}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {7D4FE87B-0E04-4472-BD6D-4B4D3941B961}

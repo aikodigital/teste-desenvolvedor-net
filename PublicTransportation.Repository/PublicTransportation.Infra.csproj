@@ -1,25 +1,22 @@
 <Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <TargetFramework>net5.0</TargetFramework>
+    <TargetFramework>net6.0</TargetFramework>
   </PropertyGroup>
 
   <ItemGroup>
-    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="5.0.10">
+    <PackageReference Include="Microsoft.EntityFrameworkCore.Tools" Version="6.0.10">
       <PrivateAssets>all</PrivateAssets>
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
-    <PackageReference Include="Npgsql" Version="5.0.17" />
-    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="5.0.10" />
+    <PackageReference Include="Newtonsoft.Json" Version="13.0.3" />
+    <PackageReference Include="Npgsql" Version="6.0.10" />
+    <PackageReference Include="Npgsql.EntityFrameworkCore.PostgreSQL" Version="6.0.22" />
   </ItemGroup>
 
   <ItemGroup>
-    <Folder Include="Repository\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <ProjectReference Include="..\PublicTransportation.Config\PublicTransportation.Configuration.csproj" />
-    <ProjectReference Include="..\PublicTransportation.Models\PublicTransportation.Models.csproj" />
+    <ProjectReference Include="..\PublicTransportation.Application\PublicTransportation.Application.csproj" />
+    <ProjectReference Include="..\PublicTransportation.Domain\PublicTransportation.Domain.csproj" />
   </ItemGroup>
 
 </Project>
