@@ -10,6 +10,6 @@ namespace PublicTransportation.Domain.DTO.Response
         public double Latitude { get; set; }
         public double Longitude { get; set; }
 
-        public LineResponseDTO Line { get; set; }
+        public StopResponseDTO Line { get; set; }
     }
 }

@@ -1,6 +1,7 @@
 ﻿using PublicTransportation.Domain.Interfaces.Repositories;
 using PublicTransportation.Infra.Repository;
 using PublicTransportation.Application.UseCases.Lines;
+using PublicTransportation.Application.UseCases.Stops;
 
 namespace PublicTransportation.Api.Configuration
 {
@@ -10,8 +11,10 @@ namespace PublicTransportation.Api.Configuration
         {
             //repositories
             services.AddScoped<ILineRepository, LineRepository>();
+            services.AddScoped<IStopRepository, StopRepository>();
 
             //services
+            services.AddScoped<StopServices>();
             services.AddScoped<LineServices>();
         }
     }

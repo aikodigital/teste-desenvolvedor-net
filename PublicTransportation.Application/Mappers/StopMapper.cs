@@ -27,5 +27,15 @@ namespace PublicTransportation.Application.Mappers
                 Lines = lines
             };
         }
+
+        public static ICollection<StopResponseDTO> ToResponseDTO(this ICollection<Stop> stops)
+        {
+            var list = new List<StopResponseDTO>();
+
+            foreach (var stop in stops)
+                list.Add(stop.ToResponseDTO());
+
+            return list;
+        }
     }
 }

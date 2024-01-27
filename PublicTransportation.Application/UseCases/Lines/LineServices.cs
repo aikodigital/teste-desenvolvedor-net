@@ -51,29 +51,26 @@ namespace PublicTransportation.Application.UseCases.Lines
             return line.ToResponseDTO();
         }
 
-        public void Create(CreateLineDTO request)
+        public void Create(CreateLineDTO dto)
         {
             var line = new Line
             {
-                Name = request.Name,
+                Name = dto.Name,
             };
 
             _lineRepository.Create(line);
             _lineRepository.Commit();
         }
 
-        public void Update(UpdateLineDTO request, long id)
+        public void Update(UpdateLineDTO dto, long id)
         {
-            var oldLine = _lineRepository.GetById(id);
+            var line = _lineRepository.GetById(id);
 
-            if (oldLine is null) throw new NotFoundException("Record not found.");
+            if (line is null) throw new NotFoundException("Record not found.");
 
-            var line = new Line
-            {
-                Name = request.Name,
-            };
+            line.Name = dto.Name;
 
-            _lineRepository.Create(line);
+            _lineRepository.Update(line);
             _lineRepository.Commit();
         }
 

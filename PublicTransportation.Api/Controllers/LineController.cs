@@ -30,16 +30,16 @@ namespace PublicTransportation.Api.Controllers
 
 
         [HttpPost]
-        public IActionResult Create([FromBody] CreateLineDTO request)
+        public IActionResult Create([FromBody] CreateLineDTO dto)
         {
-            _lineServices.Create(request);
+            _lineServices.Create(dto);
             return Ok();
         }
 
         [HttpPut("{id:long}")]
-        public IActionResult Update([FromBody] UpdateLineDTO request, long id)
+        public IActionResult Update([FromBody] UpdateLineDTO dto, long id)
         {
-            _lineServices.Update(request, id);
+            _lineServices.Update(dto, id);
             return Ok();
         }
 
