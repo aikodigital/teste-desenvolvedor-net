@@ -81,11 +81,11 @@ namespace PublicTransportation.Application.UseCases.Stops
 
         public void Delete(long id)
         {
-            var oldStop = _stopRepository.GetById(id);
+            var stop = _stopRepository.GetById(id);
 
-            if (oldStop is null) throw new NotFoundException("Record not found.");
+            if (stop is null) throw new NotFoundException("Record not found.");
 
-            _stopRepository.Delete(oldStop);
+            _stopRepository.Delete(stop);
             _stopRepository.Commit();
         }
 

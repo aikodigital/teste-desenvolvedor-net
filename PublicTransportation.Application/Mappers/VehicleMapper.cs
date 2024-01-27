@@ -12,9 +12,20 @@ namespace PublicTransportation.Application.Mappers
                 Id = vehicle.Id,
                 Name = vehicle.Name,
                 Model = vehicle.Model,
-                Latitude = vehicle.Position.Latitude,
-                Longitude = vehicle.Position.Longitude,
+                LineName = vehicle.Line.Name, 
+                Latitude = vehicle.Position?.Latitude,
+                Longitude = vehicle.Position?.Longitude,
             };
+        }
+
+        public static ICollection<VehicleResponseDTO> ToResponseDTO(this ICollection<Vehicle> vehicles)
+        {
+            var list = new List<VehicleResponseDTO>();
+
+            foreach (var vehicle in vehicles)
+                list.Add(vehicle.ToResponseDTO());
+
+            return list;
         }
     }
 }

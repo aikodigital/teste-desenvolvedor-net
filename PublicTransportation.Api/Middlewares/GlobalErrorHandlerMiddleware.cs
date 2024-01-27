@@ -35,10 +35,15 @@ namespace PublicTransportation.Api.Middlewares
             {
                 case ValidationException validationException:
                     code = HttpStatusCode.BadRequest;
-                    result = JsonConvert.SerializeObject(validationException.Message);
+                    result = JsonConvert.SerializeObject(new { error = validationException.Message });
                     break;
-                case NotFoundException _:
+                case NotFoundException validationException:
                     code = HttpStatusCode.NotFound;
+                    result = JsonConvert.SerializeObject(new { error = validationException.Message });
+                    break;
+                case BadRequestException validationException:
+                    code = HttpStatusCode.BadRequest;
+                    result = JsonConvert.SerializeObject(new { error = validationException.Message });
                     break;
             }
 

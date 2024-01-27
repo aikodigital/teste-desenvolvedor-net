@@ -76,11 +76,11 @@ namespace PublicTransportation.Application.UseCases.Lines
 
         public void Delete(long id)
         {
-            var oldLine = _lineRepository.GetById(id);
+            var line = _lineRepository.GetById(id);
 
-            if (oldLine is null) throw new NotFoundException("Record not found.");
+            if (line is null) throw new NotFoundException("Record not found.");
 
-            _lineRepository.Delete(oldLine);
+            _lineRepository.Delete(line);
             _lineRepository.Commit();
         }
 

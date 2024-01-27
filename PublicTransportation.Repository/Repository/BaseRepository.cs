@@ -9,7 +9,7 @@ namespace PublicTransportation.Infra.Repository
 {
     public abstract class BaseRepository<TEntity> : IRepository<TEntity> where TEntity : BaseEntity 
     {
-        private readonly ApiDbContext _context;
+        protected readonly ApiDbContext _context;
         protected readonly DbSet<TEntity> _db;
 
         public BaseRepository(ApiDbContext context)
@@ -23,6 +23,9 @@ namespace PublicTransportation.Infra.Repository
 
         public IQueryable<TEntity> Queryable()
             => _db.AsQueryable();
+        public IQueryable<TEntity> AsNoTracking(IQueryable<TEntity> query)
+            => query.AsNoTracking();
+
 
         public virtual TEntity GetById(long id)
             => _db.Find(id);
@@ -43,5 +46,8 @@ namespace PublicTransportation.Infra.Repository
             => _db.Remove(entity);
 
         public virtual int Count() => _db.Count();
+
+        public virtual IQueryable<TEntity> ApplyIncludes(IQueryable<TEntity> query)
+            => query;
     }
 }
