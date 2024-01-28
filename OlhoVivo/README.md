@@ -17,6 +17,10 @@ Este repositório foi feito com intuito de demonstrar a minha solução, relacio
 
 Para rodar este projeto basta configurar a sua string de conexão com o banco de dados SQL Server nos projetos <b>WebAPI</b> e <b>WebUI</b> nos arquivos <b>appsettings.json</b>
 
+<div align="center">
+  <img src="https://raw.githubusercontent.com/Willian-Brito/teste-desenvolvedor-net/blob/teste/willian-brito/OlhoVivo/Presentation/WebUI/wwwroot/img/config%201.png" alt="Arquivo de configuração da aplicação" />
+</div>
+
 Para Logar na aplicação web ou gerar o token de autenticação e autorização basta iniciar os respectivos projetos e utilizaar os logins abaixo: 
 
     Email: admin@localhost
