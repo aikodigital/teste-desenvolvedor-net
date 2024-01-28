@@ -21,6 +21,10 @@ Para rodar este projeto basta configurar a sua <b>string de conexão</b> com o b
   <img src="https://github.com/Willian-Brito/teste-desenvolvedor-net/blob/teste/willian-brito/OlhoVivo/Presentation/WebUI/wwwroot/img/config%201.png" alt="Arquivo de configuração da aplicação" />
 </div>
 
+Agora é só rodar as <b>Migrations</b> do <b>Entity Framework</b> para a criação das tabelas e população dos dados, para isso vá até a pasta  <b>OlhoVivo/Infrastucture/Data</b> e execute o comando abaixo, no terminal integrado do visual code:
+
+  dotnet ef database update
+
 Para acessar a aplicação web ou gerar o token de autenticação e autorização para acesso as APIs, basta iniciar os projetos correspondentes e utilizar as seguintes credenciais de login.: 
 
     Email: admin@localhost
