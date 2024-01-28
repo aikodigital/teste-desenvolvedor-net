@@ -21,7 +21,7 @@ Para rodar este projeto basta configurar a sua <b>string de conexão</b> com o b
   <img src="https://github.com/Willian-Brito/teste-desenvolvedor-net/blob/teste/willian-brito/OlhoVivo/Presentation/WebUI/wwwroot/img/config%201.png" alt="Arquivo de configuração da aplicação" />
 </div>
 
-Para acessar a aplicação web ou gerar o token de autenticação e autorização, basta iniciar os projetos correspondentes e utilizar os seguintes credenciais de login.: 
+Para acessar a aplicação web ou gerar o token de autenticação e autorização para acesso as APIs, basta iniciar os projetos correspondentes e utilizar as seguintes credenciais de login.: 
 
     Email: admin@localhost
     Senha: Numsey#2024
