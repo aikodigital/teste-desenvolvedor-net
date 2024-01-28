@@ -1,0 +1,71 @@
+@model OlhoVivo.Core.Application.DTOs.StopDTO
+
+@{
+    ViewData["Title"] = "Register new Stop Point";
+}
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<form asp-action="Create" method="post">
+
+    <div class="form-horizontal">
+        <hr />
+
+        <div asp-validation-summary="All" class="text-danger"></div>
+
+        <div class="form-group">
+
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-10">
+
+            <label asp-for="Latitude" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <input asp-for="Latitude" class="form-control" />
+                <span asp-validation-for="Latitude" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-10">
+
+            <label asp-for="Longitude" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <input asp-for="Longitude" class="form-control" />
+                <span asp-validation-for="Longitude" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-10">
+
+            <label asp-for="LineId" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <select asp-for="LineId" class="form-control" asp-items="ViewBag.LineId"> </select>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-10">
+
+            <div class="col-md-offset-2 col-md-10 mt-10">
+                <input type="submit" value="Create" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-info">Back to List</a>
+            </div>
+            
+        </div>
+
+    </div>
+</form>

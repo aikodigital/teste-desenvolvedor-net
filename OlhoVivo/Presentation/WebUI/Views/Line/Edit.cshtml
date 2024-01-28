@@ -1,0 +1,33 @@
+@model OlhoVivo.Core.Application.DTOs.LineDTO
+
+@{
+    ViewData["Title"] = "Edit Line";
+}
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<div class="row">
+
+    <div class="col-md-4">
+
+        <form asp-action="Edit" method="post">
+
+            <input type="hidden" asp-for="Id" /> 
+
+            <div class="form-group">
+                <label asp-for="Name" class="control-label"></label>
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+            <div class="mt-10">
+                <input type="submit" value="Save" class="btn btn-primary">
+            </div>
+        </form>
+    </div>
+</div>
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>

@@ -1,0 +1,352 @@
+{
+  "format": 1,
+  "restore": {
+    "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/WebUI.csproj": {}
+  },
+  "projects": {
+    "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Application/OlhoVivo.Core.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Application/OlhoVivo.Core.Application.csproj",
+        "projectName": "OlhoVivo.Core.Application",
+        "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Application/OlhoVivo.Core.Application.csproj",
+        "packagesPath": "/home/h1s0k4/.nuget/packages/",
+        "outputPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Application/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/h1s0k4/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj": {
+                "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj",
+        "projectName": "OlhoVivo.Core.Domain",
+        "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj",
+        "packagesPath": "/home/h1s0k4/.nuget/packages/",
+        "outputPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/h1s0k4/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/Data/OlhoVivo.Infra.Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/Data/OlhoVivo.Infra.Data.csproj",
+        "projectName": "OlhoVivo.Infra.Data",
+        "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/Data/OlhoVivo.Infra.Data.csproj",
+        "packagesPath": "/home/h1s0k4/.nuget/packages/",
+        "outputPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/Data/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/h1s0k4/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj": {
+                "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "Microsoft.AspNetCore.Identity": {
+              "target": "Package",
+              "version": "[2.2.0, )"
+            },
+            "Microsoft.AspNetCore.Identity.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.SqlServer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[7.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/IoC/OlhoVivo.Infra.IoC.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/IoC/OlhoVivo.Infra.IoC.csproj",
+        "projectName": "OlhoVivo.Infra.IoC",
+        "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/IoC/OlhoVivo.Infra.IoC.csproj",
+        "packagesPath": "/home/h1s0k4/.nuget/packages/",
+        "outputPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/IoC/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/h1s0k4/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Application/OlhoVivo.Core.Application.csproj": {
+                "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Application/OlhoVivo.Core.Application.csproj"
+              },
+              "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj": {
+                "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Domain/OlhoVivo.Core.Domain.csproj"
+              },
+              "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/Data/OlhoVivo.Infra.Data.csproj": {
+                "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/Data/OlhoVivo.Infra.Data.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "dependencies": {
+            "AutoMapper.Extensions.Microsoft.DependencyInjection": {
+              "target": "Package",
+              "version": "[12.0.1, )"
+            },
+            "Microsoft.AspNetCore.Authentication.JwtBearer": {
+              "target": "Package",
+              "version": "[7.0.0, )"
+            },
+            "Swashbuckle.AspNetCore.Swagger": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerGen": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            },
+            "Swashbuckle.AspNetCore.SwaggerUI": {
+              "target": "Package",
+              "version": "[6.5.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/WebUI.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/WebUI.csproj",
+        "projectName": "WebUI",
+        "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/WebUI.csproj",
+        "packagesPath": "/home/h1s0k4/.nuget/packages/",
+        "outputPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/obj/",
+        "projectStyle": "PackageReference",
+        "configFilePaths": [
+          "/home/h1s0k4/.nuget/NuGet/NuGet.Config"
+        ],
+        "originalTargetFrameworks": [
+          "net7.0"
+        ],
+        "sources": {
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net7.0": {
+            "targetAlias": "net7.0",
+            "projectReferences": {
+              "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/IoC/OlhoVivo.Infra.IoC.csproj": {
+                "projectPath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Infrastucture/IoC/OlhoVivo.Infra.IoC.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net7.0": {
+          "targetAlias": "net7.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.AspNetCore.App": {
+              "privateAssets": "none"
+            },
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "/usr/share/dotnet/sdk/7.0.404/RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
