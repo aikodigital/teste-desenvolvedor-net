@@ -4,5 +4,8 @@ namespace PublicTransportation.Domain.Interfaces.Repositories
 {
     public interface IStopRepository : IRepository<Stop>
     {
+        public ICollection<LineStop> GetAllLineStopByStopId(long stopId);
+        public Stop GetByIdWithLines(long id);
+        public void RemoveRangeLineStop(ICollection<LineStop> lineStops);
     }
 }

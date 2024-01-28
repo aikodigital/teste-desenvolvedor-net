@@ -1,4 +1,5 @@
-﻿using PublicTransportation.Application.Mappers;
+﻿using PublicTransportation.Application.Extensions;
+using PublicTransportation.Application.Mappers;
 using PublicTransportation.Domain.DTO.Create;
 using PublicTransportation.Domain.DTO.Edit;
 using PublicTransportation.Domain.DTO.Response;
@@ -85,12 +86,27 @@ namespace PublicTransportation.Application.UseCases.Stops
 
             if (stop is null) throw new NotFoundException("Record not found.");
 
+            var lineStops = _stopRepository.GetAllLineStopByStopId(id);
+
+            if (!lineStops.IsNullOrEmpty())
+                _stopRepository.RemoveRangeLineStop(lineStops);
+
             _stopRepository.Delete(stop);
             _stopRepository.Commit();
         }
 
 
+        public StopResponseDTO GetByIdWithLines(long id)
+        {
+            var stop = _stopRepository.GetByIdWithLines(id);
 
+            if (stop is null) throw new NotFoundException("Record not found.");
+
+            return stop.ToResponseDTO();
+        }
+
+
+        #region SearchMethods
         private IQueryable<Stop> ApplyFilter(IQueryable<Stop> query, StopSearchParameters parameters)
         {
             if (!string.IsNullOrEmpty(parameters.SearchString))
@@ -112,6 +128,7 @@ namespace PublicTransportation.Application.UseCases.Stops
                 : query.OrderBy(x => x.Name);
             
             return query;
-        }
+        } 
+        #endregion
     }
 }

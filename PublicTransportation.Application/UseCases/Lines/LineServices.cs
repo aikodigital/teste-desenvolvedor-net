@@ -1,4 +1,6 @@
-﻿using PublicTransportation.Application.Mappers;
+﻿using PublicTransportation.Application.Extensions;
+using PublicTransportation.Application.Mappers;
+using PublicTransportation.Application.UseCases.Vehicles;
 using PublicTransportation.Domain.DTO.Create;
 using PublicTransportation.Domain.DTO.Edit;
 using PublicTransportation.Domain.DTO.Response;
@@ -11,11 +13,13 @@ namespace PublicTransportation.Application.UseCases.Lines
 {
     public class LineServices
     {
-        public readonly ILineRepository _lineRepository;
+        private readonly ILineRepository _lineRepository;
+        private readonly VehicleServices _vehicleServices;
 
-        public LineServices(ILineRepository lineRepository)
+        public LineServices(ILineRepository lineRepository, VehicleServices vehicleServices)
         {
             _lineRepository = lineRepository;
+            _vehicleServices = vehicleServices;
         }
 
         public GetAllResponse<LineResponseDTO> Search(LineSearchParameters parameters)
@@ -58,6 +62,15 @@ namespace PublicTransportation.Application.UseCases.Lines
                 Name = dto.Name,
             };
 
+            if (!dto.Stops.IsNullOrEmpty())
+            {
+                line.LinesStops = new List<LineStop>();
+                foreach (var stop in dto.Stops)
+                {
+                    line.LinesStops.Add(new LineStop { StopId = stop.StopId });
+                }  
+            }
+
             _lineRepository.Create(line);
             _lineRepository.Commit();
         }
@@ -80,12 +93,40 @@ namespace PublicTransportation.Application.UseCases.Lines
 
             if (line is null) throw new NotFoundException("Record not found.");
 
+            var hasVehicles = _vehicleServices.HasVehiclesInLine(id);
+
+            if (hasVehicles) throw new BadRequestException("You can't delete it because there are vehicles using this record.");
+
+            var lineStops = _lineRepository.GetAllLineStopByLineId(id);
+
+            if (!lineStops.IsNullOrEmpty())
+                _lineRepository.RemoveRangeLineStop(lineStops);
+
             _lineRepository.Delete(line);
             _lineRepository.Commit();
         }
 
+        public void RemoveStop(long lineId, long stopId)
+        {
+            var lineStop = _lineRepository.GetLineStopByLineIdStopId(lineId, stopId);
+
+            if (lineStop is null) throw new NotFoundException("Record not found.");
+
+            _lineRepository.RemoveLineStop(lineStop);
+            _lineRepository.Commit();
+        }
+
+        public LineResponseDTO GetByIdWithVehicles(long id)
+        {
+            var line = _lineRepository.GetByIdWithVehicles(id);
+
+            if (line is null) throw new NotFoundException("Record not found.");
+
+            return line.ToResponseDTO();
+        }
 
 
+        #region SearchMethods
         private IQueryable<Line> ApplyFilter(IQueryable<Line> query, string searchString)
         {
             if (!string.IsNullOrEmpty(searchString))
@@ -101,5 +142,6 @@ namespace PublicTransportation.Application.UseCases.Lines
             
             return query;
         }
+        #endregion
     }
 }

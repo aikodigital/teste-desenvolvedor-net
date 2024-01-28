@@ -17,7 +17,7 @@ namespace PublicTransportation.Api.Controllers
 
         
         [HttpGet]
-        public IActionResult GetById([FromQuery] StopSearchParameters searchPrameters)
+        public IActionResult GetAll([FromQuery] StopSearchParameters searchPrameters)
         {
             return Ok(_stopServices.Search(searchPrameters));
         }
@@ -26,6 +26,12 @@ namespace PublicTransportation.Api.Controllers
         public IActionResult GetById(long id)
         {
             return Ok(_stopServices.GetById(id));
+        }
+
+        [HttpGet("{id:long}/lines")]
+        public IActionResult GetByIdWithLines(long id)
+        {
+            return Ok(_stopServices.GetByIdWithLines(id));
         }
 
 

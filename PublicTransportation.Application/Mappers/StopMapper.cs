@@ -14,7 +14,11 @@ namespace PublicTransportation.Application.Mappers
             {
                 foreach (var lineStop in stop.LinesStops)
                 {
-                    lines.Add(lineStop.Line.ToResponseDTO());
+                    lines.Add(new LineResponseDTO
+                    {
+                        Id = lineStop.LineId,
+                        Name = lineStop.Line.Name
+                    });
                 }
             }
 

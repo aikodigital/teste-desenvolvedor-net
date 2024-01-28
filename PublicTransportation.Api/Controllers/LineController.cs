@@ -1,5 +1,6 @@
 ﻿using Microsoft.AspNetCore.Mvc;
 using PublicTransportation.Application.UseCases.Lines;
+using PublicTransportation.Application.UseCases.Vehicles;
 using PublicTransportation.Domain.DTO.Create;
 using PublicTransportation.Domain.DTO.Edit;
 using PublicTransportation.Domain.Utils;
@@ -17,7 +18,7 @@ namespace PublicTransportation.Api.Controllers
 
         
         [HttpGet]
-        public IActionResult GetById([FromQuery] LineSearchParameters searchPrameters)
+        public IActionResult GetAll([FromQuery] LineSearchParameters searchPrameters)
         {
             return Ok(_lineServices.Search(searchPrameters));
         }
@@ -48,6 +49,19 @@ namespace PublicTransportation.Api.Controllers
         {
             _lineServices.Delete(id);
             return NoContent();
+        }
+
+        [HttpDelete("{lineId:long}/remove_stop/{stopId:long}")]
+        public IActionResult RemoveStop(long lineId, long stopId)
+        {
+            _lineServices.RemoveStop(lineId, stopId);
+            return NoContent();
+        }
+
+        [HttpGet("{id:long}/vehicles")]
+        public IActionResult GetByIdWithVehicles(long id)
+        {
+            return Ok(_lineServices.GetByIdWithVehicles(id));
         }
     }
 }

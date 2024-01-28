@@ -2,6 +2,7 @@
 using PublicTransportation.Domain.Entities;
 using PublicTransportation.Domain.Interfaces.Repositories;
 using PublicTransportation.Infra.Context;
+using System.Collections.Generic;
 using System.Linq;
 
 namespace PublicTransportation.Infra.Repository
@@ -17,12 +18,13 @@ namespace PublicTransportation.Infra.Repository
 
         public override IQueryable<Vehicle> ApplyIncludes(IQueryable<Vehicle> query)
             => query.Include(x => x.Line).Include(x => x.Position);
-        
 
+        public bool HasVehiclesInLine(long lineId)
+            => _db.Any(x => x.LineId == lineId);
 
         public VehiclePosition GetVehiclePositionByVehicleId(long vehicleId)
             => _dbVehiclePosition.FirstOrDefault(x => x.VehicleId == vehicleId);
-
+        
         public void CreateVehiclePosition(VehiclePosition vehiclePosition)
             => _dbVehiclePosition.Add(vehiclePosition);
         
@@ -35,5 +37,6 @@ namespace PublicTransportation.Infra.Repository
         public bool VehicleHasPosition(long vehicleId)
             => _dbVehiclePosition.Any(x => x.VehicleId == vehicleId);
 
+        
     }
 }

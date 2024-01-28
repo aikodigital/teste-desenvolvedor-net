@@ -134,7 +134,10 @@ namespace PublicTransportation.Application.UseCases.Vehicles
             _vehicleRepository.Commit();
         }
 
+        public bool HasVehiclesInLine(long lineId)
+            => _vehicleRepository.HasVehiclesInLine(lineId);
 
+        #region SearchMethods
         private IQueryable<Vehicle> ApplyFilter(IQueryable<Vehicle> query, VehicleSearchParameters parameters)
         {
             if (!string.IsNullOrEmpty(parameters.SearchString))
@@ -151,5 +154,7 @@ namespace PublicTransportation.Application.UseCases.Vehicles
             
             return query;
         }
+        #endregion
+        
     }
 }

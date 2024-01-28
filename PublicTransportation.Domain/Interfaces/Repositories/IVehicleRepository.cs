@@ -7,6 +7,8 @@ namespace PublicTransportation.Domain.Interfaces.Repositories
 
         public VehiclePosition GetVehiclePositionByVehicleId(long vehicleId);
 
+        public bool HasVehiclesInLine(long lineId);
+
         public void CreateVehiclePosition(VehiclePosition vehiclePosition);
 
         public void UpdateVehiclePosition(VehiclePosition vehiclePosition);

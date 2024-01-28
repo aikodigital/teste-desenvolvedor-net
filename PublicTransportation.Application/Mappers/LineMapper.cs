@@ -14,7 +14,13 @@ namespace PublicTransportation.Application.Mappers
             {
                 foreach (var lineStop in line.LinesStops)
                 {
-                    stops.Add(lineStop.Stop.ToResponseDTO());
+                    stops.Add(new StopResponseDTO
+                    {
+                        Id = lineStop.StopId,
+                        Name = lineStop.Stop.Name,
+                        Latitude = lineStop.Stop.Latitude,
+                        Longitude = lineStop.Stop.Longitude,
+                    });
                 }
             }
 
@@ -24,7 +30,12 @@ namespace PublicTransportation.Application.Mappers
             {
                 foreach (var vehicle in line.Vehicles)
                 {
-                    vehicles.Add(vehicle.ToResponseDTO());
+                    vehicles.Add(new VehicleResponseDTO
+                    {
+                        Id = vehicle.Id,
+                        Model = vehicle.Model,
+                        Name = vehicle.Name,
+                    });
                 }
             }
 

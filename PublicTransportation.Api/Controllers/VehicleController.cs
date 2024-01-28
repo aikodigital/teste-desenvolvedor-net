@@ -17,17 +17,17 @@ namespace PublicTransportation.Api.Controllers
 
         
         [HttpGet]
-        public IActionResult GetById([FromQuery] VehicleSearchParameters searchPrameters)
+        public IActionResult GetAll([FromQuery] VehicleSearchParameters searchPrameters)
         {
             return Ok(_vehicleServices.Search(searchPrameters));
         }
+
 
         [HttpGet("{id:long}")]
         public IActionResult GetById(long id)
         {
             return Ok(_vehicleServices.GetById(id));
         }
-
 
         [HttpPost]
         public IActionResult Create([FromBody] CreateVehicleDTO dto)
