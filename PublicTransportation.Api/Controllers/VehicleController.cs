@@ -29,6 +29,7 @@ namespace PublicTransportation.Api.Controllers
             return Ok(_vehicleServices.GetById(id));
         }
 
+
         [HttpPost]
         public IActionResult Create([FromBody] CreateVehicleDTO dto)
         {

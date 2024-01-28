@@ -4,6 +4,7 @@ using PublicTransportation.Domain.Interfaces.Repositories;
 using System.Collections.Generic;
 using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System;
 
 namespace PublicTransportation.Infra.Repository
 {
@@ -22,5 +23,16 @@ namespace PublicTransportation.Infra.Repository
 
         public void RemoveRangeLineStop(ICollection<LineStop> lineStops)
             => _dbLineStop.RemoveRange(lineStops);
+
+
+        public ICollection<Stop> GetClosestStops(double latitude, double longitude)
+        {
+            return _db.OrderBy(p => Math.Acos(
+                Math.Sin(latitude * Math.PI / 180) * Math.Sin(p.Latitude * Math.PI / 180) +
+                Math.Cos(latitude * Math.PI / 180) * Math.Cos(p.Latitude * Math.PI / 180) *
+                Math.Cos((longitude - p.Longitude) * Math.PI / 180)
+            ) * 6371) // Planet radius in km
+            .Take(5).ToList();
+        }
     }
 }

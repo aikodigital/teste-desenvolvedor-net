@@ -106,6 +106,13 @@ namespace PublicTransportation.Application.UseCases.Stops
         }
 
 
+        public ICollection<StopResponseDTO> GetClosestStops(double latitude, double longitude)
+        {
+            var stops = _stopRepository.GetClosestStops(latitude, longitude);
+            return stops.ToResponseDTO();
+        }
+
+
         #region SearchMethods
         private IQueryable<Stop> ApplyFilter(IQueryable<Stop> query, StopSearchParameters parameters)
         {
@@ -128,7 +135,7 @@ namespace PublicTransportation.Application.UseCases.Stops
                 : query.OrderBy(x => x.Name);
             
             return query;
-        } 
+        }
         #endregion
     }
 }

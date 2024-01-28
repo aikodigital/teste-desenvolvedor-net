@@ -6,28 +6,33 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 using PublicTransportation.Infra.Context;
 
+#nullable disable
+
 namespace PublicTransportation.Infra.Migrations
 {
     [DbContext(typeof(ApiDbContext))]
-    [Migration("20240125205910_initial migration")]
+    [Migration("20240128161308_initial migration")]
     partial class initialmigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasAnnotation("Relational:MaxIdentifierLength", 63)
-                .HasAnnotation("ProductVersion", "5.0.17")
-                .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                .HasAnnotation("ProductVersion", "6.0.22")
+                .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
-            modelBuilder.Entity("PublicTransportation.Models.Line", b =>
+            NpgsqlModelBuilderExtensions.UseIdentityByDefaultColumns(modelBuilder);
+
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.Line", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -35,12 +40,13 @@ namespace PublicTransportation.Infra.Migrations
                     b.ToTable("Line");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.LineStop", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.LineStop", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("LineId")
                         .HasColumnType("bigint");
@@ -57,12 +63,13 @@ namespace PublicTransportation.Infra.Migrations
                     b.ToTable("LineStop");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.Stop", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.Stop", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<double>("Latitude")
                         .HasColumnType("double precision");
@@ -71,6 +78,7 @@ namespace PublicTransportation.Infra.Migrations
                         .HasColumnType("double precision");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -78,20 +86,23 @@ namespace PublicTransportation.Infra.Migrations
                     b.ToTable("Stop");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.Vehicle", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.Vehicle", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<long>("LineId")
                         .HasColumnType("bigint");
 
                     b.Property<string>("Model")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.Property<string>("Name")
+                        .IsRequired()
                         .HasColumnType("text");
 
                     b.HasKey("Id");
@@ -101,12 +112,13 @@ namespace PublicTransportation.Infra.Migrations
                     b.ToTable("Vehicle");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.VehiclePosition", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.VehiclePosition", b =>
                 {
                     b.Property<long>("Id")
                         .ValueGeneratedOnAdd()
-                        .HasColumnType("bigint")
-                        .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.IdentityByDefaultColumn);
+                        .HasColumnType("bigint");
+
+                    NpgsqlPropertyBuilderExtensions.UseIdentityByDefaultColumn(b.Property<long>("Id"));
 
                     b.Property<double>("Latitude")
                         .HasColumnType("double precision");
@@ -125,15 +137,15 @@ namespace PublicTransportation.Infra.Migrations
                     b.ToTable("VehiclePosition");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.LineStop", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.LineStop", b =>
                 {
-                    b.HasOne("PublicTransportation.Models.Line", "Line")
+                    b.HasOne("PublicTransportation.Domain.Entities.Line", "Line")
                         .WithMany("LinesStops")
                         .HasForeignKey("LineId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
-                    b.HasOne("PublicTransportation.Models.Stop", "Stop")
+                    b.HasOne("PublicTransportation.Domain.Entities.Stop", "Stop")
                         .WithMany("LinesStops")
                         .HasForeignKey("StopId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -144,9 +156,9 @@ namespace PublicTransportation.Infra.Migrations
                     b.Navigation("Stop");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.Vehicle", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.Vehicle", b =>
                 {
-                    b.HasOne("PublicTransportation.Models.Line", "Line")
+                    b.HasOne("PublicTransportation.Domain.Entities.Line", "Line")
                         .WithMany("Vehicles")
                         .HasForeignKey("LineId")
                         .OnDelete(DeleteBehavior.Cascade)
@@ -155,32 +167,33 @@ namespace PublicTransportation.Infra.Migrations
                     b.Navigation("Line");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.VehiclePosition", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.VehiclePosition", b =>
                 {
-                    b.HasOne("PublicTransportation.Models.Vehicle", "Vehicle")
+                    b.HasOne("PublicTransportation.Domain.Entities.Vehicle", "Vehicle")
                         .WithOne("Position")
-                        .HasForeignKey("PublicTransportation.Models.VehiclePosition", "VehicleId")
+                        .HasForeignKey("PublicTransportation.Domain.Entities.VehiclePosition", "VehicleId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
                     b.Navigation("Vehicle");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.Line", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.Line", b =>
                 {
                     b.Navigation("LinesStops");
 
                     b.Navigation("Vehicles");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.Stop", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.Stop", b =>
                 {
                     b.Navigation("LinesStops");
                 });
 
-            modelBuilder.Entity("PublicTransportation.Models.Vehicle", b =>
+            modelBuilder.Entity("PublicTransportation.Domain.Entities.Vehicle", b =>
                 {
-                    b.Navigation("Position");
+                    b.Navigation("Position")
+                        .IsRequired();
                 });
 #pragma warning restore 612, 618
         }

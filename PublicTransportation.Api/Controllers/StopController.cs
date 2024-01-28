@@ -28,6 +28,12 @@ namespace PublicTransportation.Api.Controllers
             return Ok(_stopServices.GetById(id));
         }
 
+        [HttpGet("closest/latitude/{latitude:double}/longitude/{longitude:double}")]
+        public IActionResult GetClosestStops(double latitude, double longitude)
+        {
+            return Ok(_stopServices.GetClosestStops(latitude, longitude));
+        }
+
         [HttpGet("{id:long}/lines")]
         public IActionResult GetByIdWithLines(long id)
         {

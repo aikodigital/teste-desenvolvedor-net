@@ -19,4 +19,8 @@
     <ProjectReference Include="..\PublicTransportation.Domain\PublicTransportation.Domain.csproj" />
   </ItemGroup>
 
+  <ItemGroup>
+    <Folder Include="Migrations\" />
+  </ItemGroup>
+
 </Project>
