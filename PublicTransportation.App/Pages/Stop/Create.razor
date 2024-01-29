@@ -1,0 +1,80 @@
+﻿@page "/stops/new"
+@inject HttpClient http
+@inject NavigationManager navegation
+@inject IJSRuntime js
+
+<h3>New Stop</h3>
+
+<div class="card shadow my-4 border-0">
+    <div class="card-body">
+        <EditForm Model="@stop" OnValidSubmit="@SendForm">
+            <DataAnnotationsValidator />
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="nameStop">Name</label>
+                        <div>
+                            <InputText @bind-Value="@stop.Name" class="form-control" id="nameStop" />
+                            <ValidationMessage For="@(() => stop.Name)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="latitudeStop">Latitude</label>
+                        <div>
+                            <InputNumber @bind-Value="@stop.Latitude" class="form-control" id="latitudeStop" />
+                            <ValidationMessage For="@(() => stop.Latitude)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="longitudeStop">Longitude</label>
+                        <div>
+                            <InputNumber @bind-Value="@stop.Longitude" class="form-control" id="longitudeStop" />
+                            <ValidationMessage For="@(() => stop.Longitude)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <div class="btn btn-dark" @onclick="Back">Back</div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    CreateStop stop = new CreateStop();
+
+    async Task SendForm()
+    {
+        HttpResponseMessage response;
+
+        response = await http.PostAsJsonAsync("Stop", stop);
+
+        if (response.IsSuccessStatusCode)
+        {
+            await js.InvokeVoidAsync("SweetAlert", new SweetAlertData(response.StatusCode, "Record created successfully."));
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Created)
+            {
+                Back();
+            }
+        }
+
+    }
+
+    protected void Back() => navegation.NavigateTo("stops");
+}

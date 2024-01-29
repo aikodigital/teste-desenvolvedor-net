@@ -17,7 +17,7 @@
         <div class="row justify-content-end">
             <div class="col-12 col-md-7">
                 <div class="input-group">
-                    <input type="text" class="form-control mb-2 mr-sm-2" @bind="searchString" placeholder="search for line name..."/>
+                    <input type="text" class="form-control mb-2 mr-sm-2" @bind="searchString" placeholder="search by line name..."/>
                     <div @onclick="Search" class="btn btn-primary mr-sm-2 mb-2">Search</div>
                 </div>
             </div>
@@ -40,7 +40,7 @@
                 @if (Lines == null)
                 {
                     <tr>
-                        <td colspan="2" class="text-center">Loading Lines</td>
+                        <td colspan="2" class="text-center">Loading Lines...</td>
                     </tr>
                 }
                 else if (Lines.Count() <= 0)
@@ -83,7 +83,7 @@
     <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Modal title</h5>
+                <h5 class="modal-title" id="exampleModalLabel">Line Details</h5>
                 <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @onclick="() => Close()"></button>
             </div>
             <div class="modal-body">
