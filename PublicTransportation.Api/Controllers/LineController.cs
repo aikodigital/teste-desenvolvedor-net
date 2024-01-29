@@ -3,6 +3,7 @@ using PublicTransportation.Application.UseCases.Lines;
 using PublicTransportation.Application.UseCases.Vehicles;
 using PublicTransportation.Domain.DTO.Create;
 using PublicTransportation.Domain.DTO.Edit;
+using PublicTransportation.Domain.Entities;
 using PublicTransportation.Domain.Utils;
 
 namespace PublicTransportation.Api.Controllers
@@ -34,7 +35,10 @@ namespace PublicTransportation.Api.Controllers
         public IActionResult Create([FromBody] CreateLineDTO dto)
         {
             _lineServices.Create(dto);
-            return Ok();
+            return new ObjectResult(dto)
+            {
+                StatusCode = StatusCodes.Status201Created
+            };
         }
 
         [HttpPut("{id:long}")]
@@ -55,6 +59,13 @@ namespace PublicTransportation.Api.Controllers
         public IActionResult RemoveStop(long lineId, long stopId)
         {
             _lineServices.RemoveStop(lineId, stopId);
+            return NoContent();
+        }
+
+        [HttpPost("{id:long}/add_stops")]
+        public IActionResult AddStop([FromBody] ICollection<CreateLineStopDTO> dto, long id)
+        {
+            _lineServices.AddStops(id, dto);
             return NoContent();
         }
 

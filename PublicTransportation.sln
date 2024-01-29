@@ -21,7 +21,7 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Backend", "Backend", "{EBDC
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Frontend", "Frontend", "{EE6CD166-1DD4-4296-8D1A-CAC3118B6375}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PublicTransportation.App", "PublicTransportation.App\PublicTransportation.App.csproj", "{763A947F-3B0D-4818-BF52-5C4A4E7FE03E}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "PublicTransportation.App", "PublicTransportation.App\PublicTransportation.App.csproj", "{763A947F-3B0D-4818-BF52-5C4A4E7FE03E}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

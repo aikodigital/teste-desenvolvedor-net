@@ -30,12 +30,15 @@ namespace PublicTransportation.Infra.Repository
 
         public ICollection<LineStop> GetAllLineStopByLineId(long lineId)
             => _dbLineStop.Include(x => x.Stop).Where(x => x.LineId == lineId).ToList();
-        
 
+        public void AddRangeLineStops(ICollection<LineStop> lineStops)
+            => _dbLineStop.AddRange(lineStops);
         public void RemoveLineStop(LineStop lineStop)
             => _dbLineStop.Remove(lineStop);
         
         public void RemoveRangeLineStop(ICollection<LineStop> lineStops)
             => _dbLineStop.RemoveRange(lineStops);
+
+        
     }
 }

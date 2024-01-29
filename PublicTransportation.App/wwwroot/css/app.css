@@ -12,6 +12,11 @@ a, .btn-link {
     color: #0071c1;
 }
 
+ion-icon {
+    font-size: 24px;
+    margin-right: 10px;
+}
+
 .btn-primary {
     color: #fff;
     background-color: #1b6ec2;

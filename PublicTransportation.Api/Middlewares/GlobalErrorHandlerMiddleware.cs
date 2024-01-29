@@ -34,7 +34,7 @@ namespace PublicTransportation.Api.Middlewares
             switch (exception)
             {
                 case ValidationException validationException:
-                    code = HttpStatusCode.BadRequest;
+                    code = HttpStatusCode.UnprocessableEntity;
                     result = JsonConvert.SerializeObject(new { error = validationException.Message });
                     break;
                 case NotFoundException validationException:

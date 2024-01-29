@@ -15,6 +15,16 @@ namespace PublicTransportation.Api.Configuration
                 o.UseNpgsql(AppConfiguration.GetDatabaseConfig().ConnectionString);
             });
 
+            services.AddCors(options =>
+            {
+                options.AddPolicy("Total",
+                    builder =>
+                        builder
+                            .AllowAnyOrigin()
+                            .AllowAnyMethod()
+                            .AllowAnyHeader());
+            });
+
             services.AddHealthChecks();
         }
 
@@ -30,6 +40,8 @@ namespace PublicTransportation.Api.Configuration
             app.UseHttpsRedirection();
 
             app.UseRouting();
+
+            app.UseCors("Total");
 
             app.UseAuthorization();
 

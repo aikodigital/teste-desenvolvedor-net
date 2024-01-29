@@ -106,6 +106,21 @@ namespace PublicTransportation.Application.UseCases.Lines
             _lineRepository.Commit();
         }
 
+        public void AddStops(long id, ICollection<CreateLineStopDTO> dtos)
+        {
+            var line = _lineRepository.GetById(id);
+
+            if (line is null) throw new NotFoundException("Record not found.");
+
+            List<LineStop> lineStops = new List<LineStop>();
+            
+            foreach (var dto in dtos) 
+                lineStops.Add(new LineStop { LineId = id, StopId = dto.StopId });
+
+            _lineRepository.AddRangeLineStops(lineStops);
+            _lineRepository.Commit();
+        }
+
         public void RemoveStop(long lineId, long stopId)
         {
             var lineStop = _lineRepository.GetLineStopByLineIdStopId(lineId, stopId);
