@@ -1,0 +1,103 @@
+﻿@page "/vehicles/new"
+@inject HttpClient http
+@inject NavigationManager navegation
+@inject IJSRuntime js
+
+<h3>New Vehicle</h3>
+
+<div class="card shadow my-4 border-0">
+    <div class="card-body">
+        <EditForm Model="@vehicle" OnValidSubmit="@SendForm">
+            <DataAnnotationsValidator />
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="nameVehicle">Name</label>
+                        <div>
+                            <InputText @bind-Value="@vehicle.Name" class="form-control" id="nameVehicle" />
+                            <ValidationMessage For="@(() => vehicle.Name)" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="modelVehicle">Model</label>
+                        <div>
+                            <InputText @bind-Value="@vehicle.Model" class="form-control" id="modelVehicle" />
+                            <ValidationMessage For="@(() => vehicle.Model)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-4">
+                    <div class="input-group">
+                        <InputSelect class="form-control" @bind-Value="@vehicle.LineId">
+                            <option value="0" selected>Select a line...</option>
+                            @foreach (var line in lines)
+                            {
+                                <option value="@line.Id">@line.Name</option>
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Register</button>
+                    <div class="btn btn-dark" @onclick="Back">Back</div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+@code {
+    CreateVehicle vehicle = new CreateVehicle();
+
+    ICollection<Line> lines = new List<Line>();
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadLines();
+    }
+
+    async Task SendForm()
+    {
+        HttpResponseMessage response;
+
+        response = await http.PostAsJsonAsync("Vehicle", vehicle);
+
+        if (response.IsSuccessStatusCode)
+        {
+            await js.InvokeVoidAsync("SweetAlert", new SweetAlertData(response.StatusCode, "Record created successfully."));
+
+            if (response.StatusCode == System.Net.HttpStatusCode.Created)
+            {
+                Back();
+            }
+        }
+
+    }
+
+    async Task LoadLines()
+    {
+        var httpResponse = await http.GetAsync($"Line");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            var getAllResponse = JsonSerializer.Deserialize<GetAllResponse<Line>>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+            lines = getAllResponse.Rows;
+        }
+    }
+
+    protected void Back() => navegation.NavigateTo("vehicles");
+}

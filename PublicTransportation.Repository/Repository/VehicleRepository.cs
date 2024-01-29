@@ -16,6 +16,10 @@ namespace PublicTransportation.Infra.Repository
             _dbVehiclePosition = apiDbContext.Set<VehiclePosition>();
         }
 
+        public override Vehicle GetById(long id)
+            => _db.Include(x => x.Position)
+                  .FirstOrDefault(x => x.Id == id);
+
         public override IQueryable<Vehicle> ApplyIncludes(IQueryable<Vehicle> query)
             => query.Include(x => x.Line).Include(x => x.Position);
 

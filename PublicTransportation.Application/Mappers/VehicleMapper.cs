@@ -7,14 +7,19 @@ namespace PublicTransportation.Application.Mappers
     {
         public static VehicleResponseDTO ToResponseDTO(this Vehicle vehicle)
         {
+            VehiclePositionResponseDTO vehiclePosition = null;
+
+            if (vehicle.Position is not null)
+                vehiclePosition = new VehiclePositionResponseDTO { Latitude = vehicle.Position.Latitude, Longitude = vehicle.Position.Longitude };
+
             return new VehicleResponseDTO
             {
                 Id = vehicle.Id,
                 Name = vehicle.Name,
                 Model = vehicle.Model,
-                LineName = vehicle.Line.Name, 
-                Latitude = vehicle.Position?.Latitude,
-                Longitude = vehicle.Position?.Longitude,
+                LineName = vehicle.Line?.Name,
+                LineId = vehicle.LineId,
+                Position = vehiclePosition
             };
         }
 

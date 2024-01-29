@@ -5,8 +5,8 @@
         public long Id { get; set; }
         public string Name { get; set; }
         public string Model { get; set; }
-        public double? Latitude { get; set; }
-        public double? Longitude { get; set; }
+        public VehiclePosition Position { get; set; }
+        public long LineId {  get; set; }
         public string LineName { get; set; }
     }
 }

@@ -1,8 +1,8 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace PublicTransportation.Domain.DTO.Edit
+namespace PublicTransportation.App.Models.Vehicles
 {
-    public class UpdateVehicleDTO
+    public class UpdateVehicle
     {
         [Required]
         [MinLength(3)]
@@ -13,5 +13,7 @@ namespace PublicTransportation.Domain.DTO.Edit
 
         [Required]
         public long LineId { get; set; }
+
+
     }
 }

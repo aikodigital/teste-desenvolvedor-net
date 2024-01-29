@@ -5,7 +5,7 @@ namespace PublicTransportation.Domain.DTO.Create
     public class CreateVehiclePositionDTO
     {
         [Required]
-        public double Logitude { get; set; }
+        public double Longitude { get; set; }
 
         [Required]
         public double Latitude { get; set; }

@@ -1,0 +1,152 @@
+﻿@page "/vehicles"
+@using PublicTransportation.App.Models
+@inject HttpClient http
+@inject IJSRuntime js
+
+<PageTitle>Vehicles</PageTitle>
+
+<h2>Vehicles</h2>
+
+<div class="row my-2">
+    <div class="col-3">
+        <a href="vehicles/new" class="btn btn-primary">New</a>
+    </div>
+</div>
+
+<div class="card shadow my-4 border-0 rounded-3">
+    <div class="card-body">
+        <div class="row justify-content-end">
+            <div class="col-12 col-md-7">
+                <div class="input-group">
+                    <input type="text" class="form-control mb-2 mr-sm-2" @bind="searchString" placeholder="search by vehicle name or model..." />
+                    <div @onclick="Search" class="btn btn-primary mr-sm-2 mb-2">Search</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow my-4 border-0 rounded-3">
+    <div class="card-body">
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <td>Name</td>
+                    <td>Model</td>
+                    <td>Line</td>
+                    <td>Position Latitude</td>
+                    <td>Position Longitude</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Vehicles == null)
+                {
+                    <tr>
+                        <td colspan="6" class="text-center">Loading Vehicles...</td>
+                    </tr>
+                }
+                else if (Vehicles.Count() <= 0)
+                {
+                    <tr>
+                        <td colspan="6" class="text-center text-muted font-italic font-weight-normal bg-light">There are no vehicles created.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var vehicle in Vehicles)
+                    {
+                        <tr>
+                            <td>@vehicle.Name</td>
+                            <td>@vehicle.Model</td>
+                            <td>@vehicle.LineName</td>
+                            <td>@vehicle.Position?.Latitude </td>
+                            <td>@vehicle.Position?.Longitude</td>
+                            <td>
+
+                                <a class="btn btn-primary" href="@($"/vehicles/edit/{vehicle.Id}")">
+                                    Edit
+                                </a>
+                                <div class="btn btn-danger" @onclick="(() => Delete(vehicle))">
+                                    Delete
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <PublicTransportation.App.Components.Paginator TotalPages="totalPages"
+                                                       CurrentPage="currentPage"
+                                                       Radius="2"
+                                                       SelectedPage="SelectedPage">
+        </PublicTransportation.App.Components.Paginator>
+    </div>
+</div>
+
+@code {
+
+    ICollection<Vehicle> Vehicles { get; set; }
+
+    Location location = new Location();
+
+
+    private int totalPages;
+    private int currentPage = 0;
+    private string searchString = string.Empty;
+
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task Search()
+    {
+        currentPage = 0;
+        await LoadData();
+    }
+
+    private async Task SelectedPage(int page)
+    {
+        currentPage = page;
+        await LoadData(currentPage);
+    }
+
+    async Task LoadData(int page = 1, int perPage = 5)
+    {
+        var httpResponse = await http.GetAsync($"Vehicle?currentPage={currentPage}&perPage={perPage}&searchString={searchString}");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            var getAllResponse = JsonSerializer.Deserialize<GetAllResponse<Vehicle>>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+            totalPages = getAllResponse.TotalCount;
+            Vehicles = getAllResponse.Rows;
+        }
+    }
+
+    async Task Delete(Vehicle vehicle)
+    {
+        bool alertResponse = await js.InvokeAsync<bool>("SweetAlertWithConfirm", new SweetAlertData { Message = $"The vehicle <b>{vehicle.Name}</b> will be deleted!", Title = "Ops! Are you sure about that?", Icon = EnumSweetAlertIcon.warning.ToString() });
+        if (alertResponse)
+        {
+            HttpResponseMessage response = await http.DeleteAsync($"Vehicle/{vehicle.Id}");
+            var aersa = new ApiErrorResponseToSweetAlert(response);
+            await js.InvokeVoidAsync("SweetAlert", await aersa.Alert());
+            if (aersa.Success())
+            {
+                await LoadData();
+                StateHasChanged();
+            }
+        }
+    }
+}

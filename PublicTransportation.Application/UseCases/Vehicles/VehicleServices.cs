@@ -104,7 +104,7 @@ namespace PublicTransportation.Application.UseCases.Vehicles
             {
                 VehicleId = vehicleId,
                 Latitude = dto.Latitude,
-                Longitude = dto.Logitude
+                Longitude = dto.Longitude
             };
 
             _vehicleRepository.CreateVehiclePosition(vehiclePosition);
@@ -117,7 +117,7 @@ namespace PublicTransportation.Application.UseCases.Vehicles
             if (vehiclePosition is null)
                 throw new NotFoundException("Record not found.");
 
-            vehiclePosition.Longitude = dto.Logitude;
+            vehiclePosition.Longitude = dto.Longitude;
             vehiclePosition.Latitude = dto.Latitude;
 
             _vehicleRepository.UpdateVehiclePosition(vehiclePosition);

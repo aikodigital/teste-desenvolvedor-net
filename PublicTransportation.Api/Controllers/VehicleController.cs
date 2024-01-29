@@ -34,7 +34,10 @@ namespace PublicTransportation.Api.Controllers
         public IActionResult Create([FromBody] CreateVehicleDTO dto)
         {
             _vehicleServices.Create(dto);
-            return Ok();
+            return new ObjectResult(dto)
+            {
+                StatusCode = StatusCodes.Status201Created
+            };
         }
 
         [HttpPut("{id:long}")]
