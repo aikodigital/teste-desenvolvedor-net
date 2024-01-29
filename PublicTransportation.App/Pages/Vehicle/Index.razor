@@ -79,7 +79,7 @@
             </tbody>
         </table>
 
-        <PublicTransportation.App.Components.Paginator TotalPages="totalPages"
+        <PublicTransportation.App.Components.Paginator TotalCount="totalCount"
                                                        CurrentPage="currentPage"
                                                        Radius="2"
                                                        SelectedPage="SelectedPage">
@@ -94,7 +94,7 @@
     Location location = new Location();
 
 
-    private int totalPages;
+    private int totalCount;
     private int currentPage = 0;
     private string searchString = string.Empty;
 
@@ -129,7 +129,7 @@
                         PropertyNameCaseInsensitive = true
                     });
 
-            totalPages = getAllResponse.TotalCount;
+            totalCount = getAllResponse.TotalCount;
             Vehicles = getAllResponse.Rows;
         }
     }

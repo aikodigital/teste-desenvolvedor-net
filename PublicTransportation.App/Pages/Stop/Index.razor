@@ -75,7 +75,7 @@
             </tbody>
         </table>
 
-        <PublicTransportation.App.Components.Paginator TotalPages="totalPages"
+        <PublicTransportation.App.Components.Paginator TotalCount="totalCount"
                                                        CurrentPage="currentPage"
                                                        Radius="2"
                                                        SelectedPage="SelectedPage">
@@ -166,7 +166,7 @@
 
     ICollection<Stop> ClosestStops = new List<Stop>();
 
-    private int totalPages;
+    private int totalCount;
     private int currentPage = 0;
     private string searchString = string.Empty;
 
@@ -220,7 +220,7 @@
                         PropertyNameCaseInsensitive = true
                     });
 
-            totalPages = getAllResponse.TotalCount;
+            totalCount = getAllResponse.TotalCount;
             Stops = getAllResponse.Rows;
         }
     }

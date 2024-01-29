@@ -13,8 +13,9 @@
 
 @code {
     [Parameter] public int CurrentPage { get; set; } = 0;
-    [Parameter] public int TotalPages { get; set; }
+    [Parameter] public int TotalCount { get; set; } = 0;
     [Parameter] public int Radius { get; set; } = 3;
+    [Parameter] public int PerPage { get; set; } = 5;
     [Parameter] public EventCallback<int> SelectedPage { get; set; }
 
     List<LinkModel> links;
@@ -34,7 +35,7 @@
     class LinkModel
     {
         public LinkModel(int page) : this(page, true) { }
-        public LinkModel(int page, bool enable) : this(page, enable, page.ToString()) { }
+        public LinkModel(int page, bool enable) : this(page, enable, (page + 1).ToString()) { }
         public LinkModel(int page, bool enable, string text)
         {
             Page = page;
@@ -57,12 +58,20 @@
     {
         links = new List<LinkModel>();
 
-        var isLinkPreviousPageEnabled = CurrentPage != 1;
+        var isLinkPreviousPageEnabled = CurrentPage != 0;
         var previousPage = CurrentPage - 1;
 
-        links.Add(new LinkModel(previousPage, isLinkPreviousPageEnabled, "Previous"));
+        if(CurrentPage > 0)
+            links.Add(new LinkModel(previousPage, isLinkPreviousPageEnabled, "Previous"));
 
-        for (int i = 1; i <= TotalPages; i++)
+        var totalPages = 1;
+
+        if (TotalCount > PerPage){
+            decimal result = (decimal)TotalCount / PerPage;
+            totalPages = (int) Math.Ceiling(result);
+        }
+
+        for (int i = 0; i < totalPages; i++)
         {
             if (i >= CurrentPage - Radius && i <= CurrentPage + Radius)
             {
@@ -73,10 +82,11 @@
             }
         }
 
-        var isLinkNextPageEnabled = CurrentPage != TotalPages;
+        var isLinkNextPageEnabled = CurrentPage != totalPages;
         var nextPage = CurrentPage + 1;
 
-        links.Add(new LinkModel(nextPage, isLinkNextPageEnabled, "Next"));
+        if(CurrentPage + 1 < totalPages)
+            links.Add(new LinkModel(nextPage, isLinkNextPageEnabled, "Next"));
 
     }
 }
