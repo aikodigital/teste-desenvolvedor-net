@@ -1,0 +1,137 @@
+is_global = true
+build_property.TargetFramework = net7.0
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.RootNamespace = WebUI
+build_property.RootNamespace = WebUI
+build_property.ProjectDir = /home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/
+build_property.RazorLangVersion = 7.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = /home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI
+build_property._RazorSourceGeneratorDebug = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9Mb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvQWNjb3VudC9SZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Home/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Home/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvSG9tZS9Qcml2YWN5LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Line/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGluZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Line/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGluZS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Line/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGluZS9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Line/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGluZS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Line/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvTGluZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Shared/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL0Vycm9yLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Stop/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RvcC9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Stop/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RvcC9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Stop/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RvcC9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Stop/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RvcC9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Stop/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU3RvcC9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Vehicle/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZS9DcmVhdGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Vehicle/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZS9EZWxldGUuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Vehicle/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZS9EZXRhaWxzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Vehicle/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZS9FZGl0LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Vehicle/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZS9JbmRleC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/VehiclePosition/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZVBvc2l0aW9uL0NyZWF0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/VehiclePosition/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZVBvc2l0aW9uL0RlbGV0ZS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/VehiclePosition/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZVBvc2l0aW9uL0RldGFpbHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/VehiclePosition/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZVBvc2l0aW9uL0VkaXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/VehiclePosition/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvVmVoaWNsZVBvc2l0aW9uL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Presentation/WebUI/Views/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvU2hhcmVkL19MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-eh7gjq0slz

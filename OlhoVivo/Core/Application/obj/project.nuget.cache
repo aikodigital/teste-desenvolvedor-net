@@ -1,0 +1,11 @@
+{
+  "version": 2,
+  "dgSpecHash": "CM0azUzIYRl/8UbQGLQ8/1V4G3qriVepVuOwL5qYKy40ak3fNAj0unrkcZG4/HTZIAUL1H7xoAe74cBtOGSV5g==",
+  "success": true,
+  "projectFilePath": "/home/h1s0k4/Área de trabalho/App/ENTREVISTA/Empresas/AIKO/Teste Prático/teste-desenvolvedor-net/OlhoVivo/Core/Application/OlhoVivo.Core.Application.csproj",
+  "expectedPackageFiles": [
+    "/home/h1s0k4/.nuget/packages/automapper/12.0.1/automapper.12.0.1.nupkg.sha512",
+    "/home/h1s0k4/.nuget/packages/microsoft.csharp/4.7.0/microsoft.csharp.4.7.0.nupkg.sha512"
+  ],
+  "logs": []
+}

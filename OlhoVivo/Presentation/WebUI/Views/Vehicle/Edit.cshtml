@@ -1,0 +1,59 @@
+@model OlhoVivo.Core.Application.DTOs.VehicleDTO
+
+@{
+    ViewData["Title"] = "Edit Vehicle";
+}
+
+<div>
+    <h2>@ViewData["Title"]</h2>
+</div>
+
+<form asp-action="Edit" method="post">
+
+    <div class="form-horizontal">
+        <hr />
+
+        <input type="hidden" asp-for="Id" />
+
+        <div class="form-group">
+
+            <label asp-for="Name" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <input asp-for="Name" class="form-control" />
+                <span asp-validation-for="Name" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-10">
+
+            <label asp-for="Model" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <input asp-for="Model" class="form-control" />
+                <span asp-validation-for="Model" class="text-danger"></span>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-10">
+
+            <label asp-for="LineId" class="col-md-2 control-label"></label>
+
+            <div class="col-md-10">
+                <select asp-for="LineId" class="form-control" asp-items="ViewBag.LineId"> </select>
+            </div>
+
+        </div>
+
+        <div class="form-group mt-10">
+            <input type="submit" value="Save" class="btn btn-success" />           
+        </div>
+
+    </div>
+</form>
+
+<div class="col-md-offset-2 col-md-10 mt-10">
+    <a asp-action="Index">Back to List</a>
+</div>
