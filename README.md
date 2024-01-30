@@ -1,4 +1,12 @@
-Projeto desenvolvido para o teste da vaga de Desenvolvedor.NET da empresa AIKO
+# Teste Desenvolvedor.Net
 
-No link abaixo, faço uma aprensentação do meu projeto
-https://youtu.be/r7RxmDPTc8c
+[Nesse link](https://youtu.be/r7RxmDPTc8c) eu mostro como funciona o projeto e como foi desenvolvido.
+
+Esse projeto foi desenvolvido usando tecnologias como:
+
+* `Net 6.0` para desenvolvimento da API
+* `PostgreSQL` para banco de dados
+* `EntityFrameworkCore` como ORM
+* `Blazor Wasm` como Framework para desenvolvimento frontend
+* `Bootstrap 5` para estilização do frontend
+* `Swagger` para documentação de API
