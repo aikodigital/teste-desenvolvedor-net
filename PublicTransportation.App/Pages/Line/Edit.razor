@@ -1,0 +1,242 @@
+﻿@page "/lines/edit/{id:long}"
+@inject HttpClient http
+@inject NavigationManager navegation
+@inject IJSRuntime js
+
+<h3>Edit Line</h3>
+<EditForm Model="@line" OnValidSubmit="@SendForm">
+    <div class="card shadow my-4 border-0">
+        <div class="card-body">
+
+            <DataAnnotationsValidator />
+            <div class="row">
+                <div class="col">
+                    <div class="form-group">
+                        <label form="name">Name</label>
+                        <div>
+                            <InputText @bind-Value="@line.Name" class="form-control" id="nameLine"/>
+                            <ValidationMessage For="@(() => line.Name)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row my-3">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <div class="btn btn-dark" @onclick="Back">Back</div>
+                </div>
+            </div>
+
+            <hr />
+
+            <div class="row">
+                <div class="col">
+                    <table class="table">
+                        <thead class="table-dark">
+                            <tr>
+                                <td>Name</td>
+                                <td>Latitude</td>
+                                <td>Longitude</td>
+                                <td></td>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            @if (line.Stops is null || line.Stops.Count() == 0)
+                            {
+                                <tr>
+                                    <td colspan="3" class="text-center text-muted font-italic font-weight-normal bg-light">
+                                        There are no vehicles in this line.
+                                    </td>
+                                </tr>
+                            }
+                            else
+                            {
+                                @foreach (var stop in line.Stops)
+                                {
+                                    <tr>
+                                        <td>@stop.Name</td>
+                                        <td>@stop.Latitude</td>
+                                        <td>@stop.Longitude</td>
+                                        <td>
+                                            <div class="btn btn-danger" @onclick="(() => DeleteStop(stop))">
+                                                Delete
+                                            </div>
+                                        </td>
+                                    </tr>
+                                }
+                            }
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    @if (stops is not null && stops.Count() > 0)
+    {
+        <div class="card shadow my-4 border-0">
+            <div class="card-body">
+                <h5 class="card-title">Add new stops to this line.</h5>
+                <div class="row">
+                    <div class="col-4">
+                        <div class="input-group">
+                            <InputSelect class="form-control" @bind-Value="@selectedStopId">
+                                <option value="0" selected>Select a stop to add to the line...</option>
+                                @foreach (var stop in stops)
+                                {
+                                    <option value="@stop.Id">@stop.Name</option>
+                                }
+                            </InputSelect>
+                            <button type="button" class="btn btn-primary" @onclick="(() => AddStop())">Add Stop</button>
+                        </div>
+                    </div>
+                </div>
+
+                @if (newLineStops.Count() > 0)
+                {
+                    <div class="row mt-5">
+                        <div class="col">
+                            <table class="table">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Latitude</td>
+                                        <td>Longitude</td>
+                                        <td></td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var lineStop in newLineStops)
+                                    {
+                                        var stop = stops.FirstOrDefault(x => x.Id == lineStop.StopId);
+                                        <tr>
+                                            <td>@stop.Name</td>
+                                            <td>@stop.Latitude</td>
+                                            <td>@stop.Longitude</td>
+                                            <td>
+                                                <div class="btn btn-danger" @onclick="(() => RemoveStop(lineStop))">
+                                                    Remove
+                                                </div>
+                                            </td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+
+                    <div class="row my-3">
+                        <div class="col">
+                            <button type="button" class="btn btn-success" @onclick="(() => SaveStops())">Save stops</button>
+                        </div>
+                    </div>
+                }
+            </div>
+        </div>
+    }
+</EditForm>
+
+@code {
+    Line line = new Line();
+    ICollection<Stop> stops = new List<Stop>();
+    List<LineStop> newLineStops = new List<LineStop>();
+
+    long selectedStopId = 0;
+
+
+    [Parameter]
+    public long id { get; set; }
+
+
+    protected async override void  OnParametersSet()
+    {
+        if (id > 0)
+        {
+            await LoadLine();
+            await LoadStops();
+            StateHasChanged();
+        }
+    }
+
+    async Task LoadLine()
+    {
+        line = await http.GetFromJsonAsync<Line>($"Line/{id}");
+    }
+
+    void AddStop()
+    {
+        if (selectedStopId == 0) return;
+        if (newLineStops.Any(x => x.StopId == selectedStopId)) return;
+        if (line.Stops is not null && line.Stops.Any(x => x.Id == selectedStopId)) return;
+
+        newLineStops.Add(new LineStop { StopId = selectedStopId });
+    }
+
+    void RemoveStop(LineStop lineStop)
+    {
+        newLineStops.Remove(lineStop);
+    }
+
+    async Task SaveStops()
+    {
+        HttpResponseMessage response;
+
+        response = await http.PostAsJsonAsync($"Line/{id}/add_stops", newLineStops);
+
+        if (response.IsSuccessStatusCode)
+        {
+            await js.InvokeVoidAsync("SweetAlert", new SweetAlertData(response.StatusCode, "Records saved successfully."));
+
+            newLineStops = new List<LineStop>();
+            await LoadLine();
+        }
+    }
+
+    async Task DeleteStop(Stop stop)
+    {
+        bool alertResponse = await js.InvokeAsync<bool>("SweetAlertWithConfirm", new SweetAlertData { Message = $"The stop <b>{stop.Name}</b> will be removed from this line!", Title = "Ops! Are you sure about that?", Icon = EnumSweetAlertIcon.warning.ToString() });
+        if (alertResponse)
+        {
+            HttpResponseMessage response = await http.DeleteAsync($"Line/{id}/remove_stop/{stop.Id}");
+            var aersa = new ApiErrorResponseToSweetAlert(response);
+            await js.InvokeVoidAsync("SweetAlert", await aersa.Alert());
+            if (aersa.Success())
+            {
+                line.Stops.Remove(stop);
+                StateHasChanged();
+            }
+        }
+    }
+
+    async Task SendForm()
+    {
+        HttpResponseMessage response;
+        response = await http.PutAsJsonAsync($"Line/{id}", line);
+
+        await js.InvokeVoidAsync("SweetAlert", new SweetAlertData(response.StatusCode, "Record updated successfully."));
+
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            Back();
+        }
+    }
+
+    async Task LoadStops()
+    {
+        var httpResponse = await http.GetAsync($"Stop");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            var getAllResponse = JsonSerializer.Deserialize<GetAllResponse<Stop>>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+            stops = getAllResponse.Rows;
+        }
+    }
+
+    protected void Back() => navegation.NavigateTo("lines");
+}

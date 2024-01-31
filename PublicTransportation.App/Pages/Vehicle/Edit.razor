@@ -1,0 +1,194 @@
+﻿@page "/vehicles/edit/{id:long}"
+@inject HttpClient http
+@inject NavigationManager navegation
+@inject IJSRuntime js
+
+<h3>Edit Vehicle</h3>
+
+<div class="card shadow my-4 border-0">
+    <div class="card-body">
+        <EditForm Model="@vehicle" OnValidSubmit="@SendForm">
+            <DataAnnotationsValidator />
+            <div class="row mb-3">
+                <div class="col">
+                    <div class="form-group">
+                        <label for="nameVehicle">Name</label>
+                        <div>
+                            <InputText @bind-Value="@vehicle.Name" class="form-control" id="nameVehicle" />
+                            <ValidationMessage For="@(() => vehicle.Name)" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="col">
+                    <div class="form-group">
+                        <label for="modelVehicle">Model</label>
+                        <div>
+                            <InputText @bind-Value="@vehicle.Model" class="form-control" id="modelVehicle" />
+                            <ValidationMessage For="@(() => vehicle.Model)" />
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row mb-3">
+                <div class="col-4">
+                    <div class="input-group">
+                        <InputSelect class="form-control" @bind-Value="@vehicle.LineId">
+                            <option value="0" selected>Select a line...</option>
+                            @foreach (var line in lines)
+                            {
+                                <option value="@line.Id">@line.Name</option>
+                            }
+                        </InputSelect>
+                    </div>
+                </div>
+            </div>
+
+            <div class="row">
+                <div class="col">
+                    <button type="submit" class="btn btn-success">Save</button>
+                    <div class="btn btn-dark" @onclick="Back">Back</div>
+                </div>
+            </div>
+        </EditForm>
+    </div>
+</div>
+
+    <div class="card shadow my-4 border-0">
+        <div class="card-body">
+            <h5 class="card-title">Vehicle Position</h5>
+
+            <EditForm Model="@vehiclePosition" OnValidSubmit="@SaveVehiclePosition">
+                <DataAnnotationsValidator />
+                <div class="row my-3">
+                    <div class="col-4">
+                        <div class="form-group">
+                            <label for="latitudePosition">Latitude</label>
+                            <div>
+                                <InputNumber @bind-Value="@vehiclePosition.Latitude" class="form-control" id="latitudePosition" />
+                                <ValidationMessage For="@(() => vehiclePosition.Latitude)" />
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-4">
+                        <div class="form-group">
+                        <label for="longitudePosition">Longitude</label>
+                            <div>
+                            <InputNumber @bind-Value="@vehiclePosition.Longitude" class="form-control" id="longitudePosition" />
+                            <ValidationMessage For="@(() => vehiclePosition.Longitude)" />
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <button type="submit" class="btn btn-success me-2">Set Position</button>
+
+                        @if (vehicle.Position is not null)
+                        {
+                            <div class="btn btn-danger" @onclick="(() => ClearPosition())">Clear Position</div>
+                        }
+                    </div>
+                </div>
+            </EditForm>
+        </div>
+    </div>
+
+
+@code {
+    Vehicle vehicle = new Vehicle();
+    ICollection<Line> lines = new List<Line>();
+
+    VehiclePosition vehiclePosition = new VehiclePosition();
+
+    [Parameter]
+    public long id { get; set; }
+
+
+    protected async override void OnParametersSet()
+    {
+        if (id > 0)
+        {
+            await LoadLines();
+            vehicle = await http.GetFromJsonAsync<Vehicle>($"Vehicle/{id}");
+
+            if (vehicle.Position is not null)
+            {
+                vehiclePosition.Latitude = vehicle.Position.Latitude;
+                vehiclePosition.Longitude = vehicle.Position.Longitude;
+            }
+
+            StateHasChanged();
+        }
+    }
+
+    async Task SendForm()
+    {
+        HttpResponseMessage response;
+        response = await http.PutAsJsonAsync($"Vehicle/{id}", vehicle);
+
+        await js.InvokeVoidAsync("SweetAlert", new SweetAlertData(response.StatusCode, "Record updated successfully."));
+
+        if (response.StatusCode == System.Net.HttpStatusCode.OK)
+        {
+            Back();
+        }
+    }
+
+    async Task LoadLines()
+    {
+        var httpResponse = await http.GetAsync($"Line");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            var getAllResponse = JsonSerializer.Deserialize<GetAllResponse<Line>>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+            lines = getAllResponse.Rows;
+        }
+    }
+
+    async Task SaveVehiclePosition()
+    {
+        HttpResponseMessage response;
+        var isUpdate = false;
+
+        if(vehicle.Position is not null)
+        {
+            response = await http.PutAsJsonAsync($"Vehicle/{id}/position", vehiclePosition);
+            isUpdate = true;
+        }
+        else
+        {
+            response = await http.PostAsJsonAsync($"Vehicle/{id}/position", vehiclePosition);
+            vehicle.Position = vehiclePosition;
+        }
+
+        await js.InvokeVoidAsync("SweetAlert", new SweetAlertData(response.StatusCode, $"Record {(isUpdate ? "updated" : "created" )} successfully."));
+    }
+
+    async Task ClearPosition()
+    {
+        bool alertResponse = await js.InvokeAsync<bool>("SweetAlertWithConfirm", new SweetAlertData { Message = $"This vehicle's position will be cleared!", Title = "Ops! Are you sure about that?", Icon = EnumSweetAlertIcon.warning.ToString() });
+        if (alertResponse)
+        {
+            HttpResponseMessage response = await http.DeleteAsync($"Vehicle/{id}/position/delete");
+            var aersa = new ApiErrorResponseToSweetAlert(response);
+            await js.InvokeVoidAsync("SweetAlert", await aersa.Alert());
+            if (aersa.Success())
+            {
+                vehicle.Position = null;
+                vehiclePosition = new VehiclePosition();
+                StateHasChanged();
+            }
+        }
+    }
+
+    protected void Back() => navegation.NavigateTo("vehicles");
+}

@@ -1,0 +1,260 @@
+﻿@page "/stops"
+@using PublicTransportation.App.Models
+@inject HttpClient http
+@inject IJSRuntime js
+
+<PageTitle>Stops</PageTitle>
+
+<h2>Stop</h2>
+
+<div class="row my-2">
+    <div class="col-3">
+        <a href="stops/new" class="btn btn-primary">New</a>
+    </div>
+</div>
+
+<div class="card shadow my-4 border-0 rounded-3">
+    <div class="card-body">
+        <div class="row justify-content-end">
+            <div class="col-12 col-md-7">
+                <div class="input-group">
+                    <input type="text" class="form-control mb-2 mr-sm-2" @bind="searchString" placeholder="search by stop name..." />
+                    <div @onclick="Search" class="btn btn-primary mr-sm-2 mb-2">Search</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow my-4 border-0 rounded-3">
+    <div class="card-body">
+        <div class="btn btn-primary my-2" @onclick="() => Open()">Find closest stops</div>
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <td>Name</td>
+                    <td>Latitude</td>
+                    <td>Longitude</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Stops == null)
+                {
+                    <tr>
+                        <td colspan="4" class="text-center">Loading Stops...</td>
+                    </tr>
+                }
+                else if (Stops.Count() <= 0)
+                {
+                    <tr>
+                        <td colspan="4" class="text-center text-muted font-italic font-weight-normal bg-light">There are no lines created.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var stop in Stops)
+                    {
+                        <tr>
+                            <td>@stop.Name</td>
+                            <td>@stop.Latitude</td>
+                            <td>@stop.Longitude</td>
+                            <td>
+
+                                <a class="btn btn-primary" href="@($"/stops/edit/{stop.Id}")">
+                                    Edit
+                                </a>
+                                <div class="btn btn-danger" @onclick="(() => Delete(stop))">
+                                    Delete
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <PublicTransportation.App.Components.Paginator TotalCount="totalCount"
+                                                       CurrentPage="currentPage"
+                                                       Radius="2"
+                                                       SelectedPage="SelectedPage">
+        </PublicTransportation.App.Components.Paginator>
+    </div>
+</div>
+
+
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Closest stops to the specified coordinates</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @onclick="() => Close()"></button>
+            </div>
+            <div class="modal-body">
+                <EditForm Model="location">
+                    <div class="row align-items-end">
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Latitude</label>
+                                <div>
+                                    <InputNumber @bind-Value="@location.Latitude" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col">
+                            <div class="form-group">
+                                <label>Longitude</label>
+                                <div>
+                                    <InputNumber @bind-Value="@location.Longitude" class="form-control" />
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="col">
+                            <div class="btn btn-primary" @onclick="(() => FindClosestStops())">Find Closest Stops</div>
+                        </div>
+                    </div>
+                </EditForm>
+
+                @if (ClosestStops.Count() > 0)
+                {
+                    <div class="row my-3">
+                        <div class="col">
+                            <table class="table table-striped">
+                                <thead class="table-dark">
+                                    <tr>
+                                        <td>Name</td>
+                                        <td>Latitude</td>
+                                        <td>Longitude</td>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    @foreach (var stop in ClosestStops)
+                                    {
+                                        <tr>
+                                            <td>@stop.Name</td>
+                                            <td>@stop.Latitude</td>
+                                            <td>@stop.Longitude</td>
+                                        </tr>
+                                    }
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                }
+
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @onclick="() => Close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+
+@code {
+
+    ICollection<Stop> Stops { get; set; }
+
+    Location location = new Location(); 
+
+    ICollection<Stop> ClosestStops = new List<Stop>();
+
+    private int totalCount;
+    private int currentPage = 0;
+    private string searchString = string.Empty;
+
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task Search()
+    {
+        currentPage = 0;
+        await LoadData();
+    }
+
+    private async Task SelectedPage(int page)
+    {
+        currentPage = page;
+        await LoadData(currentPage);
+    }
+
+    async Task LoadData(int page = 1, int perPage = 5)
+    {
+        var httpResponse = await http.GetAsync($"Stop?currentPage={currentPage}&perPage={perPage}&searchString={searchString}");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            var getAllResponse = JsonSerializer.Deserialize<GetAllResponse<Stop>>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+            totalCount = getAllResponse.TotalCount;
+            Stops = getAllResponse.Rows;
+        }
+    }
+
+    async Task FindClosestStops()
+    {
+        ClosestStops = new List<Stop>();
+
+        var httpResponse = await http.GetAsync($"Stop/closest/latitude/{location.Latitude}/longitude/{location.Longitude}");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            ClosestStops = JsonSerializer.Deserialize<ICollection<Stop>>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+        }
+    }
+
+    async Task Delete(Stop stop)
+    {
+        bool alertResponse = await js.InvokeAsync<bool>("SweetAlertWithConfirm", new SweetAlertData { Message = $"The stop <b>{stop.Name}</b> will be deleted!", Title = "Ops! Are you sure about that?", Icon = EnumSweetAlertIcon.warning.ToString() });
+        if (alertResponse)
+        {
+            HttpResponseMessage response = await http.DeleteAsync($"Stop/{stop.Id}");
+            var aersa = new ApiErrorResponseToSweetAlert(response);
+            await js.InvokeVoidAsync("SweetAlert", await aersa.Alert());
+            if (aersa.Success())
+            {
+                await LoadData();
+                StateHasChanged();
+            }
+        }
+    }
+}

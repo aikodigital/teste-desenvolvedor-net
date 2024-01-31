@@ -1,0 +1,279 @@
+﻿@page "/lines"
+@inject HttpClient http
+@inject IJSRuntime js
+
+<PageTitle>Lines</PageTitle>
+
+<h2>Lines</h2>
+
+<div class="row my-2">
+    <div class="col-3">
+        <a href="lines/new" class="btn btn-primary">New</a>
+    </div>
+</div>
+
+<div class="card shadow my-4 border-0 rounded-3">
+    <div class="card-body">
+        <div class="row justify-content-end">
+            <div class="col-12 col-md-7">
+                <div class="input-group">
+                    <input type="text" class="form-control mb-2 mr-sm-2" @bind="searchString" placeholder="search by line name..."/>
+                    <div @onclick="Search" class="btn btn-primary mr-sm-2 mb-2">Search</div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<div class="card shadow my-4 border-0 rounded-3">
+    <div class="card-body">
+
+        <table class="table table-striped">
+            <thead class="table-dark">
+                <tr>
+                    <td>Name</td>
+                    <td>Actions</td>
+                </tr>
+            </thead>
+            <tbody>
+                @if (Lines == null)
+                {
+                    <tr>
+                        <td colspan="2" class="text-center">Loading Lines...</td>
+                    </tr>
+                }
+                else if (Lines.Count() <= 0)
+                {
+                    <tr>
+                        <td colspan="2" class="text-center text-muted font-italic font-weight-normal bg-light">There are no lines created.</td>
+                    </tr>
+                }
+                else
+                {
+                    @foreach (var line in Lines)
+                    {
+                        <tr>
+                            <td>@line.Name</td>
+                            <td>
+                                <div class="btn btn-secondary" @onclick="() => ShowDetails(line.Id)">Details</div>
+                                <a class="btn btn-primary" href="@($"/lines/edit/{line.Id}")">
+                                    Edit
+                                </a>
+                                <div class="btn btn-danger" @onclick="(() => Delete(line))">
+                                    Delete
+                                </div>
+                            </td>
+                        </tr>
+                    }
+                }
+            </tbody>
+        </table>
+
+        <PublicTransportation.App.Components.Paginator TotalCount="totalCount"
+            CurrentPage="currentPage"
+            Radius="2"
+            SelectedPage="SelectedPage">
+        </PublicTransportation.App.Components.Paginator>
+    </div>
+</div>
+
+
+<div class="modal @ModalClass" tabindex="-1" role="dialog" style="display:@ModalDisplay">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Line Details</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" @onclick="() => Close()"></button>
+            </div>
+            <div class="modal-body">
+                <div class="row">
+                    <div class="col">
+                        <p><b>Line Name:</b> @LineDetails.Name</p>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <td>Stop Name</td>
+                                    <td>Latitude</td>
+                                    <td>Longitude</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (LineDetails.Stops is null || LineDetails.Stops.Count() == 0)
+                                {
+                                    <tr>
+                                        <td colspan="3" class="text-center text-muted font-italic font-weight-normal bg-light">
+                                            There are no stops in this line.
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var stop in LineDetails.Stops)
+                                    {
+                                        <tr>
+                                            <td>@stop.Name</td>
+                                            <td>@stop.Longitude</td>
+                                            <td>@stop.Latitude</td>
+                                        </tr>
+                                    }
+                                }
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="row">
+                    <div class="col">
+                        <table class="table table-striped">
+                            <thead class="table-dark">
+                                <tr>
+                                    <td>Vehicle Name</td>
+                                    <td>Vehicle Model</td>
+                                    <td>Position Latitude</td>
+                                    <td>Position Longitude</td>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                @if (LineDetails.Vehicles is null || LineDetails.Vehicles.Count() == 0)
+                                {
+                                    <tr>
+                                        <td colspan="4" class="text-center text-muted font-italic font-weight-normal bg-light">
+                                            There are no vehicles in this line.
+                                        </td>
+                                    </tr>
+                                }
+                                else
+                                {
+                                    @foreach (var vehicle in LineDetails.Vehicles)
+                                    {
+                                        <tr>
+                                            <td>@vehicle.Name</td>
+                                            <td>@vehicle.Model</td>
+                                            <td>@vehicle.Position?.Longitude</td>
+                                            <td>@vehicle.Position?.Latitude</td>
+                                        </tr>
+                                    }
+                                }
+
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" @onclick="() => Close()">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+@if (ShowBackdrop)
+{
+    <div class="modal-backdrop fade show"></div>
+}
+
+
+@code{
+
+    ICollection<Line> Lines { get; set; }
+    Line LineDetails = new Line();
+
+    private int totalCount;
+    private int currentPage = 0;
+    private string searchString = string.Empty;
+
+    public string ModalDisplay = "none;";
+    public string ModalClass = "";
+    public bool ShowBackdrop = false;
+
+    public void Open()
+    {
+        ModalDisplay = "block;";
+        ModalClass = "Show";
+        ShowBackdrop = true;
+        StateHasChanged();
+    }
+
+    public void Close()
+    {
+        ModalDisplay = "none";
+        ModalClass = "";
+        ShowBackdrop = false;
+        StateHasChanged();
+    }
+
+    protected override async Task OnInitializedAsync()
+    {
+        await LoadData();
+    }
+
+    private async Task Search()
+    {
+        currentPage = 0;
+        await LoadData();
+    }
+
+    private async Task SelectedPage(int page)
+    {
+        currentPage = page;
+        await LoadData(currentPage);
+    }
+
+    private async Task ShowDetails(long lineId)
+    {
+        var httpResponse = await http.GetAsync($"Line/{lineId}");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            LineDetails = JsonSerializer.Deserialize<Line>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+            Open();
+        }
+    }
+
+    async Task LoadData(int page = 1, int perPage = 5)
+    {
+        var httpResponse = await http.GetAsync($"Line?currentPage={currentPage}&perPage={perPage}&searchString={searchString}");
+
+        if (httpResponse.IsSuccessStatusCode)
+        {
+            var responseString = await httpResponse.Content.ReadAsStringAsync();
+            var getAllResponse = JsonSerializer.Deserialize<GetAllResponse<Line>>(responseString,
+                new JsonSerializerOptions()
+                    {
+                        PropertyNameCaseInsensitive = true
+                    });
+
+            totalCount = getAllResponse.TotalCount;
+            Lines = getAllResponse.Rows;
+        }
+    }
+
+    async Task Delete(Line lineDTO)
+    {
+        bool alertResponse = await js.InvokeAsync<bool>("SweetAlertWithConfirm", new SweetAlertData { Message = $"The line <b>{lineDTO.Name}</b> will be deleted!", Title = "Ops! Are you sure about that?", Icon = EnumSweetAlertIcon.warning.ToString() });
+        if (alertResponse)
+        {
+            HttpResponseMessage response = await http.DeleteAsync($"Line/{lineDTO.Id}");
+            var aersa = new ApiErrorResponseToSweetAlert(response);
+            await js.InvokeVoidAsync("SweetAlert", await aersa.Alert());
+            if (aersa.Success())
+            {
+                await LoadData();
+                StateHasChanged();
+            }
+        }
+    }
+}
