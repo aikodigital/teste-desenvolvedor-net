@@ -1,0 +1,27 @@
+﻿using Aiko.OlhoVivo.Infrastructure.Useful;
+
+namespace Aiko.OlhoVivo.Application.Models;
+
+/// <summary>
+/// Class que contém as propriedades relacionadas ao veiculo
+/// </summary>
+public class VehicleModel : BaseEntity
+{
+    /// <summary>
+    /// Nome do veiculo
+    /// </summary>
+    /// <example>Carro alegórico</example>
+    public string Name { get; set; }
+
+    /// <summary>
+    /// Modelo do veiculo
+    /// </summary>
+    /// <example>Nave espacial</example>
+    public string Modelo { get; set; }
+
+    /// <summary>
+    /// Linha do veiculo
+    /// </summary>
+    /// <example>8</example>
+    public long LineId { get; set; }
+}

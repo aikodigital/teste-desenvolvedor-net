@@ -1,0 +1,32 @@
+﻿using Aiko.OlhoVivo.Infrastructure.Useful;
+
+namespace Aiko.OlhoVivo.Infrastructure.Dto;
+
+/// <summary>
+/// Class que contém as propriedades relacionadas a posição do veiculo
+/// </summary>
+public class VehiclePosition : BaseEntity
+{
+    /// <summary>
+    /// Posição geográfica latitudinal
+    /// </summary>
+    /// <example>35º N (35 graus ao norte)</example>
+    public string Latitude { get; set; }
+
+    /// <summary>
+    /// Posição geográfica longitudinal
+    /// </summary>
+    /// <example>65º O (65 graus ao oeste)</example>
+    public string Longitude { get; set; }
+
+    /// <summary>
+    /// Entidade do veiculo
+    /// </summary>
+    public Vehicle Vehicle { get; set; }
+
+    /// <summary>
+    /// Id do veiculo
+    /// </summary>
+    /// <example>34</example>
+    public long VehicleId { get; set; }
+}
