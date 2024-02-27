@@ -1,0 +1,10 @@
+{
+  "version": 2,
+  "dgSpecHash": "grFQTEVxUhh64PPvNg3I0uYrtiQprgJeY1oNnJAGmL1PMV9zpPHaS5m0SJyhPvN0048nSnV2ZWHHBE3tjSEGUA==",
+  "success": true,
+  "projectFilePath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj",
+  "expectedPackageFiles": [
+    "C:\\Users\\Jalles\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\5.0.0\\microsoft.extensions.dependencyinjection.abstractions.5.0.0.nupkg.sha512"
+  ],
+  "logs": []
+}
