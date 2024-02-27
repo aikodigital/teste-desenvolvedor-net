@@ -1,0 +1,6 @@
+@AikoDigital_HostAddress = http://localhost:5063
+
+GET {{AikoDigital_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
