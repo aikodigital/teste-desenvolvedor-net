@@ -1,0 +1,381 @@
+{
+  "format": 1,
+  "restore": {
+    "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Infrastructure\\Data\\Data\\Data.csproj": {}
+  },
+  "projects": {
+    "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Application\\Application\\Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Application\\Application\\Application.csproj",
+        "projectName": "Application",
+        "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Application\\Application\\Application.csproj",
+        "packagesPath": "C:\\Users\\Jalles\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Application\\Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Jalles\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\SharedKernel.Application.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\SharedKernel.Application.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj",
+        "projectName": "Domain",
+        "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj",
+        "packagesPath": "C:\\Users\\Jalles\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Jalles\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\SharedKernel.Application.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\SharedKernel.Application.csproj"
+              },
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "Microsoft.Extensions.DependencyInjection.Abstractions": {
+              "target": "Package",
+              "version": "[5.0.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Infrastructure\\Data\\Data\\Data.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Infrastructure\\Data\\Data\\Data.csproj",
+        "projectName": "Data",
+        "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Infrastructure\\Data\\Data\\Data.csproj",
+        "packagesPath": "C:\\Users\\Jalles\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Infrastructure\\Data\\Data\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Jalles\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Application\\Application\\Application.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Application\\Application\\Application.csproj"
+              },
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\Domain\\Domain\\Domain.csproj"
+              },
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "dependencies": {
+            "AutoMapper": {
+              "target": "Package",
+              "version": "[11.0.0, )"
+            },
+            "Microsoft.EntityFrameworkCore": {
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Design": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Microsoft.EntityFrameworkCore.Tools": {
+              "include": "Runtime, Build, Native, ContentFiles, Analyzers, BuildTransitive",
+              "suppressParent": "All",
+              "target": "Package",
+              "version": "[5.0.17, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL": {
+              "target": "Package",
+              "version": "[5.0.10, )"
+            },
+            "Npgsql.EntityFrameworkCore.PostgreSQL.Design": {
+              "target": "Package",
+              "version": "[1.1.0, )"
+            }
+          },
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\SharedKernel.Application.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\SharedKernel.Application.csproj",
+        "projectName": "SharedKernel.Application",
+        "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\SharedKernel.Application.csproj",
+        "packagesPath": "C:\\Users\\Jalles\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Application\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Jalles\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {
+              "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj": {
+                "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj"
+              }
+            }
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    },
+    "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj": {
+      "version": "1.0.0",
+      "restore": {
+        "projectUniqueName": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj",
+        "projectName": "SharedKernel.Infrastructure",
+        "projectPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\SharedKernel.Infrastructure.csproj",
+        "packagesPath": "C:\\Users\\Jalles\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\Jalles\\source\\repos\\teste-desenvolvedor-net\\src\\SharedKernel\\SharedKernel.Infrastructure\\obj\\",
+        "projectStyle": "PackageReference",
+        "fallbackFolders": [
+          "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
+        ],
+        "configFilePaths": [
+          "C:\\Users\\Jalles\\AppData\\Roaming\\NuGet\\NuGet.Config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
+          "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
+        ],
+        "originalTargetFrameworks": [
+          "net5.0"
+        ],
+        "sources": {
+          "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
+          "https://api.nuget.org/v3/index.json": {}
+        },
+        "frameworks": {
+          "net5.0": {
+            "targetAlias": "net5.0",
+            "projectReferences": {}
+          }
+        },
+        "warningProperties": {
+          "warnAsError": [
+            "NU1605"
+          ]
+        }
+      },
+      "frameworks": {
+        "net5.0": {
+          "targetAlias": "net5.0",
+          "imports": [
+            "net461",
+            "net462",
+            "net47",
+            "net471",
+            "net472",
+            "net48",
+            "net481"
+          ],
+          "assetTargetFallback": true,
+          "warn": true,
+          "frameworkReferences": {
+            "Microsoft.NETCore.App": {
+              "privateAssets": "all"
+            }
+          },
+          "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\7.0.401\\RuntimeIdentifierGraph.json"
+        }
+      }
+    }
+  }
+}
