@@ -10,7 +10,9 @@ Este projeto consiste em uma API RESTful que gerencia linhas de transporte públ
 
 * SQL Server
 
-* Mapeamento objeto-relacional (ORM)
+* Docker
+
+* AutoMapper
 
 ## Observações
 
@@ -18,4 +20,5 @@ Este projeto consiste em uma API RESTful que gerencia linhas de transporte públ
   
 * O In-Memory Database pode ser usado para facilitar o teste e a execução local.
 
-* A API está documentada usando o Swagger.
+* Apresentação da API Transporte Público: https://youtu.be/exST1NECkoY
+
