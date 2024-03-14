@@ -2,8 +2,6 @@ using Microsoft.EntityFrameworkCore;
 using PublicTransport.API.Extensions;
 using PublicTransport.API.Mappers;
 using PublicTransport.API.Persistence;
-using PublicTransport.API.Repositories;
-using PublicTransport.API.Repositories.Interface;
 
 var builder = WebApplication.CreateBuilder(args);
 
